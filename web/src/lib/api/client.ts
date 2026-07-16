@@ -13,8 +13,8 @@ export function isApiConfigured(): boolean {
 }
 
 /**
- * Header Basic Auth opzionale, per buildare contro ambienti protetti (es. il
- * test Pantheon con Lock attiva). Formato env `WP_API_BASIC_AUTH="utente:password"`.
+ * Header Basic Auth opzionale, per buildare contro ambienti protetti (es. un
+ * ambiente di test dietro basic auth). Formato env `WP_API_BASIC_AUTH="utente:password"`.
  * Assente ⇒ nessun header (comportamento invariato).
  */
 function buildAuthHeaders(): Record<string, string> {
