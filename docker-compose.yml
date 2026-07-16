@@ -1,0 +1,91 @@
+name: edilmetal-local
+
+# Ambiente locale trasparente: WordPress headless + DB containerizzato + phpMyAdmin.
+# Porte dedicate (8890/8891/3307) per non collidere con wp-env (8888/3306).
+#   WordPress admin  → http://localhost:8890/wp-admin  (admin / admin)
+#   API headless     → http://localhost:8890/wp-json/edilmetal/v1/settings
+#   phpMyAdmin (DB)  → http://localhost:8891
+# Il frontend Next.js gira a parte con `cd web && npm run dev` (http://localhost:3000)
+# puntando a WP_API_URL=http://localhost:8890/wp-json/edilmetal/v1
+
+services:
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME:-edilmetal}
+      MARIADB_USER: ${DB_USER:-edilmetal}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-edilmetal}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "${DB_PORT:-3307}:3306" # esposto solo per ispezione locale
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME:-edilmetal}
+      WORDPRESS_DB_USER: ${DB_USER:-edilmetal}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-edilmetal}
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'http://localhost:${WP_PORT:-8890}');
+        define('WP_SITEURL', 'http://localhost:${WP_PORT:-8890}');
+        define('WP_AUTO_UPDATE_CORE', false);
+        define('AUTOMATIC_UPDATER_DISABLED', true);
+        define('DISALLOW_FILE_EDIT', true);
+    volumes:
+      - wp_data:/var/www/html
+      # Codice custom montato: le modifiche in cms/ si riflettono subito.
+      - ./cms/mu-plugins:/var/www/html/wp-content/mu-plugins
+    ports:
+      - "${WP_PORT:-8890}:80"
+
+  # wp-cli one-off: `docker compose run --rm wpcli <comando wp>`.
+  # profilo "cli" → non parte con `docker compose up`.
+  wpcli:
+    image: wordpress:cli-php8.3
+    profiles: ["cli"]
+    user: "33:33"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME:-edilmetal}
+      WORDPRESS_DB_USER: ${DB_USER:-edilmetal}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-edilmetal}
+    volumes:
+      - wp_data:/var/www/html
+      # Stesso bind del container web: wp-cli deve "vedere" il mu-plugin (seeder, eval).
+      - ./cms/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./cms:/cms
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USER:-edilmetal}
+      PMA_PASSWORD: ${DB_PASSWORD:-edilmetal}
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "${PMA_PORT:-8891}:80"
+
+volumes:
+  db_data:
+  wp_data:

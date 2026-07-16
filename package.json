@@ -1,0 +1,28 @@
+{
+  "name": "edilmetal-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sito ufficiale Edilmetal S.r.l. — carpenteria metallica su commessa · WordPress headless + Next.js (static export)",
+  "scripts": {
+    "dev": "npm --prefix web run dev",
+    "build": "npm --prefix web run build",
+    "lint": "npm --prefix web run lint",
+    "typecheck": "npm --prefix web run typecheck",
+    "test": "npm --prefix web run test",
+    "dev:up": "docker compose up -d",
+    "dev:down": "docker compose down",
+    "dev:destroy": "docker compose down -v",
+    "dev:setup": "./scripts/dev-setup.sh",
+    "dev:logs": "docker compose logs -f wordpress",
+    "dev:seed": "docker compose run --rm wpcli wp edilmetal seed",
+    "dev:cli": "docker compose run --rm wpcli wp",
+    "wp:start": "wp-env start",
+    "wp:stop": "wp-env stop"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^10.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

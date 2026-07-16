@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Anteprima realizzazione">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="rgba(15,39,64,.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="#EAEEF4"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <g fill="none" stroke="#0F2740" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".55">
+    <path d="M300 620V330M900 620V330"/>
+    <path d="M300 330H900"/>
+    <path d="M300 330L600 210L900 330"/>
+    <path d="M220 620H980"/>
+  </g>
+  <g fill="#C0561F">
+    <circle cx="300" cy="330" r="8"/><circle cx="900" cy="330" r="8"/><circle cx="600" cy="210" r="9"/>
+    <circle cx="300" cy="620" r="8"/><circle cx="900" cy="620" r="8"/>
+  </g>
+  <text x="600" y="710" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="26" letter-spacing="4" fill="#6B7785">EDILMETAL — REALIZZAZIONE</text>
+</svg>

@@ -1,0 +1,52 @@
+/* ============================================================
+   EDILMETAL — Scheda progetto (case study)
+   Galleria + box dati mono + tab ARIA + form correlati.
+   ============================================================ */
+
+/* Testata del progetto */
+.sp-head{ display:grid; grid-template-columns:1.2fr .8fr; gap:clamp(24px,4vw,56px); align-items:end; }
+.sp-head__meta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:var(--sp-4); }
+.sp-tag{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.05em; text-transform:uppercase; padding:6px 12px; border-radius:var(--radius); border:1px solid var(--line-2); color:var(--ink-2); background:var(--surface); }
+.sp-tag--accent{ background:var(--deep); border-color:var(--deep); color:#fff; }
+
+/* Galleria */
+.gallery{ display:grid; grid-template-columns:1fr; gap:var(--sp-4); }
+.gallery__main{ position:relative; aspect-ratio:16/10; border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; }
+.gallery__thumbs{ display:grid; grid-template-columns:repeat(5,1fr); gap:var(--sp-3); }
+.gallery__thumb{ aspect-ratio:4/3; border:1.5px solid var(--line); border-radius:var(--radius); overflow:hidden; padding:0; background:none; transition:border-color .16s; }
+.gallery__thumb:hover{ border-color:var(--accent-ui); }
+.gallery__thumb[aria-current="true"]{ border-color:var(--accent-ui); box-shadow:0 0 0 2px color-mix(in srgb, var(--accent-ui) 30%, transparent); }
+
+/* Layout galleria + dati */
+.sp-layout{ display:grid; grid-template-columns:1.4fr .6fr; gap:clamp(24px,4vw,56px); align-items:start; }
+
+/* Box dati mono */
+.databox{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:var(--sp-5); position:sticky; top:calc(var(--header-h) + 20px); }
+.databox h2{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:var(--sp-3); }
+
+/* Tab tecniche */
+.tabs__list{ display:flex; flex-wrap:wrap; gap:4px; border-bottom:1px solid var(--line); }
+.tabs__tab{ font-family:var(--f-mono); font-size:var(--fs-sm); letter-spacing:.03em; padding:12px 18px; min-height:var(--touch); color:var(--ink-2); border:1px solid transparent; border-bottom:0; border-radius:var(--radius) var(--radius) 0 0; position:relative; top:1px; }
+.tabs__tab:hover{ color:var(--accent-ui); }
+.tabs__tab[aria-selected="true"]{ color:var(--ink); background:var(--surface); border-color:var(--line); }
+.tabs__tab[aria-selected="true"]::after{ content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:var(--accent-ui); }
+.tabs__panel{ padding-top:var(--sp-5); }
+.tabs__panel p{ color:var(--ink-2); max-width:66ch; }
+.tabs__panel p + p{ margin-top:var(--sp-4); }
+.tabs__panel ul.spec{ margin-top:var(--sp-3); }
+
+/* Mini-form "progetto simile" */
+.sp-cta{ background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent-ui); border-radius:var(--radius-lg); padding:clamp(24px,4vw,40px); }
+.sp-cta__grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-4); }
+.sp-cta__grid .field--full{ grid-column:1 / -1; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .sp-head{ grid-template-columns:1fr; align-items:start; }
+  .sp-layout{ grid-template-columns:1fr; }
+  .databox{ position:static; }
+  .sp-cta__grid{ grid-template-columns:1fr; }
+}
+@media (max-width:560px){
+  .gallery__thumbs{ grid-template-columns:repeat(4,1fr); }
+}

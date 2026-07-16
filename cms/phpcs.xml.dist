@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ruleset name="Edilmetal Core">
+	<description>Regole PHP per il mu-plugin edilmetal-core (WordPress Coding Standards + PHP compatibility).</description>
+
+	<!-- Percorsi analizzati. -->
+	<file>mu-plugins/edilmetal-core</file>
+	<file>config</file>
+
+	<!-- Esclusioni globali. -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<!-- Argomenti di default: mostra sniff codes, colori, progress. -->
+	<arg value="sp"/>
+	<arg name="colors"/>
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="parallel" value="8"/>
+
+	<!-- Target PHP per PHPCompatibility. -->
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.4"/>
+
+	<!-- Ruleset WordPress completo. -->
+	<rule ref="WordPress">
+		<!-- PSR-4: i file usano classi PascalCase, non il pattern class-*.php. -->
+		<exclude name="WordPress.Files.FileName"/>
+		<!-- I namespace PHP forniscono già l'isolamento: il prefix globale è ridondante e rumoroso. -->
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
+	</rule>
+
+	<!-- Compatibilita PHP. -->
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Il text domain del plugin. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="edilmetal-core"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

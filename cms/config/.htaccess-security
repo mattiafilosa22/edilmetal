@@ -1,0 +1,42 @@
+# ==========================================================================
+# Header di sicurezza base per WordPress headless (Apache / VHosting).
+# Copiare il contenuto nel .htaccess della root WordPress, oppure includerlo
+# dal VirtualHost. Le direttive sono commentate: abilitarle dopo verifica che
+# il modulo Apache corrispondente sia attivo (mod_headers).
+# ==========================================================================
+
+# <IfModule mod_headers.c>
+#     # Evita il MIME sniffing.
+#     Header set X-Content-Type-Options "nosniff"
+#
+#     # Anti-clickjacking (il CMS non deve essere incorniciato).
+#     Header set X-Frame-Options "SAMEORIGIN"
+#
+#     # Referrer minimo verso terze parti.
+#     Header set Referrer-Policy "strict-origin-when-cross-origin"
+#
+#     # Limita le API del browser.
+#     Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+#
+#     # HSTS: abilitare SOLO quando l'HTTPS e stabile su tutti i sottodomini.
+#     # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+# </IfModule>
+
+# --------------------------------------------------------------------------
+# Blocca l'accesso diretto a file sensibili.
+# --------------------------------------------------------------------------
+# <FilesMatch "^(wp-config\.php|\.htaccess|\.env|composer\.(json|lock))$">
+#     Require all denied
+# </FilesMatch>
+
+# Disabilita l'esecuzione PHP nella cartella uploads.
+# <Directory "wp-content/uploads">
+#     <FilesMatch "\.php$">
+#         Require all denied
+#     </FilesMatch>
+# </Directory>
+
+# Protegge xmlrpc.php (non usato in headless).
+# <Files xmlrpc.php>
+#     Require all denied
+# </Files>

@@ -1,0 +1,71 @@
+/* ============================================================
+   EDILMETAL — Realizzazioni (portfolio filtrabile)
+   Coerente col design system blueprint. Responsive: filtri in
+   drawer su mobile, griglia progetti che riflowa.
+   ============================================================ */
+
+/* Toolbar: contatore + ordinamento + bottone filtri (mobile) */
+.rz-toolbar{ display:flex; align-items:center; justify-content:space-between; gap:var(--sp-4); flex-wrap:wrap; padding-bottom:var(--sp-5); border-bottom:1px solid var(--line); }
+.rz-count{ font-family:var(--f-mono); font-size:var(--fs-sm); color:var(--ink-2); letter-spacing:.03em; }
+.rz-count b{ color:var(--accent-ui); }
+.rz-toolbar__right{ display:flex; align-items:center; gap:var(--sp-3); flex-wrap:wrap; }
+.rz-sort{ display:inline-flex; align-items:center; gap:8px; }
+.rz-sort label{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); }
+.rz-sort .select{ min-width:180px; width:auto; }
+.rz-filters-btn{ display:none; }
+
+/* Pannello filtri */
+.rz-filters{ margin-bottom:var(--sp-6); }
+.rz-fgroup{ padding-block:var(--sp-4); border-bottom:1px solid var(--line); }
+.rz-fgroup:first-child{ padding-top:0; }
+.rz-fgroup__lbl{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:var(--sp-3); display:block; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.04em; color:var(--ink-2); border:1.5px solid var(--line-2); border-radius:var(--radius); padding:9px 14px; min-height:var(--touch); display:inline-flex; align-items:center; background:var(--surface); transition:border-color .16s, color .16s, background .16s; }
+.chip:hover{ border-color:var(--accent-ui); color:var(--accent-ui); }
+.chip[aria-pressed="true"]{ background:var(--deep); border-color:var(--deep); color:#fff; }
+:root[data-theme="dark"] .chip[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:#fff; }
+
+/* Testata del drawer + backdrop (solo mobile) */
+.rz-filters__head{ display:none; }
+.rz-backdrop{ display:none; }
+
+/* Griglia progetti */
+.proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-5); }
+.proj-grid .proj{ flex:initial; }
+
+/* Paginazione */
+.pager{ display:flex; align-items:center; justify-content:center; gap:6px; flex-wrap:wrap; margin-top:var(--sp-8); }
+.pager a,.pager span{ min-width:var(--touch); min-height:var(--touch); padding:0 12px; display:inline-flex; align-items:center; justify-content:center; font-family:var(--f-mono); font-size:var(--fs-sm); border:1.5px solid var(--line-2); border-radius:var(--radius); color:var(--ink); }
+.pager a:hover{ border-color:var(--accent-ui); color:var(--accent-ui); }
+.pager [aria-current="page"]{ background:var(--deep); border-color:var(--deep); color:#fff; }
+.pager .is-disabled{ opacity:.4; pointer-events:none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width:1080px){
+  .proj-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:860px){
+  /* Bottone apri-filtri visibile; pannello -> drawer off-canvas */
+  .rz-filters-btn{ display:inline-flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:var(--fs-sm); min-height:var(--touch); padding:10px 16px; border:1.5px solid var(--line-2); border-radius:var(--radius); color:var(--ink); background:var(--surface); }
+  .rz-filters-btn:hover{ border-color:var(--accent-ui); color:var(--accent-ui); }
+  .rz-filters{
+    position:fixed; top:0; right:0; bottom:0; width:min(360px,88vw); z-index:210;
+    background:var(--bg); border-left:1px solid var(--line); margin:0; padding:var(--sp-5);
+    overflow-y:auto; transform:translateX(100%); visibility:hidden;
+    transition:transform .25s var(--ease), visibility 0s linear .25s;
+    box-shadow:var(--shadow);
+  }
+  body.filters-open .rz-filters{ transform:none; visibility:visible; transition:transform .25s var(--ease); }
+  .rz-filters__head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-4); padding-bottom:var(--sp-4); border-bottom:1px solid var(--line); }
+  .rz-filters__head h2{ font-size:var(--fs-h4); color:var(--ink); }
+  .rz-filters__apply{ margin-top:var(--sp-5); }
+  .rz-backdrop{ display:block; position:fixed; inset:0; z-index:205; background:rgba(15,39,64,.5); opacity:0; pointer-events:none; transition:opacity .25s; }
+  body.filters-open .rz-backdrop{ opacity:1; pointer-events:auto; }
+}
+@media (max-width:620px){
+  .proj-grid{ grid-template-columns:1fr; }
+  .rz-sort .select{ min-width:0; }
+}
+@media (prefers-reduced-motion: reduce){
+  .rz-filters{ transition:none; }
+}

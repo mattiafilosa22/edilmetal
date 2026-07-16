@@ -1,0 +1,66 @@
+name: Deploy frontend → Plesk
+
+# Ricostruisce l'export statico dai contenuti WordPress (API headless) e lo
+# pubblica nel document root del dominio su Plesk via SFTP (lftp mirror).
+# Trigger:
+#  - repository_dispatch (event "wp-content-updated"): inviato dal webhook WP
+#    quando il cliente salva/pubblica un contenuto → aggiornamento ~automatico.
+#  - workflow_dispatch: rebuild manuale (dashboard Actions o `gh workflow run`).
+on:
+  repository_dispatch:
+    types: [wp-content-updated]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-plesk
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout progetto
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install deps
+        working-directory: web
+        run: npm ci
+
+      - name: Build export (contenuti da WordPress)
+        working-directory: web
+        env:
+          # Build time: URL assoluto dell'API headless
+          WP_API_URL: ${{ secrets.WP_API_URL }}
+          # Browser: stesso valore per il POST /lead del form
+          NEXT_PUBLIC_WP_API_URL: ${{ secrets.WP_API_URL }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL }}
+        run: npm run build
+
+      - name: Deploy su Plesk (SFTP mirror)
+        env:
+          SFTP_HOST: ${{ secrets.PLESK_SFTP_HOST }}
+          SFTP_PORT: ${{ secrets.PLESK_SFTP_PORT }}
+          SFTP_USER: ${{ secrets.PLESK_SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.PLESK_SFTP_PASSWORD }}
+          REMOTE_PATH: ${{ secrets.PLESK_REMOTE_PATH }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          # Mirror inverso (locale → remoto), elimina i file rimossi, esclude i file WP
+          lftp -u "$SFTP_USER","$SFTP_PASSWORD" -p "${SFTP_PORT:-22}" "sftp://$SFTP_HOST" <<LFTP
+          set sftp:auto-confirm yes
+          set net:max-retries 2
+          set net:timeout 20
+          mirror --reverse --delete --verbose --parallel=4 \
+            --exclude-glob wp-content/ --exclude-glob .htpasswd \
+            web/out/ "$REMOTE_PATH"
+          bye
+          LFTP
+          echo "Frontend pubblicato su Plesk in $REMOTE_PATH"

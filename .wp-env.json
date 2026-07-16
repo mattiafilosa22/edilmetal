@@ -1,0 +1,15 @@
+{
+  "core": null,
+  "phpVersion": "8.2",
+  "plugins": [],
+  "mappings": {
+    "wp-content/mu-plugins": "./cms/mu-plugins"
+  },
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "WP_AUTO_UPDATE_CORE": false,
+    "AUTOMATIC_UPDATER_DISABLED": true,
+    "DISALLOW_FILE_EDIT": true
+  }
+}

@@ -1,0 +1,36 @@
+/* ============================================================
+   EDILMETAL — Contatti (form preventivo + info + mappa)
+   ============================================================ */
+
+.ct-layout{ display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(28px,4vw,64px); align-items:start; }
+
+/* Form */
+.ct-form{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:clamp(24px,4vw,40px); }
+.ct-form__grid{ display:grid; grid-template-columns:1fr 1fr; gap:0 var(--sp-4); }
+.ct-form__grid .field--full{ grid-column:1 / -1; }
+
+/* Checkbox consenso */
+.consent{ display:flex; gap:12px; align-items:flex-start; margin:var(--sp-3) 0 var(--sp-5); }
+.consent input[type="checkbox"]{ width:22px; height:22px; margin-top:2px; flex:none; accent-color:var(--accent); }
+.consent label{ font-family:var(--f-body); font-size:var(--fs-sm); text-transform:none; letter-spacing:0; color:var(--ink-2); line-height:1.5; }
+.consent a{ color:var(--brand); text-decoration:underline; }
+.req{ color:var(--accent-ui); }
+
+/* Colonna info */
+.ct-info{ display:flex; flex-direction:column; gap:var(--sp-5); }
+.ct-card{ border:1px solid var(--line); border-radius:var(--radius-lg); background:var(--surface); padding:var(--sp-5); }
+.ct-card h2{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:var(--sp-3); }
+.ct-row{ display:flex; gap:14px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line); }
+.ct-row:last-child{ border-bottom:0; }
+.ct-row .ico{ width:22px; height:22px; flex:none; color:var(--accent-ui); margin-top:2px; }
+.ct-row a,.ct-row span{ color:var(--ink); font-size:var(--fs-sm); }
+.ct-row a:hover{ color:var(--accent-ui); }
+.ct-row small{ display:block; font-family:var(--f-mono); font-size:var(--fs-xs); text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); }
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .ct-layout{ grid-template-columns:1fr; }
+}
+@media (max-width:560px){
+  .ct-form__grid{ grid-template-columns:1fr; }
+}
