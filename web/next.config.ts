@@ -26,4 +26,16 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 };
 
+// Quando il build interroga l'API WordPress reale (hosting CloudLinux con limiti
+// di entry-process → HTTP 508), riduciamo i worker di prerender per non saturare
+// il backend. Il build da mock (senza WP_API_URL) resta pienamente parallelo.
+if (process.env.WP_API_URL) {
+  const cpus = Number(process.env.BUILD_CPUS ?? "2");
+  (nextConfig as { experimental?: Record<string, unknown> }).experimental = {
+    ...((nextConfig as { experimental?: Record<string, unknown> }).experimental ??
+      {}),
+    cpus,
+  };
+}
+
 export default withNextIntl(nextConfig);

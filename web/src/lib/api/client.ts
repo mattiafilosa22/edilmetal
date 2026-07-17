@@ -57,6 +57,41 @@ function buildUrl(path: string, params?: FetchParams): string {
  * Un 404 restituisce `null` (risorsa assente); ogni altro errore lancia
  * `ApiError`, così il chiamante può decidere il fallback al mock.
  */
+/** Status transitori (rate/resource limit, gateway) su cui ritentare. */
+const RETRYABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504, 508]);
+const MAX_ATTEMPTS = 5;
+
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Fetch con retry a backoff esponenziale + jitter. Robusto contro i limiti
+ * di risorsa transitori dell'hosting (es. CloudLinux LVE → HTTP 508) quando il
+ * build statico interroga l'API in parallelo. Un 404 NON è ritentato (risorsa
+ * assente, gestito a monte).
+ */
+async function fetchWithRetry(
+  url: string,
+  init: RequestInit
+): Promise<Response> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const response = await fetch(url, init);
+      if (RETRYABLE_STATUS.has(response.status) && attempt < MAX_ATTEMPTS) {
+        await sleep(400 * 2 ** (attempt - 1) + Math.floor(Math.random() * 300));
+        continue;
+      }
+      return response;
+    } catch (error) {
+      lastError = error;
+      if (attempt >= MAX_ATTEMPTS) break;
+      await sleep(400 * 2 ** (attempt - 1) + Math.floor(Math.random() * 300));
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
+}
+
 export async function fetchValidated<S extends z.ZodTypeAny>(
   path: string,
   schema: S,
@@ -68,7 +103,7 @@ export async function fetchValidated<S extends z.ZodTypeAny>(
 
   let response: Response;
   try {
-    response = await fetch(buildUrl(path, params), {
+    response = await fetchWithRetry(buildUrl(path, params), {
       headers: { Accept: "application/json", ...buildAuthHeaders() },
     });
   } catch (error) {
