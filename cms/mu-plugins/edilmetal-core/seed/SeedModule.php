@@ -15,6 +15,7 @@ namespace Edilmetal\Core\Seed;
 use Edilmetal\Core\Module;
 use Edilmetal\Core\Rest\Support\ImageTransformer;
 use Edilmetal\Core\Seed\Support\Placeholders;
+use Edilmetal\Core\Seed\Support\RealPhotos;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -43,7 +44,7 @@ final class SeedModule implements Module {
 		return new SeedCommand(
 			$language,
 			new TaxonomySeeder(),
-			new MediaSeeder( new Placeholders(), new ImageTransformer() ),
+			new MediaSeeder( new Placeholders(), new RealPhotos(), new ImageTransformer() ),
 			new ProgettoSeeder( $language ),
 			new PageSeeder( $language )
 		);

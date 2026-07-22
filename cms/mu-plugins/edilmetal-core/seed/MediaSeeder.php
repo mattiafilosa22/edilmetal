@@ -16,6 +16,7 @@ namespace Edilmetal\Core\Seed;
 use Edilmetal\Core\Rest\Support\ImageTransformer;
 use Edilmetal\Core\Seed\Support\MediaLibrary;
 use Edilmetal\Core\Seed\Support\Placeholders;
+use Edilmetal\Core\Seed\Support\RealPhotos;
 use Edilmetal\Core\Seed\Support\SeedMeta;
 
 defined( 'ABSPATH' ) || exit;
@@ -33,6 +34,13 @@ final class MediaSeeder {
 	private Placeholders $placeholders;
 
 	/**
+	 * Fornitore delle foto storiche reali già committate nel repository.
+	 *
+	 * @var RealPhotos
+	 */
+	private RealPhotos $real_photos;
+
+	/**
 	 * Trasformatore immagini, usato per validare il DTO risultante.
 	 *
 	 * @var ImageTransformer
@@ -43,20 +51,24 @@ final class MediaSeeder {
 	 * Inietta le dipendenze del seeder media.
 	 *
 	 * @param Placeholders     $placeholders Fornitore file segnaposto.
+	 * @param RealPhotos       $real_photos  Fornitore foto storiche reali.
 	 * @param ImageTransformer $images       Trasformatore immagini.
 	 */
-	public function __construct( Placeholders $placeholders, ImageTransformer $images ) {
+	public function __construct( Placeholders $placeholders, RealPhotos $real_photos, ImageTransformer $images ) {
 		$this->placeholders = $placeholders;
+		$this->real_photos  = $real_photos;
 		$this->images       = $images;
 	}
 
 	/**
-	 * Garantisce i segnaposto e restituisce la libreria media.
+	 * Garantisce i segnaposto e le foto reali e restituisce la libreria media.
 	 */
 	public function seed(): MediaLibrary {
 		$this->load_dependencies();
 
-		return new MediaLibrary( $this->seed_placeholders() );
+		$library = array_merge( $this->seed_placeholders(), $this->seed_real_photos() );
+
+		return new MediaLibrary( $library );
 	}
 
 	/**
@@ -94,6 +106,39 @@ final class MediaSeeder {
 		}
 
 		return $library;
+	}
+
+	/**
+	 * Importa le foto storiche reali e ne mappa gli ID.
+	 *
+	 * @return array<string,int>
+	 */
+	private function seed_real_photos(): array {
+		$library = array();
+
+		foreach ( $this->real_photos->ensure() as $key => $path ) {
+			$id = $this->ensure_attachment( 'media:' . $key, basename( $path ), $this->real_photo_alt( $key ), $path );
+
+			if ( null !== $id ) {
+				$library[ $key ] = $id;
+			}
+		}
+
+		return $library;
+	}
+
+	/**
+	 * Alt testuale derivato dalla chiave "real:<categoria>/<progetto>/<NN>".
+	 *
+	 * @param string $key Chiave logica della foto.
+	 */
+	private function real_photo_alt( string $key ): string {
+		$parts    = explode( '/', substr( $key, strlen( 'real:' ) ) );
+		$progetto = $parts[1] ?? 'realizzazione';
+		$label    = str_replace( '-', ' ', $progetto );
+
+		// translators: %s è il nome del progetto (es. "capannone rossi").
+		return sprintf( __( 'Edilmetal — %s (foto di cantiere)', 'edilmetal-core' ), ucwords( $label ) );
 	}
 
 	/**
