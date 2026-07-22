@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { imageSchema } from "./progetto";
 
 /**
  * Impostazioni del sito editabili in WordPress
@@ -32,6 +33,8 @@ export const siteSettingsSchema = z.object({
   partitaIva: z.string().min(1),
   indirizzo: z.string().min(1),
   telefono: z.string().min(1),
+  /** Fax (opzionale, dato storico del sito precedente). */
+  fax: z.string().optional(),
   email: z.email(),
   /** Coordinate della sede per la mappa Leaflet (OSM cookieless). */
   coordinate: coordinateSchema,
@@ -39,5 +42,9 @@ export const siteSettingsSchema = z.object({
   mapsUrl: z.string().optional(),
   orari: z.array(orarioSchema).default([]),
   social: socialSchema.default({}),
+  /** Foto hero della homepage, editabile globalmente in WP (Impostazioni). */
+  heroImage: imageSchema.optional(),
+  /** Credito fotografico mostrato accanto all'hero/footer. */
+  fotoCredit: z.string().optional(),
 });
 export type SiteSettings = z.infer<typeof siteSettingsSchema>;
