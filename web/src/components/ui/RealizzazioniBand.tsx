@@ -39,7 +39,7 @@ export function RealizzazioniBand({
   }
 
   return (
-    <section className="section realiz-band">
+    <section className="section section--rail realiz-band">
       <div className="container">
         <Reveal className="rail-head">
           <div>
