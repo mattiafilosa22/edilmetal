@@ -15,6 +15,7 @@ namespace Edilmetal\Core\Rest\Presenters;
 
 use Edilmetal\Core\Rest\Support\ImageTransformer;
 use Edilmetal\Core\Rest\Support\MetaReader;
+use Edilmetal\Core\Support\Schema;
 use WP_Post;
 
 defined( 'ABSPATH' ) || exit;
@@ -64,9 +65,8 @@ final class PagePresenter {
 
 		switch ( $key ) {
 			case 'home':
-				$dto['hero']  = $this->home_hero();
-				$dto['stats'] = $this->stats( 'edilmetal_home_stats' );
-				$this->maybe_block( $dto, 'intro', $this->intro( 'edilmetal_home_intro' ) );
+				$dto['hero']       = $this->home_hero();
+				$dto['inEvidenza'] = $this->home_in_evidenza();
 				break;
 
 			case 'servizi':
@@ -108,25 +108,104 @@ final class PagePresenter {
 	}
 
 	/**
-	 * Blocco hero della home { eyebrow?, title, titleAccent?, subtitle?, cta? }.
+	 * Blocco hero della home { eyebrow?, title, titleAccent?, subtitle, ctaPrimary, ctaSecondary?, index }.
 	 *
 	 * @return array<string,mixed>
 	 */
 	private function home_hero(): array {
 		$hero = array(
-			'title'    => $this->meta->string( 'edilmetal_home_hero_titolo' ),
-			'subtitle' => $this->meta->string( 'edilmetal_home_hero_sottotitolo' ),
+			'title'      => $this->meta->string( 'edilmetal_home_hero_titolo' ),
+			'subtitle'   => $this->meta->string( 'edilmetal_home_hero_sottotitolo' ),
+			'ctaPrimary' => $this->cta_href( 'edilmetal_home_hero_cta' )
+				?? array(
+					'label' => 'Le realizzazioni',
+					'href'  => '/realizzazioni',
+				),
+			'index'      => $this->pairs( 'edilmetal_home_hero_index', 'valore', 'etichetta' ),
 		);
 
 		$this->maybe( $hero, 'eyebrow', $this->meta->string( 'edilmetal_home_hero_eyebrow' ) );
 		$this->maybe( $hero, 'titleAccent', $this->meta->string( 'edilmetal_home_hero_titolo_accent' ) );
 
-		$cta = $this->cta( 'edilmetal_home_hero_cta' );
-		if ( array() !== $cta ) {
-			$hero['cta'] = $cta;
+		$secondary = $this->cta_href( 'edilmetal_home_hero_cta2' );
+		if ( null !== $secondary ) {
+			$hero['ctaSecondary'] = $secondary;
 		}
 
 		return $hero;
+	}
+
+	/**
+	 * Variante di `cta()` con chiave `href` (contratto frontend) al posto di `url`.
+	 *
+	 * @param string $prefix Prefisso dei meta ("{prefix}_label" / "{prefix}_url").
+	 * @return array{label:string,href:string}|null
+	 */
+	private function cta_href( string $prefix ): ?array {
+		$cta = $this->cta( $prefix );
+
+		if ( array() === $cta ) {
+			return null;
+		}
+
+		return array(
+			'label' => $cta['label'],
+			'href'  => $cta['url'],
+		);
+	}
+
+	/**
+	 * Blocco "in evidenza": fino a 2 categorie con foto reale.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	private function home_in_evidenza(): array {
+		$items = array();
+
+		foreach ( array( 1, 2 ) as $n ) {
+			$item = $this->evidenza_item( $n );
+
+			if ( null !== $item ) {
+				$items[] = $item;
+			}
+		}
+
+		return $items;
+	}
+
+	/**
+	 * Singola voce "in evidenza": risolve slug categoria + immagine.
+	 *
+	 * @param int $n Indice dello slot (1 o 2).
+	 * @return array<string,mixed>|null
+	 */
+	private function evidenza_item( int $n ): ?array {
+		$slug          = $this->meta->string( "edilmetal_home_evidenza{$n}_categoria" );
+		$attachment_id = $this->meta->int_or_null( "edilmetal_home_evidenza{$n}_img" );
+
+		if ( '' === $slug || null === $attachment_id ) {
+			return null;
+		}
+
+		$term = get_term_by( 'slug', $slug, Schema::TAX_CATEGORIA );
+
+		if ( ! $term instanceof \WP_Term ) {
+			return null;
+		}
+
+		$image = $this->images->to_front( $attachment_id );
+
+		if ( null === $image ) {
+			return null;
+		}
+
+		return array(
+			'categoria' => array(
+				'slug' => $term->slug,
+				'nome' => $term->name,
+			),
+			'immagine'  => $image,
+		);
 	}
 
 	/**
