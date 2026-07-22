@@ -1,11 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { HomeHero } from "@/domain";
+import type { HomeHero, Image as ImageDto } from "@/domain";
 import type { Locale } from "@/i18n/routing";
 import { Blueprint } from "./Blueprint";
 
 type HeroProps = {
   hero: HomeHero;
   locale: Locale;
+  /** Foto reale dell'hero (da `settings.heroImage`); assente ⇒ fallback al disegno blueprint. */
+  heroImage?: ImageDto;
+  /** Credito fotografico opzionale, mostrato sotto la foto. */
+  fotoCredit?: string;
 };
 
 /** Prefissa un path editoriale (relativo alla root del locale) con la locale. */
@@ -14,10 +19,10 @@ function withLocale(locale: Locale, href: string): string {
 }
 
 /**
- * Hero editoriale asimmetrico della home: testo + disegno tecnico blueprint,
- * con barra-indice mono. Un solo `h1` per pagina (WCAG).
+ * Hero editoriale asimmetrico della home: testo + foto reale (o, in assenza,
+ * disegno tecnico blueprint), con barra-indice mono. Un solo `h1` per pagina (WCAG).
  */
-export function Hero({ hero, locale }: HeroProps) {
+export function Hero({ hero, locale, heroImage, fotoCredit }: HeroProps) {
   return (
     <section className="hero">
       <div className="container">
@@ -48,12 +53,28 @@ export function Hero({ hero, locale }: HeroProps) {
               ) : null}
             </div>
           </div>
-          <div className="hero__draw tick">
-            <Blueprint
-              ariaLabel="Schema tecnico di un telaio in acciaio con capriata"
-              withDims
-            />
-          </div>
+          {heroImage ? (
+            <div>
+              <div className="hero__photo tick">
+                <Image
+                  src={heroImage.src}
+                  alt={heroImage.alt}
+                  width={heroImage.width}
+                  height={heroImage.height}
+                  sizes="(max-width: 900px) 90vw, 45vw"
+                  priority
+                />
+              </div>
+              {fotoCredit ? <p className="hero__credit">{fotoCredit}</p> : null}
+            </div>
+          ) : (
+            <div className="hero__draw tick">
+              <Blueprint
+                ariaLabel="Schema tecnico di un telaio in acciaio con capriata"
+                withDims
+              />
+            </div>
+          )}
         </div>
         {hero.index.length > 0 ? (
           <div className="hero__index">

@@ -15,6 +15,9 @@
 
 /* blueprint / disegno tecnico del telaio, con line-draw */
 .hero__draw{ position:relative; aspect-ratio:1/1; }
+.hero__photo{ position:relative; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; }
+.hero__photo img{ width:100%; height:100%; object-fit:cover; }
+.hero__credit{ font-family:var(--f-mono); font-size:var(--fs-xs); color:var(--ink-faint); margin-top:var(--sp-2); text-align:right; }
 .blueprint{ width:100%; height:100%; }
 .blueprint .draw{ stroke:var(--deep); stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round;
   stroke-dasharray:1400; stroke-dashoffset:1400; animation:draw 2.6s var(--ease) .3s forwards; }
@@ -149,7 +152,7 @@
 @media (max-width:900px){
   .hero__grid{ grid-template-columns:1fr; }
   .split2{ grid-template-columns:1fr; }
-  .hero__draw{ max-width:440px; margin-inline:auto; order:-1; }
+  .hero__draw,.hero__photo{ max-width:440px; margin-inline:auto; order:-1; }
   .stats{ grid-template-columns:1fr 1fr; }
   .flow{ grid-template-columns:1fr 1fr; }
   .feats{ grid-template-columns:1fr; }
