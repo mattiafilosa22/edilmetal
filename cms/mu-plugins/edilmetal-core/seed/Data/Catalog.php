@@ -314,6 +314,11 @@ final class Catalog {
 	 * Dati tecnici (superficie/luce/altezza/peso) e descrizione restano
 	 * segnaposto onesti: sono da compilare in WP admin, progetto per progetto.
 	 *
+	 * Un piccolo sottoinsieme, una voce per categoria diversa e con gallerie
+	 * sostanziose, è marcato `in_evidenza` così che la banda "Realizzazioni"
+	 * della home mostri anche foto reali del sito storico, non solo i 4 case
+	 * study curati con galleria segnaposto.
+	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	private static function historic_progetti(): array {
@@ -329,6 +334,13 @@ final class Catalog {
 		if ( ! is_array( $entries ) ) {
 			return array();
 		}
+
+		$featured_refs = array(
+			'strutture-acciaio-bervini',
+			'strutture-miste-castellazzo-maneggio',
+			'pensiline-torri-modena',
+			'rivestimenti-facciata-massenza',
+		);
 
 		$records = array();
 
@@ -348,7 +360,7 @@ final class Catalog {
 				$titolo,
 				'Provincia di Parma',
 				2018,
-				false,
+				in_array( $ref, $featured_refs, true ),
 				sprintf( 'Realizzazione in carpenteria metallica per %s', $titolo ),
 				null,
 				null,
