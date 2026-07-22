@@ -382,6 +382,7 @@ final class Catalog {
 	 * @param float|null $peso_t         Peso acciaio (t) o null.
 	 * @param string[]   $lavorazioni    Lavorazioni eseguite.
 	 * @param string[]   $materiali      Materiali impiegati.
+	 * @param string[]   $media          Chiavi MediaLibrary per la galleria, in ordine (facoltativo).
 	 * @return array<string,mixed>
 	 */
 	private static function progetto(
@@ -399,34 +400,36 @@ final class Catalog {
 		?float $altezza_m,
 		?float $peso_t,
 		array $lavorazioni,
-		array $materiali
+		array $materiali,
+		array $media = array()
 	): array {
 		return array(
-			'ref'            => $ref,
-			'title'          => $title,
-			'content'        => sprintf(
+			'ref'             => $ref,
+			'title'           => $title,
+			'content'         => sprintf(
 				'<p>Realizzazione Edilmetal per %s a %s (%d): %s. L\'intervento è stato gestito come unico interlocutore, dal sopralluogo alla progettazione dedicata, con relazioni di calcolo firmate, produzione in officina e montaggio in cantiere.</p>',
 				esc_html( $cliente ),
 				esc_html( $luogo ),
 				$anno,
 				esc_html( lcfirst( $tipologia ) )
 			),
-			'categoria'      => $categoria,
-			'settore'        => $settore,
-			'cliente'        => $cliente,
-			'luogo'          => $luogo,
-			'anno'           => $anno,
-			'in_evidenza'    => $in_evidenza,
-			'tipologia'      => $tipologia,
-			'superficie_mq'  => $superficie_mq,
-			'luce_campata_m' => $luce_m,
-			'altezza_m'      => $altezza_m,
-			'peso_acciaio_t' => $peso_t,
-			'lavorazioni'    => $lavorazioni,
-			'materiali'      => $materiali,
-			'seo_title'      => $title . ' — Edilmetal',
+			'categoria'       => $categoria,
+			'settore'         => $settore,
+			'cliente'         => $cliente,
+			'luogo'           => $luogo,
+			'anno'            => $anno,
+			'in_evidenza'     => $in_evidenza,
+			'tipologia'       => $tipologia,
+			'superficie_mq'   => $superficie_mq,
+			'luce_campata_m'  => $luce_m,
+			'altezza_m'       => $altezza_m,
+			'peso_acciaio_t'  => $peso_t,
+			'lavorazioni'     => $lavorazioni,
+			'materiali'       => $materiali,
+			'media'           => $media,
+			'seo_title'       => $title . ' — Edilmetal',
 			'seo_description' => sprintf( 'Case study Edilmetal: %s per %s a %s (%d).', lcfirst( $tipologia ), $cliente, $luogo, $anno ),
-			'en'             => array(
+			'en'              => array(
 				'content' => sprintf(
 					'<p>Edilmetal project for %s in %s (%d): %s. Managed as the single point of contact, from survey to dedicated design, with signed structural calculations, in-house fabrication and on-site assembly.</p>',
 					esc_html( $cliente ),
@@ -484,36 +487,36 @@ final class Catalog {
 			'title'    => 'Servizi',
 			'title_en' => 'Services',
 			'meta'     => array(
-				'edilmetal_servizi_hero_eyebrow'     => 'Cosa facciamo',
-				'edilmetal_servizi_titolo'           => 'Dalla progettazione al montaggio',
-				'edilmetal_servizi_sottotitolo'      => 'Un processo integrato per strutture in acciaio su commessa, con relazioni di calcolo firmate da tecnici abilitati.',
-				'edilmetal_servizi_intro_titolo'     => 'Carpenteria metallica completa',
-				'edilmetal_servizi_intro_testo'      => 'Progettiamo, produciamo e montiamo strutture in acciaio per nuove costruzioni e ristrutturazioni.',
-				'edilmetal_servizi_flow'             => array(
+				'edilmetal_servizi_hero_eyebrow'      => 'Cosa facciamo',
+				'edilmetal_servizi_titolo'            => 'Dalla progettazione al montaggio',
+				'edilmetal_servizi_sottotitolo'       => 'Un processo integrato per strutture in acciaio su commessa, con relazioni di calcolo firmate da tecnici abilitati.',
+				'edilmetal_servizi_intro_titolo'      => 'Carpenteria metallica completa',
+				'edilmetal_servizi_intro_testo'       => 'Progettiamo, produciamo e montiamo strutture in acciaio per nuove costruzioni e ristrutturazioni.',
+				'edilmetal_servizi_flow'              => array(
 					'Sopralluogo e consulenza|Analisi delle esigenze in cantiere e preventivazione rapida.',
 					'Progettazione e calcoli|Progettazione dedicata con relazioni di calcolo firmate da tecnici abilitati.',
 					'Produzione in officina|Taglio, saldatura e assemblaggio della carpenteria nella nostra officina.',
 					'Montaggio in cantiere|Montaggio con mezzi propri e assistenza post-vendita.',
 				),
-				'edilmetal_servizi_tipologie'        => array(
+				'edilmetal_servizi_tipologie'         => array(
 					'Strutture in acciaio|Ossature portanti per capannoni e edifici industriali.',
 					'Strutture miste|Soluzioni acciaio-calcestruzzo per solai e edifici.',
 					'Scale e pensiline|Scale di sicurezza, scale d\'arredo, pensiline e carport.',
 					'Coperture e rivestimenti|Coperture, tamponamenti e facciate ventilate.',
 				),
-				'edilmetal_servizi_callout_titolo'   => 'Hai una commessa in mente?',
-				'edilmetal_servizi_callout_testo'    => 'Raccontaci il tuo progetto: ti rispondiamo con un preventivo dedicato.',
+				'edilmetal_servizi_callout_titolo'    => 'Hai una commessa in mente?',
+				'edilmetal_servizi_callout_testo'     => 'Raccontaci il tuo progetto: ti rispondiamo con un preventivo dedicato.',
 				'edilmetal_servizi_callout_cta_label' => 'Richiedi un preventivo',
-				'edilmetal_servizi_callout_cta_url'  => '/contatti',
+				'edilmetal_servizi_callout_cta_url'   => '/contatti',
 			),
 			'meta_en'  => array(
-				'edilmetal_servizi_hero_eyebrow'     => 'What we do',
-				'edilmetal_servizi_titolo'           => 'From design to assembly',
-				'edilmetal_servizi_sottotitolo'      => 'An integrated process for made-to-order steel structures, with calculations signed by qualified engineers.',
-				'edilmetal_servizi_intro_titolo'     => 'Complete structural steelwork',
-				'edilmetal_servizi_intro_testo'      => 'We design, fabricate and assemble steel structures for new builds and renovations.',
-				'edilmetal_servizi_callout_titolo'   => 'Have a project in mind?',
-				'edilmetal_servizi_callout_testo'    => 'Tell us about your project: we reply with a dedicated quote.',
+				'edilmetal_servizi_hero_eyebrow'      => 'What we do',
+				'edilmetal_servizi_titolo'            => 'From design to assembly',
+				'edilmetal_servizi_sottotitolo'       => 'An integrated process for made-to-order steel structures, with calculations signed by qualified engineers.',
+				'edilmetal_servizi_intro_titolo'      => 'Complete structural steelwork',
+				'edilmetal_servizi_intro_testo'       => 'We design, fabricate and assemble steel structures for new builds and renovations.',
+				'edilmetal_servizi_callout_titolo'    => 'Have a project in mind?',
+				'edilmetal_servizi_callout_testo'     => 'Tell us about your project: we reply with a dedicated quote.',
 				'edilmetal_servizi_callout_cta_label' => 'Request a quote',
 			),
 		);
