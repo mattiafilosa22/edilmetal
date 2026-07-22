@@ -175,3 +175,18 @@
 .featured__overlay h3{ color:#fff; font-size:var(--fs-h3); }
 .featured__cta{ margin-top:var(--sp-2); display:inline-flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:var(--fs-xs); color:#fff; text-transform:uppercase; letter-spacing:.06em; }
 @media (max-width:720px){ .featured{ grid-template-columns:1fr; } }
+
+/* ---------- Realizzazioni (banda scura, blocco storico) ---------- */
+.realiz-band{ background:var(--deep); }
+.realiz-band .rail-head .kicker .txt{ color:rgba(255,255,255,.6); }
+.realiz-band .rail-head .kicker .num{ color:var(--accent); }
+.realiz-band .rail-head h2{ color:#fff; }
+.realiz-band .rail-head p{ color:rgba(255,255,255,.75); }
+.realiz-band .link-mono{ color:#fff; }
+.realiz-band .proj{ background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.14); }
+.realiz-band .proj:hover{ border-color:var(--accent); }
+.realiz-band .proj__body .cli{ color:var(--accent); }
+.realiz-band .proj__body h3{ color:#fff; }
+.realiz-band .proj__body .meta{ color:rgba(255,255,255,.6); }
+.realiz-band .rail-arrow{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.2); color:#fff; }
+.realiz-band .rail-arrow:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
