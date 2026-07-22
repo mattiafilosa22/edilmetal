@@ -164,7 +164,9 @@ final class PageFields {
 	}
 
 	/**
-	 * Homepage: hero, statistiche, intro e SEO.
+	 * Homepage: hero (con CTA secondaria e barra indice), 2 slot "in evidenza"
+	 * e SEO. Immagine hero e statistiche generali arrivano dalle impostazioni
+	 * globali.
 	 *
 	 * @return array<string,mixed>
 	 */
@@ -174,14 +176,26 @@ final class PageFields {
 			$this->text( 'edilmetal_home_hero_titolo', __( 'Hero — Titolo', 'edilmetal-core' ) ),
 			$this->text( 'edilmetal_home_hero_titolo_accent', __( 'Hero — Titolo (accento)', 'edilmetal-core' ) ),
 			$this->textarea( 'edilmetal_home_hero_sottotitolo', __( 'Hero — Sottotitolo', 'edilmetal-core' ) ),
-			$this->text( 'edilmetal_home_hero_cta_label', __( 'Hero — CTA (testo)', 'edilmetal-core' ) ),
-			$this->url( 'edilmetal_home_hero_cta_url', __( 'Hero — CTA (URL)', 'edilmetal-core' ) ),
-			$this->image( 'edilmetal_home_hero_img', __( 'Hero — Immagine', 'edilmetal-core' ) ),
+			$this->text( 'edilmetal_home_hero_cta_label', __( 'Hero — CTA primaria (testo)', 'edilmetal-core' ) ),
+			$this->url( 'edilmetal_home_hero_cta_url', __( 'Hero — CTA primaria (URL)', 'edilmetal-core' ) ),
+			$this->text( 'edilmetal_home_hero_cta2_label', __( 'Hero — CTA secondaria (testo, opzionale)', 'edilmetal-core' ) ),
+			$this->url( 'edilmetal_home_hero_cta2_url', __( 'Hero — CTA secondaria (URL, opzionale)', 'edilmetal-core' ) ),
+			$this->repeater_text( 'edilmetal_home_hero_index', __( 'Hero — Barra indice, max 3 voci (formato "valore|etichetta")', 'edilmetal-core' ) ),
 
-			$this->repeater_text( 'edilmetal_home_stats', __( 'Statistiche (formato "valore|etichetta")', 'edilmetal-core' ) ),
-
-			$this->text( 'edilmetal_home_intro_titolo', __( 'Intro — Titolo', 'edilmetal-core' ) ),
-			$this->textarea( 'edilmetal_home_intro_testo', __( 'Intro — Testo', 'edilmetal-core' ) ),
+			array(
+				'id'   => 'edilmetal_home_evidenza1_categoria',
+				'name' => __( 'In evidenza 1 — Slug categoria', 'edilmetal-core' ),
+				'type' => 'text',
+				'desc' => __( 'Uno tra: strutture-acciaio, strutture-miste, scale, pensiline, pensiline-auto, coperture-tamponamenti, rivestimenti-facciata, opere-speciali', 'edilmetal-core' ),
+			),
+			$this->image( 'edilmetal_home_evidenza1_img', __( 'In evidenza 1 — Immagine', 'edilmetal-core' ) ),
+			array(
+				'id'   => 'edilmetal_home_evidenza2_categoria',
+				'name' => __( 'In evidenza 2 — Slug categoria', 'edilmetal-core' ),
+				'type' => 'text',
+				'desc' => __( 'Uno tra: strutture-acciaio, strutture-miste, scale, pensiline, pensiline-auto, coperture-tamponamenti, rivestimenti-facciata, opere-speciali', 'edilmetal-core' ),
+			),
+			$this->image( 'edilmetal_home_evidenza2_img', __( 'In evidenza 2 — Immagine', 'edilmetal-core' ) ),
 		);
 
 		$fields = array_merge( $fields, $this->seo_fields( 'edilmetal_home' ) );
