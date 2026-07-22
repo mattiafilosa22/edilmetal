@@ -40,6 +40,7 @@ final class SettingsFields {
 					$this->heading( __( 'Contatti', 'edilmetal-core' ) ),
 					$this->textarea( 'edilmetal_set_indirizzo', __( 'Indirizzo', 'edilmetal-core' ) ),
 					$this->text( 'edilmetal_set_telefono', __( 'Telefono', 'edilmetal-core' ) ),
+					$this->text( 'edilmetal_set_fax', __( 'Fax', 'edilmetal-core' ) ),
 					array(
 						'id'   => 'edilmetal_set_email',
 						'name' => __( 'Email', 'edilmetal-core' ),
