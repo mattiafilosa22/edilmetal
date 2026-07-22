@@ -94,11 +94,11 @@ final class Catalog {
 	}
 
 	/**
-	 * Elenco delle realizzazioni di demo (12 case study Edilmetal).
+	 * Elenco delle realizzazioni curate a mano (12 case study Edilmetal).
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
-	public static function progetti(): array {
+	private static function curated_progetti(): array {
 		return array(
 			self::progetto(
 				'parmalat-pensilina-collecchio',
@@ -308,6 +308,71 @@ final class Catalog {
 	}
 
 	/**
+	 * Realizzazioni storiche reali (foto 1997–2018), caricate dal manifest
+	 * generato da `scripts/seed/build-realizzazioni-media.mjs`.
+	 *
+	 * Dati tecnici (superficie/luce/altezza/peso) e descrizione restano
+	 * segnaposto onesti: sono da compilare in WP admin, progetto per progetto.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	private static function historic_progetti(): array {
+		$path = __DIR__ . '/realizzazioni-storiche.json';
+
+		if ( ! file_exists( $path ) ) {
+			return array();
+		}
+
+		$raw     = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- file locale del repository, non remoto.
+		$entries = null !== $raw ? json_decode( $raw, true ) : null;
+
+		if ( ! is_array( $entries ) ) {
+			return array();
+		}
+
+		$records = array();
+
+		foreach ( $entries as $entry ) {
+			$titolo = (string) ( $entry['titolo'] ?? '' );
+			$ref    = (string) ( $entry['ref'] ?? '' );
+
+			if ( '' === $titolo || '' === $ref ) {
+				continue;
+			}
+
+			$records[] = self::progetto(
+				$ref,
+				$titolo,
+				(string) ( $entry['categoria'] ?? '' ),
+				'',
+				$titolo,
+				'Provincia di Parma',
+				2018,
+				false,
+				sprintf( 'Realizzazione in carpenteria metallica per %s', $titolo ),
+				null,
+				null,
+				null,
+				null,
+				array(),
+				array(),
+				is_array( $entry['media'] ?? null ) ? $entry['media'] : array()
+			);
+		}
+
+		return $records;
+	}
+
+	/**
+	 * Tutte le realizzazioni: curate a mano + storiche reali importate.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	public static function progetti(): array {
+		return array_merge( self::curated_progetti(), self::historic_progetti() );
+	}
+
+	/**
 	 * Impostazioni globali del sito (dati reali sede Edilmetal, Noceto PR).
 	 *
 	 * @return array<string,mixed>
@@ -322,6 +387,7 @@ final class Catalog {
 				'edilmetal_set_ragione_sociale' => 'Edilmetal S.r.l.',
 				'edilmetal_set_indirizzo'       => 'Piazza Alpini d\'Italia, 10/A — 43015 Noceto (PR)',
 				'edilmetal_set_telefono'        => '0521 615023',
+				'edilmetal_set_fax'             => '0521 615207',
 				'edilmetal_set_email'           => 'info@edilmetal.it',
 				'edilmetal_set_piva'            => '01234567890',
 				'edilmetal_set_rea'             => 'PR-000000',
@@ -336,7 +402,7 @@ final class Catalog {
 				'edilmetal_set_copyright'       => '© Edilmetal S.r.l. — Tutti i diritti riservati',
 				'edilmetal_set_privacy_url'     => '/privacy-policy',
 				'edilmetal_set_cookie_url'      => '/cookie-policy',
-				'edilmetal_set_hero_image'      => new MediaRef( 'insieme' ),
+				'edilmetal_set_hero_image'      => new MediaRef( 'real:home/hero-parmalat' ),
 				'edilmetal_set_foto_credit'     => 'Immagini dimostrative delle realizzazioni Edilmetal.',
 			),
 			'meta_en'  => array(
@@ -452,26 +518,36 @@ final class Catalog {
 			'title'    => 'Edilmetal · Carpenteria metallica su commessa',
 			'title_en' => 'Edilmetal · Made-to-order structural steelwork',
 			'meta'     => array(
-				'edilmetal_home_hero_eyebrow'       => 'Carpenteria metallica su commessa · dal 1997',
-				'edilmetal_home_hero_titolo'        => 'Strutture in acciaio',
-				'edilmetal_home_hero_titolo_accent' => 'progettate, prodotte e montate.',
-				'edilmetal_home_hero_sottotitolo'   => 'Progettazione dedicata, relazioni di calcolo firmate, produzione in officina e montaggio in cantiere per l\'edilizia industriale, commerciale e terziaria.',
-				'edilmetal_home_hero_cta_label'     => 'Richiedi un preventivo',
-				'edilmetal_home_hero_cta_url'       => '/contatti',
-				'edilmetal_home_hero_img'           => new MediaRef( 'insieme' ),
-				'edilmetal_home_stats'              => array( '1997|anno di fondazione', '8|famiglie di opere', '250+|realizzazioni consegnate' ),
-				'edilmetal_home_intro_titolo'       => 'Un unico interlocutore, dalla A alla Z',
-				'edilmetal_home_intro_testo'        => 'Seguiamo ogni commessa in tutte le fasi: sopralluogo, progettazione, calcoli strutturali, produzione e montaggio, con assistenza post-vendita.',
+				'edilmetal_home_hero_eyebrow'        => 'Carpenteria metallica su commessa · dal 1997',
+				'edilmetal_home_hero_titolo'         => 'Strutture in acciaio',
+				'edilmetal_home_hero_titolo_accent'  => 'progettate, prodotte e montate.',
+				'edilmetal_home_hero_sottotitolo'    => 'Progettazione dedicata, relazioni di calcolo firmate, produzione in officina e montaggio in cantiere per l\'edilizia industriale, commerciale e terziaria.',
+				'edilmetal_home_hero_cta_label'      => 'Le realizzazioni',
+				'edilmetal_home_hero_cta_url'        => '/realizzazioni',
+				'edilmetal_home_hero_cta2_label'     => 'Richiedi un preventivo',
+				'edilmetal_home_hero_cta2_url'       => '/contatti',
+				'edilmetal_home_hero_index'          => array(
+					'Dal 1997|Esperienza in cantiere',
+					'Su commessa|Calcoli firmati da tecnici abilitati',
+					'Noceto (PR)|Progettazione · produzione · montaggio',
+				),
+				'edilmetal_home_evidenza1_categoria' => 'strutture-acciaio',
+				'edilmetal_home_evidenza1_img'       => new MediaRef( 'real:strutture-acciaio/strutture-acciaio-acetum/01' ),
+				'edilmetal_home_evidenza2_categoria' => 'pensiline',
+				'edilmetal_home_evidenza2_img'       => new MediaRef( 'real:pensiline/pensiline-ferrari/01' ),
 			),
 			'meta_en'  => array(
 				'edilmetal_home_hero_eyebrow'       => 'Made-to-order structural steelwork · since 1997',
 				'edilmetal_home_hero_titolo'        => 'Steel structures',
 				'edilmetal_home_hero_titolo_accent' => 'designed, fabricated and assembled.',
 				'edilmetal_home_hero_sottotitolo'   => 'Dedicated design, signed structural calculations, in-house fabrication and on-site assembly for industrial, commercial and tertiary construction.',
-				'edilmetal_home_hero_cta_label'     => 'Request a quote',
-				'edilmetal_home_intro_titolo'       => 'A single point of contact, from A to Z',
-				'edilmetal_home_intro_testo'        => 'We follow every project through all stages: survey, design, structural calculations, fabrication and assembly, with after-sales support.',
-				'edilmetal_home_stats'              => array( '1997|year founded', '8|families of works', '250+|projects delivered' ),
+				'edilmetal_home_hero_cta_label'     => 'Our projects',
+				'edilmetal_home_hero_cta2_label'    => 'Request a quote',
+				'edilmetal_home_hero_index'         => array(
+					'Since 1997|Experience on site',
+					'Made to order|Calculations signed by qualified engineers',
+					'Noceto (PR)|Design · fabrication · assembly',
+				),
 			),
 		);
 	}
