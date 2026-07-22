@@ -60,20 +60,11 @@
     "next": "Scroll forward"
   },
   "Home": {
-    "aziendaKick": "The company",
-    "cosaKick": "What we build",
-    "cosaTitle": "Eight families of steel works.",
-    "cosaSub": "From a single made-to-measure staircase to a turnkey industrial building.",
-    "processoKick": "How we work",
-    "processoTitle": "From survey to erection.",
-    "processoSub": "A single partner for every stage of the project.",
+    "categorieKick": "Featured",
+    "categorieCtaLabel": "See the product line",
     "evidenzaKick": "Featured",
     "evidenzaTitle": "Recent projects.",
     "evidenzaSub": "A selection of structural steelwork commissions.",
-    "percheKick": "Why Edilmetal",
-    "referenzeKick": "References",
-    "referenzeTitle": "They chose Edilmetal.",
-    "referenzeSub": "Companies from industry, retail and the tertiary sector.",
     "tutteLeRealizzazioni": "All projects"
   },
   "Realizzazioni": {

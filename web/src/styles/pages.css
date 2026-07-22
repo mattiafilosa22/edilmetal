@@ -165,3 +165,13 @@
   .index-row{ grid-template-columns:44px 1fr auto; }
   .datalist div{ grid-template-columns:1fr; gap:4px; }
 }
+
+/* ---------- In evidenza (categorie con foto) ---------- */
+.featured{ display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); }
+.featured__card{ position:relative; display:block; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--line); }
+.featured__card img{ object-fit:cover; transition:transform .3s ease; }
+.featured__card:hover img{ transform:scale(1.04); }
+.featured__overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,39,64,0) 45%, rgba(15,39,64,.88) 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:var(--sp-5); }
+.featured__overlay h3{ color:#fff; font-size:var(--fs-h3); }
+.featured__cta{ margin-top:var(--sp-2); display:inline-flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:var(--fs-xs); color:#fff; text-transform:uppercase; letter-spacing:.06em; }
+@media (max-width:720px){ .featured{ grid-template-columns:1fr; } }

@@ -60,20 +60,11 @@
     "next": "Scorri avanti"
   },
   "Home": {
-    "aziendaKick": "L'azienda",
-    "cosaKick": "Cosa realizziamo",
-    "cosaTitle": "Otto famiglie di opere in acciaio.",
-    "cosaSub": "Dalla singola scala su misura al capannone industriale chiavi in mano.",
-    "processoKick": "Come lavoriamo",
-    "processoTitle": "Dal sopralluogo al montaggio.",
-    "processoSub": "Un unico interlocutore per tutte le fasi della commessa.",
+    "categorieKick": "In evidenza",
+    "categorieCtaLabel": "Vai alla sezione prodotti",
     "evidenzaKick": "In evidenza",
     "evidenzaTitle": "Realizzazioni recenti.",
     "evidenzaSub": "Una selezione di commesse in carpenteria metallica.",
-    "percheKick": "Perché Edilmetal",
-    "referenzeKick": "Referenze",
-    "referenzeTitle": "Hanno scelto Edilmetal.",
-    "referenzeSub": "Aziende dell'industria, del commercio e del terziario.",
     "tutteLeRealizzazioni": "Tutte le realizzazioni"
   },
   "Realizzazioni": {
