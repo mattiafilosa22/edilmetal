@@ -35,6 +35,41 @@ describe("RealizzazioniBand", () => {
     expect(screen.getByText("Aiassa")).toBeInTheDocument();
   });
 
+  it("defaults the section number to 02 when num is not provided", () => {
+    render(
+      <NextIntlClientProvider locale="it" messages={{ Rail: { prev: "Precedente", next: "Successivo" } }}>
+        <RealizzazioniBand
+          progetti={[progetto]}
+          locale="it"
+          kick="In evidenza"
+          title="Realizzazioni recenti."
+          subtitle="Una selezione di commesse."
+          ctaLabel="Tutte le realizzazioni"
+          ctaHref="/it/realizzazioni"
+        />
+      </NextIntlClientProvider>
+    );
+    expect(screen.getByText("02")).toBeInTheDocument();
+  });
+
+  it("uses the num prop when provided", () => {
+    render(
+      <NextIntlClientProvider locale="it" messages={{ Rail: { prev: "Precedente", next: "Successivo" } }}>
+        <RealizzazioniBand
+          progetti={[progetto]}
+          locale="it"
+          num="05"
+          kick="In evidenza"
+          title="Realizzazioni recenti."
+          subtitle="Una selezione di commesse."
+          ctaLabel="Tutte le realizzazioni"
+          ctaHref="/it/realizzazioni"
+        />
+      </NextIntlClientProvider>
+    );
+    expect(screen.getByText("05")).toBeInTheDocument();
+  });
+
   it("renders nothing when there are no projects", () => {
     const { container } = render(
       <NextIntlClientProvider locale="it" messages={{}}>

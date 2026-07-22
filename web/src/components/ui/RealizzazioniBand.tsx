@@ -13,6 +13,8 @@ type RealizzazioniBandProps = {
   subtitle: string;
   ctaLabel: string;
   ctaHref: string;
+  /** Numero di sezione mostrato nel kicker (default "02"). */
+  num?: string;
 };
 
 const rightArrow = (
@@ -33,6 +35,7 @@ export function RealizzazioniBand({
   subtitle,
   ctaLabel,
   ctaHref,
+  num = "02",
 }: RealizzazioniBandProps) {
   if (progetti.length === 0) {
     return null;
@@ -44,7 +47,7 @@ export function RealizzazioniBand({
         <Reveal className="rail-head">
           <div>
             <span className="kicker">
-              <span className="num">03</span>
+              <span className="num">{num}</span>
               <span className="txt">{kick}</span>
             </span>
             <h2>{title}</h2>

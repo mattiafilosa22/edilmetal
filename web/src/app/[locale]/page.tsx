@@ -85,6 +85,7 @@ export default async function HomePage({ params }: PageProps) {
       <RealizzazioniBand
         progetti={evidenza}
         locale={locale}
+        num="02"
         kick={t("evidenzaKick")}
         title={t("evidenzaTitle")}
         subtitle={t("evidenzaSub")}

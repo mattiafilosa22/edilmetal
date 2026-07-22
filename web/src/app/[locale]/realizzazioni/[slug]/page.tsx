@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
+import { progettoDisplayName } from "@/domain";
 import { getProgetti, getProgetto, getSettings } from "@/lib/api";
 import {
   JsonLd,
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: tSeo("realizzazioniDescription"),
     });
   }
-  const heading = progetto.seo?.title ?? `${progetto.titolo} — ${progetto.cliente}`;
+  const heading = progetto.seo?.title ?? progettoDisplayName(progetto);
   const description =
     progetto.seo?.description ?? progetto.descrizione.slice(0, 160);
   const cover = progetto.galleria[0];
@@ -89,7 +90,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
 
   const projectJsonLd = buildProjectJsonLd({
     progetto,
-    name: `${progetto.titolo} — ${progetto.cliente}`,
+    name: progettoDisplayName(progetto),
     url: absoluteUrl(progettoPath(locale, slug)),
     images: progetto.galleria.map((img) => absoluteUrl(img.src)),
     creatorName: settings.nomeAzienda,
@@ -120,11 +121,11 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
             <span className="sep">/</span>
             <Link href={`/${locale}/realizzazioni`}>{t("breadcrumbRealizzazioni")}</Link>
             <span className="sep">/</span>
-            <span aria-current="page">{`${progetto.titolo} — ${progetto.cliente}`}</span>
+            <span aria-current="page">{progettoDisplayName(progetto)}</span>
           </nav>
           <div className="sp-head mt-4">
             <div>
-              <h1>{`${progetto.titolo} — ${progetto.cliente}`}</h1>
+              <h1>{progettoDisplayName(progetto)}</h1>
               <div className="sp-head__meta">
                 <span className="sp-tag sp-tag--accent">{progetto.categoria.nome}</span>
                 {progetto.settore ? (

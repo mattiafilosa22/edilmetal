@@ -135,16 +135,6 @@ export function CategoryIndex({
   );
 }
 
-export function Clients({ items }: { items: string[] }) {
-  return (
-    <div className="clients">
-      {items.map((name) => (
-        <span key={name}>{name}</span>
-      ))}
-    </div>
-  );
-}
-
 export function Callout({ titolo, testo }: { titolo: string; testo: string }) {
   return (
     <div className="callout">

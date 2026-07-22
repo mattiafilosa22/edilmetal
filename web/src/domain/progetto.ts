@@ -85,6 +85,18 @@ export type Progetto = z.infer<typeof progettoSchema>;
 
 export const progettoSummaryListSchema = z.array(progettoSummarySchema);
 
+/**
+ * Titolo da mostrare per una realizzazione: "Titolo — Cliente", oppure solo
+ * il titolo quando i due campi coincidono (caso dei progetti storici seedati
+ * con `cliente` usato come placeholder di `titolo`), per evitare la
+ * ripetizione "Bervini — Bervini" in UI, breadcrumb e JSON-LD.
+ */
+export function progettoDisplayName(progetto: { titolo: string; cliente: string }): string {
+  return progetto.titolo === progetto.cliente
+    ? progetto.titolo
+    : `${progetto.titolo} — ${progetto.cliente}`;
+}
+
 /** Filtri applicabili alla lista realizzazioni (REST + client-side). */
 export type ProgettoFilters = {
   categoria?: CategoriaSlug;
