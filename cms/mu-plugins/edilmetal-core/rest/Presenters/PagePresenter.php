@@ -65,8 +65,10 @@ final class PagePresenter {
 
 		switch ( $key ) {
 			case 'home':
-				$dto['hero']       = $this->home_hero();
-				$dto['inEvidenza'] = $this->home_in_evidenza();
+				$dto['home'] = array(
+					'hero'       => $this->home_hero(),
+					'inEvidenza' => $this->home_in_evidenza(),
+				);
 				break;
 
 			case 'servizi':
