@@ -224,3 +224,14 @@ body.menu-open .overlay-nav{ display:flex; }
   .hdr-tools .btn--accent{ display:none; }
   .hdr{ gap:var(--sp-3); }
 }
+
+/* ---------- Banda globale Contatti/Orari/Telefono ---------- */
+.contact-band{ background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding-block:clamp(40px,6vw,64px); }
+.contact-band__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-6); text-align:center; }
+.contact-band__item .ico{ display:inline-flex; width:36px; height:36px; color:var(--accent-ui); }
+.contact-band__item h3{ font-family:var(--f-mono); font-size:var(--fs-sm); text-transform:uppercase; letter-spacing:.08em; color:var(--ink); margin-top:var(--sp-3); }
+.contact-band__item p{ color:var(--ink-2); margin-top:var(--sp-2); font-size:var(--fs-sm); }
+.contact-band__item a{ color:var(--ink-2); }
+.contact-band__item a:hover{ color:var(--accent-ui); }
+.contact-band__giorni,.contact-band__apertura{ display:block; }
+@media (max-width:720px){ .contact-band__grid{ grid-template-columns:1fr; gap:var(--sp-5); } }

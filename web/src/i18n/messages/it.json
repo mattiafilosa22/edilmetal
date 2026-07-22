@@ -179,5 +179,12 @@
     "aria": "Mappa della sede: {label}",
     "open": "Apri in mappe",
     "openAria": "Apri la posizione di {label} in una nuova scheda"
+  },
+  "ContactBand": {
+    "contattiTitle": "Contatti",
+    "orariTitle": "Orari ufficio",
+    "telefonoTitle": "Telefono",
+    "faxLabel": "Fax",
+    "preventiviText": "Per informazioni e preventivi contattateci!"
   }
 }

@@ -179,5 +179,12 @@
     "aria": "Head office map: {label}",
     "open": "Open in maps",
     "openAria": "Open the location of {label} in a new tab"
+  },
+  "ContactBand": {
+    "contattiTitle": "Contact",
+    "orariTitle": "Office hours",
+    "telefonoTitle": "Phone",
+    "faxLabel": "Fax",
+    "preventiviText": "For information and quotes, get in touch!"
   }
 }
