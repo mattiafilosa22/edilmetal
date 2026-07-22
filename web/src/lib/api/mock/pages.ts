@@ -49,32 +49,33 @@ const home: PageContent = {
       subtitle:
         "Dal sopralluogo alle relazioni di calcolo firmate, fino al montaggio in cantiere e al post-vendita. Un unico interlocutore per l'edilizia industriale, commerciale e terziaria.",
       ctaPrimary: { label: "Le realizzazioni", href: "/realizzazioni" },
-      ctaSecondary: { label: "Richiedi un preventivo →", href: "/contatti" },
+      ctaSecondary: { label: "Richiedi un preventivo", href: "/contatti" },
       index: [
         { valore: "Dal 1997", etichetta: "Esperienza in cantiere" },
         { valore: "Su commessa", etichetta: "Calcoli firmati da tecnici abilitati" },
         { valore: "Noceto (PR)", etichetta: "Progettazione · produzione · montaggio" },
       ],
     },
-    statsIntro: {
-      titolo: "Numeri che tengono.",
-      testo:
-        "Nata nel 1997 dall'incontro di Alessio Ricci e Aldo Medioli, Edilmetal costruisce e monta carpenteria metallica in tutta Italia.",
-    },
-    stats: [
-      { valore: "27+", etichetta: "Anni di attività" },
-      { valore: "500+", etichetta: "Opere realizzate" },
-      { valore: "8", etichetta: "Famiglie di opere" },
-      { valore: "100%", etichetta: "Calcoli firmati" },
+    inEvidenza: [
+      {
+        categoria: { slug: "strutture-acciaio", nome: "Strutture in acciaio" },
+        immagine: {
+          src: "/placeholder-progetto.svg",
+          width: 1200,
+          height: 900,
+          alt: "Struttura in acciaio per capannone industriale",
+        },
+      },
+      {
+        categoria: { slug: "pensiline", nome: "Pensiline" },
+        immagine: {
+          src: "/placeholder-progetto.svg",
+          width: 1200,
+          height: 900,
+          alt: "Pensilina industriale in acciaio",
+        },
+      },
     ],
-    categorie: CATEGORIE,
-    processo: PROCESSO,
-    perche: PERCHE,
-    referenze: ["Parmalat", "Italbox", "Bervini", "Iris", "Aiassa", "Meta", "+ molti altri"],
-    cta: {
-      titolo: "Hai una struttura in mente?",
-      testo: "Raccontaci la commessa: ti rispondiamo con un preventivo.",
-    },
   },
 };
 
