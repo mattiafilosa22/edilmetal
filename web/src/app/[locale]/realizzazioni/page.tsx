@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { getProgetti } from "@/lib/api";
@@ -17,6 +18,7 @@ import {
   localePathsFor,
 } from "@/lib/seo";
 import { RealizzazioniView } from "@/components/ui/RealizzazioniView";
+import { RealizzazioniViewFromQuery } from "@/components/ui/RealizzazioniViewFromQuery";
 import { Reveal } from "@/components/ui/Reveal";
 import { CtaBand, SectionLabel } from "@/components/ui/blocks";
 
@@ -77,13 +79,25 @@ export default async function RealizzazioniPage({ params }: PageProps) {
         <div className="container sec-grid">
           <SectionLabel num="01" kick={t("portfolioKick")} />
           <div>
-            <RealizzazioniView
-              summaries={summaries}
-              categorie={categorie}
-              settori={settori}
-              anni={anni}
-              locale={locale}
-            />
+            <Suspense
+              fallback={
+                <RealizzazioniView
+                  summaries={summaries}
+                  categorie={categorie}
+                  settori={settori}
+                  anni={anni}
+                  locale={locale}
+                />
+              }
+            >
+              <RealizzazioniViewFromQuery
+                summaries={summaries}
+                categorie={categorie}
+                settori={settori}
+                anni={anni}
+                locale={locale}
+              />
+            </Suspense>
           </div>
         </div>
       </section>

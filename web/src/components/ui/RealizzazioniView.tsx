@@ -14,6 +14,8 @@ type RealizzazioniViewProps = {
   settori: string[];
   anni: number[];
   locale: Locale;
+  /** Categoria pre-selezionata (es. da un link "vai alla sezione prodotti"). */
+  initialCategoria?: CategoriaSlug;
 };
 
 const PAGE_SIZE = 9;
@@ -41,9 +43,10 @@ export function RealizzazioniView({
   settori,
   anni,
   locale,
+  initialCategoria,
 }: RealizzazioniViewProps) {
   const t = useTranslations("Realizzazioni");
-  const [cat, setCat] = useState<CategoriaSlug | null>(null);
+  const [cat, setCat] = useState<CategoriaSlug | null>(initialCategoria ?? null);
   const [set, setSet] = useState<string | null>(null);
   const [anno, setAnno] = useState<number | null>(null);
   const [sort, setSort] = useState<Sort>("recent");
