@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { categoriaSlugSchema, seoMetaSchema } from "./progetto";
+import { categoriaSchema, categoriaSlugSchema, imageSchema, seoMetaSchema } from "./progetto";
 
 /**
  * Contenuto editoriale di una pagina, gestito in WordPress
@@ -80,15 +80,17 @@ export const homeHeroSchema = z.object({
 });
 export type HomeHero = z.infer<typeof homeHeroSchema>;
 
+/** Categoria "in evidenza" in home: foto reale + link alla sezione prodotti. */
+export const homeFeaturedSchema = z.object({
+  categoria: categoriaSchema,
+  immagine: imageSchema,
+});
+export type HomeFeatured = z.infer<typeof homeFeaturedSchema>;
+
 export const homeContentSchema = z.object({
   hero: homeHeroSchema,
-  stats: z.array(statSchema).default([]),
-  statsIntro: featureSchema,
-  categorie: z.array(categoriaRefSchema).default([]),
-  processo: z.array(stepSchema).default([]),
-  perche: z.array(featureSchema).default([]),
-  referenze: z.array(z.string().min(1)).default([]),
-  cta: ctaBandSchema,
+  /** "In evidenza": fino a 2 categorie con foto reale (blocco storico del sito). */
+  inEvidenza: z.array(homeFeaturedSchema).max(2).default([]),
 });
 export type HomeContent = z.infer<typeof homeContentSchema>;
 
