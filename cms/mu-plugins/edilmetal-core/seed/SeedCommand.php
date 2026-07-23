@@ -95,63 +95,108 @@ final class SeedCommand {
 	 */
 	public function __invoke( array $args, array $assoc_args ): void {
 		$fresh = (bool) \WP_CLI\Utils\get_flag_value( $assoc_args, 'fresh', false );
+		$lines = $this->run( $fresh );
 
-		\WP_CLI::log( '▸ Configurazione lingue (Polylang) ...' );
-		$this->configure_languages();
+		foreach ( $lines as $line ) {
+			switch ( $line['level'] ) {
+				case 'warning':
+					\WP_CLI::warning( $line['message'] );
+					break;
+				case 'success':
+					\WP_CLI::success( $line['message'] );
+					break;
+				default:
+					\WP_CLI::log( $line['message'] );
+			}
+		}
+	}
+
+	/**
+	 * Esegue il seeding e restituisce l'esito come elenco di righe di log
+	 * (disaccoppiato da WP-CLI, cosi riusabile anche da un trigger admin).
+	 *
+	 * @param bool $fresh Se true, elimina prima i contenuti di demo generati.
+	 * @return array<int,array{level:string,message:string}> Righe con level "log"|"warning"|"success".
+	 */
+	public function run( bool $fresh ): array {
+		$lines = array();
+
+		$lines[] = $this->line( 'log', '▸ Configurazione lingue (Polylang) ...' );
+		$lines   = array_merge( $lines, $this->configure_languages() );
 
 		if ( $fresh ) {
-			$this->purge();
+			$lines = array_merge( $lines, $this->purge() );
 		}
 
-		\WP_CLI::log( '▸ Tassonomie (categorie opera, settori) ...' );
-		$terms = $this->taxonomies->seed();
-		\WP_CLI::log( sprintf( '  %d termini creati.', $terms ) );
+		$lines[] = $this->line( 'log', '▸ Tassonomie (categorie opera, settori) ...' );
+		$terms   = $this->taxonomies->seed();
+		$lines[] = $this->line( 'log', sprintf( '  %d termini creati.', $terms ) );
 
-		\WP_CLI::log( '▸ Immagini (segnaposto realizzazioni) ...' );
+		$lines[] = $this->line( 'log', '▸ Immagini (segnaposto realizzazioni) ...' );
 		$library = $this->media->seed();
-		\WP_CLI::log( sprintf( '  %d immagini disponibili.', $library->total() ) );
+		$lines[] = $this->line( 'log', sprintf( '  %d immagini disponibili.', $library->total() ) );
 
-		\WP_CLI::log( '▸ Realizzazioni di demo ...' );
+		$lines[]  = $this->line( 'log', '▸ Realizzazioni di demo ...' );
 		$progetti = $this->progetti->seed( $library );
-		\WP_CLI::log( sprintf( '  %d realizzazioni processate.', $progetti ) );
+		$lines[]  = $this->line( 'log', sprintf( '  %d realizzazioni processate.', $progetti ) );
 
-		\WP_CLI::log( '▸ Impostazioni e pagine editoriali ...' );
-		$pages = $this->pages->seed( $library );
-		\WP_CLI::log( sprintf( '  %d pagine processate.', $pages ) );
+		$lines[] = $this->line( 'log', '▸ Impostazioni e pagine editoriali ...' );
+		$pages   = $this->pages->seed( $library );
+		$lines[] = $this->line( 'log', sprintf( '  %d pagine processate.', $pages ) );
 
 		$this->finish();
 
-		\WP_CLI::success( 'Seeding completato.' );
+		$lines[] = $this->line( 'success', 'Seeding completato.' );
+
+		return $lines;
+	}
+
+	/**
+	 * Costruisce una riga di log strutturata.
+	 *
+	 * @param string $level   Livello ("log"|"warning"|"success").
+	 * @param string $message Messaggio testuale.
+	 * @return array{level:string,message:string} Riga di log.
+	 */
+	private function line( string $level, string $message ): array {
+		return array(
+			'level'   => $level,
+			'message' => $message,
+		);
 	}
 
 	/**
 	 * Configura le lingue e segnala lo stato di Polylang.
+	 *
+	 * @return array<int,array{level:string,message:string}> Righe di log.
 	 */
-	private function configure_languages(): void {
+	private function configure_languages(): array {
 		if ( ! $this->language->is_active() ) {
-			\WP_CLI::warning( 'Polylang non attivo: seeding solo in italiano.' );
-
-			return;
+			return array( $this->line( 'warning', 'Polylang non attivo: seeding solo in italiano.' ) );
 		}
 
 		$created = $this->language->ensure_languages();
 
 		if ( array() !== $created ) {
-			\WP_CLI::log( sprintf( '  Lingue create: %s.', implode( ', ', $created ) ) );
-		} else {
-			\WP_CLI::log( '  Lingue gia configurate.' );
+			return array( $this->line( 'log', sprintf( '  Lingue create: %s.', implode( ', ', $created ) ) ) );
 		}
+
+		return array( $this->line( 'log', '  Lingue gia configurate.' ) );
 	}
 
 	/**
 	 * Elimina i contenuti di demo generati in precedenza (--fresh).
+	 *
+	 * @return array<int,array{level:string,message:string}> Righe di log.
 	 */
-	private function purge(): void {
-		\WP_CLI::log( '▸ Pulizia contenuti di demo (--fresh) ...' );
+	private function purge(): array {
+		$lines       = array( $this->line( 'log', '▸ Pulizia contenuti di demo (--fresh) ...' ) );
 		$progetti    = $this->progetti->purge();
 		$leads       = $this->purge_leads();
 		$attachments = $this->media->purge();
-		\WP_CLI::log( sprintf( '  Eliminati: %d realizzazioni, %d lead, %d immagini.', $progetti, $leads, $attachments ) );
+		$lines[]     = $this->line( 'log', sprintf( '  Eliminati: %d realizzazioni, %d lead, %d immagini.', $progetti, $leads, $attachments ) );
+
+		return $lines;
 	}
 
 	/**
