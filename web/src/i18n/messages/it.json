@@ -28,12 +28,10 @@
     "servizi": "Servizi",
     "azienda": "Azienda",
     "contatti": "Contatti",
-    "preventivo": "Preventivo",
     "menu": "Menù",
     "menuTitle": "Edilmetal — menù",
     "openMenu": "Apri menù",
-    "closeMenu": "Chiudi menù",
-    "ctaPreventivo": "Richiedi un preventivo →"
+    "closeMenu": "Chiudi menù"
   },
   "Theme": {
     "toggle": "Tema chiaro/scuro",

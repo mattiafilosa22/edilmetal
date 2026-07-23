@@ -32,7 +32,7 @@ const closeIcon = (
 
 /**
  * Navigazione dell'header: nav in linea (desktop), cluster strumenti (tema,
- * lingua, CTA preventivo) e overlay menù full-screen (≤960px o hamburger).
+ * lingua) e overlay menù full-screen (≤960px o hamburger).
  * `usePathname` determina la voce attiva (`aria-current`). L'overlay usa la
  * classe `menu-open` sul body (coerente con il CSS del design system).
  */
@@ -88,9 +88,6 @@ export function HeaderNav({ locale, phone, email, indirizzo }: HeaderNavProps) {
       <div className="hdr-tools">
         <LocaleSwitcher />
         <ThemeToggle />
-        <Link className="btn btn--accent" href={`${base}/contatti`}>
-          {t("preventivo")}
-        </Link>
         <button
           type="button"
           className="menu-btn"

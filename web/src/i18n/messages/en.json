@@ -28,12 +28,10 @@
     "servizi": "Services",
     "azienda": "Company",
     "contatti": "Contact",
-    "preventivo": "Get a quote",
     "menu": "Menu",
     "menuTitle": "Edilmetal — menu",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "ctaPreventivo": "Request a quote →"
+    "closeMenu": "Close menu"
   },
   "Theme": {
     "toggle": "Light/dark theme",
