@@ -9,6 +9,7 @@ declare( strict_types=1 );
 
 namespace Edilmetal\Core;
 
+use Edilmetal\Core\Branding\Branding;
 use Edilmetal\Core\Fields\Fields;
 use Edilmetal\Core\Forms\FormsModule;
 use Edilmetal\Core\Mail\LeadNotifier;
@@ -77,6 +78,7 @@ final class Plugin {
 			new Fields(),
 			new Rest(),
 			new Security(),
+			new Branding(),
 			new DeployWebhook(),
 			new LeadNotifier(),
 			new FormsModule(),

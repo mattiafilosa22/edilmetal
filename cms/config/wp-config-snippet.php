@@ -38,6 +38,17 @@ if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
 
 /*
  * -------------------------------------------------------------------------
+ * URL pubblico del frontend Next.js (statico, dominio principale).
+ * Usato per rimandare al sito reale dalla barra admin e dal login, invece
+ * del sottodominio cms.* che ospita solo il back-office headless.
+ * -------------------------------------------------------------------------
+ */
+if ( ! defined( 'EDILMETAL_FRONTEND_URL' ) ) {
+	define( 'EDILMETAL_FRONTEND_URL', 'https://www.edilmetal.it' );
+}
+
+/*
+ * -------------------------------------------------------------------------
  * Webhook di deploy (GitHub repository_dispatch).
  * Impostare con i valori reali SOLO su questo file del server, mai in repo.
  * -------------------------------------------------------------------------
