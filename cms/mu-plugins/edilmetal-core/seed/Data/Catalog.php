@@ -36,44 +36,52 @@ final class Catalog {
 	private const LNG = '10.1730';
 
 	/**
-	 * Termini tassonomici da garantire (slug => nome).
+	 * Termini tassonomici da garantire (slug => nome [+ descrizione]).
 	 *
-	 * @return array<string,array<int,array{slug:string,name:string}>>
+	 * @return array<string,array<int,array{slug:string,name:string,description?:string}>>
 	 */
 	public static function taxonomies(): array {
 		return array(
 			'categoria_opera' => array(
 				array(
-					'slug' => 'strutture-acciaio',
-					'name' => 'Strutture in acciaio',
+					'slug'        => 'strutture-acciaio',
+					'name'        => 'Strutture in acciaio',
+					'description' => 'Capannoni · soppalchi · edifici industriali',
 				),
 				array(
-					'slug' => 'strutture-miste',
-					'name' => 'Strutture miste',
+					'slug'        => 'strutture-miste',
+					'name'        => 'Strutture miste',
+					'description' => 'Acciaio-calcestruzzo · ampliamenti',
 				),
 				array(
-					'slug' => 'scale',
-					'name' => 'Scale',
+					'slug'        => 'scale',
+					'name'        => 'Scale',
+					'description' => 'Interne · esterne · di sicurezza',
 				),
 				array(
-					'slug' => 'pensiline',
-					'name' => 'Pensiline',
+					'slug'        => 'pensiline',
+					'name'        => 'Pensiline',
+					'description' => 'Industriali · di ingresso · di carico',
 				),
 				array(
-					'slug' => 'pensiline-auto',
-					'name' => 'Pensiline auto / carport',
+					'slug'        => 'pensiline-auto',
+					'name'        => 'Pensiline auto / carport',
+					'description' => 'Aree di sosta · fotovoltaico',
 				),
 				array(
-					'slug' => 'coperture-tamponamenti',
-					'name' => 'Coperture e tamponamenti',
+					'slug'        => 'coperture-tamponamenti',
+					'name'        => 'Coperture e tamponamenti',
+					'description' => 'Pannelli · lamiere · isolamento',
 				),
 				array(
-					'slug' => 'rivestimenti-facciata',
-					'name' => 'Rivestimenti di facciata',
+					'slug'        => 'rivestimenti-facciata',
+					'name'        => 'Rivestimenti di facciata',
+					'description' => 'Frangisole · lamiere forate · finiture',
 				),
 				array(
-					'slug' => 'opere-speciali',
-					'name' => 'Opere speciali',
+					'slug'        => 'opere-speciali',
+					'name'        => 'Opere speciali',
+					'description' => 'Su disegno · carpenteria di dettaglio',
 				),
 			),
 			'settore'         => array(
