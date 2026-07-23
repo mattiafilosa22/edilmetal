@@ -29,6 +29,10 @@ const summaries = [
     copertina: { src: "/b.jpg", width: 1200, height: 900, alt: "Acetum" },
   },
 ];
+const categorie = [
+  { slug: "strutture-miste" as const, nome: "Strutture miste" },
+  { slug: "strutture-acciaio" as const, nome: "Strutture in acciaio" },
+];
 
 describe("RealizzazioniView", () => {
   it("pre-filters by the given initialCategoria", () => {
@@ -36,12 +40,7 @@ describe("RealizzazioniView", () => {
       <NextIntlClientProvider locale="it" messages={messages}>
         <RealizzazioniView
           summaries={summaries}
-          categorie={[
-            { slug: "strutture-miste", nome: "Strutture miste" },
-            { slug: "strutture-acciaio", nome: "Strutture in acciaio" },
-          ]}
-          settori={[]}
-          anni={[2018]}
+          categorie={categorie}
           locale="it"
           initialCategoria="strutture-miste"
         />
@@ -49,5 +48,15 @@ describe("RealizzazioniView", () => {
     );
     expect(screen.getByText("Aiassa")).toBeInTheDocument();
     expect(screen.queryByText("Acetum")).not.toBeInTheDocument();
+  });
+
+  it("shows every project when no category is selected", () => {
+    render(
+      <NextIntlClientProvider locale="it" messages={messages}>
+        <RealizzazioniView summaries={summaries} categorie={categorie} locale="it" />
+      </NextIntlClientProvider>
+    );
+    expect(screen.getByText("Aiassa")).toBeInTheDocument();
+    expect(screen.getByText("Acetum")).toBeInTheDocument();
   });
 });

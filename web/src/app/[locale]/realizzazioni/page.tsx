@@ -4,11 +4,7 @@ import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { getProgetti } from "@/lib/api";
-import {
-  anniFrom,
-  categorieFrom,
-  settoriFrom,
-} from "@/lib/mappers/progetto";
+import { categorieFrom } from "@/lib/mappers/progetto";
 import {
   JsonLd,
   absoluteUrl,
@@ -51,8 +47,6 @@ export default async function RealizzazioniPage({ params }: PageProps) {
   const tNav = await getTranslations("Nav");
 
   const categorie = categorieFrom(summaries);
-  const settori = settoriFrom(summaries);
-  const anni = anniFrom(summaries);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: t("breadcrumbHome"), url: absoluteUrl(localePath(locale)) },
@@ -80,21 +74,11 @@ export default async function RealizzazioniPage({ params }: PageProps) {
           <SectionLabel num="01" kick={t("portfolioKick")} />
           <div>
             <Suspense
-              fallback={
-                <RealizzazioniView
-                  summaries={summaries}
-                  categorie={categorie}
-                  settori={settori}
-                  anni={anni}
-                  locale={locale}
-                />
-              }
+              fallback={<RealizzazioniView summaries={summaries} categorie={categorie} locale={locale} />}
             >
               <RealizzazioniViewFromQuery
                 summaries={summaries}
                 categorie={categorie}
-                settori={settori}
-                anni={anni}
                 locale={locale}
               />
             </Suspense>

@@ -54,8 +54,6 @@ function renderFromQuery() {
       <RealizzazioniViewFromQuery
         summaries={summaries}
         categorie={categorie}
-        settori={[]}
-        anni={[2018]}
         locale="it"
       />
     </NextIntlClientProvider>

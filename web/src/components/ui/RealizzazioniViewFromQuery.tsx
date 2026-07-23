@@ -8,8 +8,6 @@ import { RealizzazioniView } from "./RealizzazioniView";
 type RealizzazioniViewFromQueryProps = {
   summaries: ProgettoSummary[];
   categorie: Categoria[];
-  settori: string[];
-  anni: number[];
   locale: Locale;
 };
 
