@@ -80,9 +80,7 @@
     "openFilters": "Filtri",
     "emptyTitle": "Nessuna realizzazione",
     "emptyText": "Nessun progetto corrisponde ai filtri selezionati.",
-    "resetFilters": "Rimuovi i filtri",
-    "ctaTitle": "Non trovi un caso simile al tuo?",
-    "ctaText": "Raccontaci la commessa: progettiamo la struttura su misura."
+    "resetFilters": "Rimuovi i filtri"
   },
   "Scheda": {
     "breadcrumbHome": "Home",

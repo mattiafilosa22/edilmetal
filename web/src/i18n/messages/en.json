@@ -80,9 +80,7 @@
     "openFilters": "Filters",
     "emptyTitle": "No projects",
     "emptyText": "No project matches the selected filters.",
-    "resetFilters": "Clear filters",
-    "ctaTitle": "Can't find a case similar to yours?",
-    "ctaText": "Tell us about the project: we'll design the structure to measure."
+    "resetFilters": "Clear filters"
   },
   "Scheda": {
     "breadcrumbHome": "Home",

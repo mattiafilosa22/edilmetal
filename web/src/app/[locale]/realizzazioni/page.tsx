@@ -15,8 +15,7 @@ import {
 } from "@/lib/seo";
 import { RealizzazioniView } from "@/components/ui/RealizzazioniView";
 import { RealizzazioniViewFromQuery } from "@/components/ui/RealizzazioniViewFromQuery";
-import { Reveal } from "@/components/ui/Reveal";
-import { CtaBand, SectionLabel } from "@/components/ui/blocks";
+import { SectionLabel } from "@/components/ui/blocks";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -44,7 +43,6 @@ export default async function RealizzazioniPage({ params }: PageProps) {
   const summaries = await getProgetti({ locale });
   const t = await getTranslations("Realizzazioni");
   const tSeo = await getTranslations("SEO");
-  const tNav = await getTranslations("Nav");
 
   const categorie = categorieFrom(summaries);
 
@@ -83,19 +81,6 @@ export default async function RealizzazioniPage({ params }: PageProps) {
               />
             </Suspense>
           </div>
-        </div>
-      </section>
-
-      <section className="section section--alt">
-        <div className="container">
-          <Reveal>
-            <CtaBand
-              titolo={t("ctaTitle")}
-              testo={t("ctaText")}
-              ctaLabel={tNav("ctaPreventivo")}
-              ctaHref={`/${locale}/contatti`}
-            />
-          </Reveal>
         </div>
       </section>
     </>

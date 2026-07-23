@@ -68,27 +68,3 @@ export function CategoryIndex({
     </div>
   );
 }
-
-export function CtaBand({
-  titolo,
-  testo,
-  ctaLabel,
-  ctaHref,
-}: {
-  titolo: string;
-  testo: string;
-  ctaLabel: string;
-  ctaHref: string;
-}) {
-  return (
-    <div className="cta-band">
-      <div>
-        <h2>{titolo}</h2>
-        <p>{testo}</p>
-      </div>
-      <Link className="btn btn--accent btn--lg" href={ctaHref}>
-        {ctaLabel}
-      </Link>
-    </div>
-  );
-}
