@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { homeContentSchema } from "./page";
+import { aziendaContentSchema, homeContentSchema, serviziContentSchema } from "./page";
 
 const hero = {
   title: "Strutture in acciaio",
@@ -33,5 +33,33 @@ describe("homeContentSchema", () => {
   it("no longer accepts the old stats/processo/perche/referenze/cta shape as required", () => {
     const parsed = homeContentSchema.parse({ hero });
     expect(parsed.inEvidenza).toEqual([]);
+  });
+});
+
+describe("serviziContentSchema", () => {
+  it("accepts only { tipologie }", () => {
+    const parsed = serviziContentSchema.parse({
+      tipologie: [{ slug: "scale", nome: "Scale", dettaglio: "Interne · esterne" }],
+    });
+    expect(parsed.tipologie).toHaveLength(1);
+  });
+
+  it("defaults tipologie to an empty array when absent", () => {
+    const parsed = serviziContentSchema.parse({});
+    expect(parsed.tipologie).toEqual([]);
+  });
+});
+
+describe("aziendaContentSchema", () => {
+  it("accepts only { storiaTitolo, storia }", () => {
+    const parsed = aziendaContentSchema.parse({
+      storiaTitolo: "Dal 1997.",
+      storia: ["Primo paragrafo.", "Secondo paragrafo."],
+    });
+    expect(parsed.storia).toHaveLength(2);
+  });
+
+  it("requires storiaTitolo (non-empty)", () => {
+    expect(() => aziendaContentSchema.parse({ storia: [] })).toThrow();
   });
 });
