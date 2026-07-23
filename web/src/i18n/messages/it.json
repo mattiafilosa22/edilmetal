@@ -121,14 +121,9 @@
   "Servizi": {
     "breadcrumbHome": "Home",
     "current": "Servizi",
-    "processoKick": "Come lavoriamo",
-    "processoTitle": "Dal sopralluogo al montaggio.",
-    "processoSub": "Quattro fasi gestite internamente, senza rimpalli tra fornitori.",
     "tipologieKick": "Cosa realizziamo",
     "tipologieTitle": "Otto tipologie di opere.",
-    "tipologieSub": "Dalla singola scala su misura al capannone industriale chiavi in mano.",
-    "vantaggiKick": "Perché noi",
-    "vantaggiTitle": "I vantaggi di lavorare con Edilmetal."
+    "tipologieSub": "Dalla singola scala su misura al capannone industriale chiavi in mano."
   },
   "Azienda": {
     "breadcrumbHome": "Home",

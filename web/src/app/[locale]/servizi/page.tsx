@@ -13,14 +13,7 @@ import {
   localePathsFor,
 } from "@/lib/seo";
 import { Reveal } from "@/components/ui/Reveal";
-import {
-  Callout,
-  CategoryIndex,
-  CtaBand,
-  Feats,
-  Flow,
-  SectionLabel,
-} from "@/components/ui/blocks";
+import { CategoryIndex, SectionLabel } from "@/components/ui/blocks";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -50,7 +43,6 @@ export default async function ServiziPage({ params }: PageProps) {
   if (!page || !servizi) notFound();
 
   const t = await getTranslations("Servizi");
-  const tNav = await getTranslations("Nav");
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: t("breadcrumbHome"), url: absoluteUrl(localePath(locale)) },
@@ -73,26 +65,10 @@ export default async function ServiziPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* 01 · Processo */}
+      {/* Elenco categorie (come il vecchio "Prodotti") */}
       <section className="section">
         <div className="container sec-grid">
-          <SectionLabel num="01" kick={t("processoKick")} />
-          <div>
-            <Reveal className="sec-head">
-              <h2>{t("processoTitle")}</h2>
-              <p>{t("processoSub")}</p>
-            </Reveal>
-            <Reveal className="mt-8">
-              <Flow steps={servizi.processo} />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* 02 · Tipologie di opere */}
-      <section className="section section--alt">
-        <div className="container sec-grid">
-          <SectionLabel num="02" kick={t("tipologieKick")} />
+          <SectionLabel num="01" kick={t("tipologieKick")} />
           <div>
             <Reveal className="sec-head">
               <h2>{t("tipologieTitle")}</h2>
@@ -102,40 +78,6 @@ export default async function ServiziPage({ params }: PageProps) {
               <CategoryIndex categorie={servizi.tipologie} locale={locale} />
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* 03 · Vantaggi */}
-      <section className="section">
-        <div className="container sec-grid">
-          <SectionLabel num="03" kick={t("vantaggiKick")} />
-          <div>
-            <Reveal className="sec-head">
-              <h2>{t("vantaggiTitle")}</h2>
-            </Reveal>
-            <Reveal className="mt-6">
-              <Feats items={servizi.vantaggi} />
-            </Reveal>
-            {servizi.callout ? (
-              <Reveal className="mt-6">
-                <Callout titolo={servizi.callout.titolo} testo={servizi.callout.testo} />
-              </Reveal>
-            ) : null}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section section--alt">
-        <div className="container">
-          <Reveal>
-            <CtaBand
-              titolo={servizi.cta.titolo}
-              testo={servizi.cta.testo}
-              ctaLabel={tNav("ctaPreventivo")}
-              ctaHref={`/${locale}/contatti`}
-            />
-          </Reveal>
         </div>
       </section>
     </>

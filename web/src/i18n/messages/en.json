@@ -121,14 +121,9 @@
   "Servizi": {
     "breadcrumbHome": "Home",
     "current": "Services",
-    "processoKick": "How we work",
-    "processoTitle": "From survey to erection.",
-    "processoSub": "Four stages handled in-house, with no hand-offs between suppliers.",
     "tipologieKick": "What we build",
     "tipologieTitle": "Eight types of works.",
-    "tipologieSub": "From a single made-to-measure staircase to a turnkey industrial building.",
-    "vantaggiKick": "Why us",
-    "vantaggiTitle": "The advantages of working with Edilmetal."
+    "tipologieSub": "From a single made-to-measure staircase to a turnkey industrial building."
   },
   "Azienda": {
     "breadcrumbHome": "Home",
