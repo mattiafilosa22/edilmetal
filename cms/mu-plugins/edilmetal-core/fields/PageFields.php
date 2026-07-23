@@ -204,24 +204,15 @@ final class PageFields {
 	}
 
 	/**
-	 * Pagina Servizi / Cosa facciamo: hero, intro, processo, tipologie di opere,
-	 * callout e SEO.
+	 * Pagina Servizi / "Prodotti": sottotitolo di testata + SEO.
+	 * L'elenco delle categorie (tipologie) arriva dalla tassonomia
+	 * `categoria_opera`, non da un campo separato — niente da tenere in sync.
 	 *
 	 * @return array<string,mixed>
 	 */
 	private function servizi_box(): array {
 		$fields = array(
-			$this->text( 'edilmetal_servizi_hero_eyebrow', __( 'Hero — Eyebrow', 'edilmetal-core' ) ),
-			$this->text( 'edilmetal_servizi_titolo', __( 'Hero — Titolo', 'edilmetal-core' ) ),
-			$this->textarea( 'edilmetal_servizi_sottotitolo', __( 'Hero — Sottotitolo', 'edilmetal-core' ) ),
-			$this->text( 'edilmetal_servizi_intro_titolo', __( 'Intro — Titolo', 'edilmetal-core' ) ),
-			$this->textarea( 'edilmetal_servizi_intro_testo', __( 'Intro — Testo', 'edilmetal-core' ) ),
-			$this->repeater_text( 'edilmetal_servizi_flow', __( 'Processo (formato "titolo|testo")', 'edilmetal-core' ) ),
-			$this->repeater_text( 'edilmetal_servizi_tipologie', __( 'Tipologie di opere (formato "titolo|testo")', 'edilmetal-core' ) ),
-			$this->text( 'edilmetal_servizi_callout_titolo', __( 'Callout — Titolo', 'edilmetal-core' ) ),
-			$this->textarea( 'edilmetal_servizi_callout_testo', __( 'Callout — Testo', 'edilmetal-core' ) ),
-			$this->text( 'edilmetal_servizi_callout_cta_label', __( 'Callout — CTA (testo)', 'edilmetal-core' ) ),
-			$this->url( 'edilmetal_servizi_callout_cta_url', __( 'Callout — CTA (URL)', 'edilmetal-core' ) ),
+			$this->textarea( 'edilmetal_servizi_sottotitolo', __( 'Sottotitolo di testata', 'edilmetal-core' ) ),
 		);
 
 		$fields = array_merge( $fields, $this->seo_fields( 'edilmetal_servizi' ) );
@@ -230,21 +221,16 @@ final class PageFields {
 	}
 
 	/**
-	 * Pagina Azienda (Chi siamo / Dove siamo): hero, storia, valori, team,
-	 * statistiche e SEO. Sede, mappa e orari arrivano dalle impostazioni globali.
+	 * Pagina Azienda / "Chi siamo": sottotitolo di testata + storia + SEO.
+	 * Sede, mappa e orari restano nelle impostazioni globali (non usati qui).
 	 *
 	 * @return array<string,mixed>
 	 */
 	private function azienda_box(): array {
 		$fields = array(
-			$this->text( 'edilmetal_azienda_hero_eyebrow', __( 'Hero — Eyebrow', 'edilmetal-core' ) ),
-			$this->text( 'edilmetal_azienda_titolo', __( 'Hero — Titolo', 'edilmetal-core' ) ),
-			$this->textarea( 'edilmetal_azienda_sottotitolo', __( 'Hero — Sottotitolo', 'edilmetal-core' ) ),
-			$this->wysiwyg( 'edilmetal_azienda_storia', __( 'Storia aziendale', 'edilmetal-core' ) ),
-			$this->image( 'edilmetal_azienda_img', __( 'Immagine sede / team', 'edilmetal-core' ) ),
-			$this->repeater_text( 'edilmetal_azienda_valori', __( 'Valori (formato "titolo|testo")', 'edilmetal-core' ) ),
-			$this->repeater_text( 'edilmetal_azienda_team', __( 'Team (formato "nome|ruolo")', 'edilmetal-core' ) ),
-			$this->repeater_text( 'edilmetal_azienda_stats', __( 'Statistiche (formato "valore|etichetta")', 'edilmetal-core' ) ),
+			$this->textarea( 'edilmetal_azienda_sottotitolo', __( 'Sottotitolo di testata', 'edilmetal-core' ) ),
+			$this->text( 'edilmetal_azienda_storia_titolo', __( 'Storia — Titolo (es. "La società")', 'edilmetal-core' ) ),
+			$this->wysiwyg( 'edilmetal_azienda_storia', __( 'Storia aziendale (un paragrafo per blocco)', 'edilmetal-core' ) ),
 		);
 
 		$fields = array_merge( $fields, $this->seo_fields( 'edilmetal_azienda' ) );
