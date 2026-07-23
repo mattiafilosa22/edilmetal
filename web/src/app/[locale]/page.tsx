@@ -44,6 +44,7 @@ export default async function HomePage({ params }: PageProps) {
   ]);
 
   const t = await getTranslations("Home");
+  const tSeo = await getTranslations("SEO");
   const home = page?.home;
 
   const organizationJsonLd = buildOrganizationJsonLd({
@@ -59,6 +60,11 @@ export default async function HomePage({ params }: PageProps) {
   return (
     <>
       <JsonLd data={organizationJsonLd} />
+
+      {/* Heading di pagina, visivamente nascosto: l'Hero in modalità `photoOnly`
+          (fedele al sito storico) non renderizza alcun testo, ma la pagina deve
+          comunque esporre esattamente un `h1` per la struttura semantica/screen reader. */}
+      <h1 className="sr-only">{tSeo("homeHeading")}</h1>
 
       <Hero
         hero={home.hero}
