@@ -573,7 +573,8 @@ final class Catalog {
 	}
 
 	/**
-	 * Pagina Servizi / Cosa facciamo.
+	 * Pagina Servizi / Cosa facciamo (sottotitolo di testata; l'elenco
+	 * categorie arriva dalla tassonomia, vedi Catalog::taxonomies()).
 	 *
 	 * @return array<string,mixed>
 	 */
@@ -583,43 +584,17 @@ final class Catalog {
 			'title'    => 'Servizi',
 			'title_en' => 'Services',
 			'meta'     => array(
-				'edilmetal_servizi_hero_eyebrow'      => 'Cosa facciamo',
-				'edilmetal_servizi_titolo'            => 'Dalla progettazione al montaggio',
-				'edilmetal_servizi_sottotitolo'       => 'Un processo integrato per strutture in acciaio su commessa, con relazioni di calcolo firmate da tecnici abilitati.',
-				'edilmetal_servizi_intro_titolo'      => 'Carpenteria metallica completa',
-				'edilmetal_servizi_intro_testo'       => 'Progettiamo, produciamo e montiamo strutture in acciaio per nuove costruzioni e ristrutturazioni.',
-				'edilmetal_servizi_flow'              => array(
-					'Sopralluogo e consulenza|Analisi delle esigenze in cantiere e preventivazione rapida.',
-					'Progettazione e calcoli|Progettazione dedicata con relazioni di calcolo firmate da tecnici abilitati.',
-					'Produzione in officina|Taglio, saldatura e assemblaggio della carpenteria nella nostra officina.',
-					'Montaggio in cantiere|Montaggio con mezzi propri e assistenza post-vendita.',
-				),
-				'edilmetal_servizi_tipologie'         => array(
-					'Strutture in acciaio|Ossature portanti per capannoni e edifici industriali.',
-					'Strutture miste|Soluzioni acciaio-calcestruzzo per solai e edifici.',
-					'Scale e pensiline|Scale di sicurezza, scale d\'arredo, pensiline e carport.',
-					'Coperture e rivestimenti|Coperture, tamponamenti e facciate ventilate.',
-				),
-				'edilmetal_servizi_callout_titolo'    => 'Hai una commessa in mente?',
-				'edilmetal_servizi_callout_testo'     => 'Raccontaci il tuo progetto: ti rispondiamo con un preventivo dedicato.',
-				'edilmetal_servizi_callout_cta_label' => 'Richiedi un preventivo',
-				'edilmetal_servizi_callout_cta_url'   => '/contatti',
+				'edilmetal_servizi_sottotitolo' => 'Progettazione, costruzione e montaggio di strutture in carpenteria metallica per l\'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.',
 			),
 			'meta_en'  => array(
-				'edilmetal_servizi_hero_eyebrow'      => 'What we do',
-				'edilmetal_servizi_titolo'            => 'From design to assembly',
-				'edilmetal_servizi_sottotitolo'       => 'An integrated process for made-to-order steel structures, with calculations signed by qualified engineers.',
-				'edilmetal_servizi_intro_titolo'      => 'Complete structural steelwork',
-				'edilmetal_servizi_intro_testo'       => 'We design, fabricate and assemble steel structures for new builds and renovations.',
-				'edilmetal_servizi_callout_titolo'    => 'Have a project in mind?',
-				'edilmetal_servizi_callout_testo'     => 'Tell us about your project: we reply with a dedicated quote.',
-				'edilmetal_servizi_callout_cta_label' => 'Request a quote',
+				'edilmetal_servizi_sottotitolo' => 'Design, fabrication and assembly of structural steelwork for industrial, commercial and tertiary construction. A single point of contact, from survey to after-sales.',
 			),
 		);
 	}
 
 	/**
-	 * Pagina Azienda (Chi siamo / Dove siamo).
+	 * Pagina Azienda (Chi siamo). Sede, mappa e orari restano nelle
+	 * impostazioni globali.
 	 *
 	 * @return array<string,mixed>
 	 */
@@ -629,28 +604,14 @@ final class Catalog {
 			'title'    => 'Azienda',
 			'title_en' => 'Company',
 			'meta'     => array(
-				'edilmetal_azienda_hero_eyebrow' => 'Chi siamo',
-				'edilmetal_azienda_titolo'       => 'Carpenteria metallica dal 1997',
-				'edilmetal_azienda_sottotitolo'  => 'Fondata a Noceto (PR) da Alessio Ricci e Aldo Medioli, Edilmetal realizza strutture in acciaio su commessa per clienti industriali e prestigiosi.',
-				'edilmetal_azienda_storia'       => '<p>Edilmetal S.r.l. nasce nel 1997 dall\'iniziativa di Alessio Ricci e Aldo Medioli. Da allora l\'azienda progetta, produce e monta strutture in carpenteria metallica per l\'edilizia industriale, commerciale e terziaria, sia in nuova costruzione sia in ristrutturazione.</p><p>Lavoriamo su commessa, con progettazione dedicata e relazioni di calcolo firmate da tecnici abilitati iscritti agli albi. Dal sopralluogo al montaggio siamo l\'unico interlocutore del cliente, con assistenza post-vendita.</p>',
-				'edilmetal_azienda_img'          => new MediaRef( 'insieme' ),
-				'edilmetal_azienda_valori'       => array(
-					'Progettazione dedicata|Ogni struttura è calcolata e disegnata sulla specifica commessa.',
-					'Qualità certificata|Relazioni di calcolo firmate e materiali tracciati.',
-					'Un solo interlocutore|Dal preventivo al post-vendita, seguiamo tutto internamente.',
-				),
-				'edilmetal_azienda_team'         => array(
-					'Alessio Ricci|Fondatore',
-					'Aldo Medioli|Fondatore',
-				),
-				'edilmetal_azienda_stats'        => array( '1997|anno di fondazione', 'Noceto (PR)|sede e officina', '250+|realizzazioni' ),
+				'edilmetal_azienda_sottotitolo'   => 'Fondata a Noceto (PR) da Alessio Ricci e Aldo Medioli, Edilmetal realizza strutture in acciaio su commessa per clienti industriali e prestigiosi.',
+				'edilmetal_azienda_storia_titolo' => 'La società.',
+				'edilmetal_azienda_storia'        => '<p>Edilmetal S.r.l. nasce nel 1997 dall\'iniziativa di Alessio Ricci e Aldo Medioli. Da allora l\'azienda progetta, produce e monta strutture in carpenteria metallica per l\'edilizia industriale, commerciale e terziaria, sia in nuova costruzione sia in ristrutturazione.</p><p>Lavoriamo su commessa, con progettazione dedicata e relazioni di calcolo firmate da tecnici abilitati iscritti agli albi. Dal sopralluogo al montaggio siamo l\'unico interlocutore del cliente, con assistenza post-vendita.</p>',
 			),
 			'meta_en'  => array(
-				'edilmetal_azienda_hero_eyebrow' => 'About us',
-				'edilmetal_azienda_titolo'       => 'Structural steelwork since 1997',
-				'edilmetal_azienda_sottotitolo'  => 'Founded in Noceto (PR) by Alessio Ricci and Aldo Medioli, Edilmetal builds made-to-order steel structures for industrial and prestigious clients.',
-				'edilmetal_azienda_storia'       => '<p>Edilmetal S.r.l. was founded in 1997 by Alessio Ricci and Aldo Medioli. Since then the company has designed, fabricated and assembled structural steelwork for industrial, commercial and tertiary construction, both new builds and renovations.</p><p>We work to order, with dedicated design and structural calculations signed by qualified engineers. From survey to assembly we are the client\'s single point of contact, with after-sales support.</p>',
-				'edilmetal_azienda_stats'        => array( '1997|year founded', 'Noceto (PR)|headquarters and workshop', '250+|projects' ),
+				'edilmetal_azienda_sottotitolo'   => 'Founded in Noceto (PR) by Alessio Ricci and Aldo Medioli, Edilmetal builds made-to-order steel structures for industrial and prestigious clients.',
+				'edilmetal_azienda_storia_titolo' => 'The company.',
+				'edilmetal_azienda_storia'        => '<p>Edilmetal S.r.l. was founded in 1997 by Alessio Ricci and Aldo Medioli. Since then the company has designed, fabricated and assembled structural steelwork for industrial, commercial and tertiary construction, both new builds and renovations.</p><p>We work to order, with dedicated design and structural calculations signed by qualified engineers. From survey to assembly we are the client\'s single point of contact, with after-sales support.</p>',
 			),
 		);
 	}
