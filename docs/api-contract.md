@@ -75,8 +75,8 @@ Parametri: `lang`. `key` ∈ `home|servizi|azienda|contatti`.
 Sempre: `key`, `title`, `seo?`. Blocchi tipizzati opzionali (inclusi solo se
 valorizzati):
 - `home`: `hero` (blocco storico), `inEvidenza` (max 2 categorie con foto reale).
-- `servizi`: `intro`, `flow` (step processo), `tipologie` (lista opere), `callout`.
-- `azienda`: `storia` (rich), `valori`, `team`, `sede` (indirizzo + `map`), `orari`.
+- `servizi`: `tipologie` (lista famiglie di opere, con dettaglio).
+- `azienda`: `storiaTitolo`, `storia` (paragrafi).
 - `contatti`: `intro`, riferimenti (da `/settings`).
 
 `home.hero` (blocco storico, `HomeHero`):
@@ -95,6 +95,15 @@ valorizzati):
 `categoria` (`{ slug, nome }`, termine reale di `categoria_opera`) e `immagine`
 (`Image`, foto reale caricata in WP). Assente/omesso se lo slot non è
 valorizzato (categoria o immagine mancante).
+
+`servizi.tipologie` (`ServiziContent`, `CategoriaRef[]`): una voce per
+famiglia di `categoria_opera` valorizzata, con `slug` (`CategoriaSlug`),
+`nome` (termine reale) e `dettaglio` (descrizione del termine tassonomia,
+fallback al `nome` se la descrizione non è compilata).
+
+`azienda` (`AziendaContent`): `storiaTitolo` (string) e `storia` (`string[]`,
+un paragrafo per elemento, derivato spezzando il campo WYSIWYG editoriale
+sui tag `<p>`).
 
 ## GET `/settings` → `SiteSettings`
 
