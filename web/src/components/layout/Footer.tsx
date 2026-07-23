@@ -42,7 +42,7 @@ export async function Footer({ locale, settings }: FooterProps) {
             className="brand__img"
             src="/logo-edilmetal.png"
             alt={settings.nomeAzienda}
-            width={165}
+            width={133}
             height={42}
           />
           <p>{t("tagline")}</p>

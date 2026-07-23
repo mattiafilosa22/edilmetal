@@ -27,7 +27,7 @@ export async function Header({ locale, settings }: HeaderProps) {
             className="brand__img"
             src="/logo-edilmetal.png"
             alt={settings.nomeAzienda}
-            width={150}
+            width={121}
             height={38}
             priority
           />
