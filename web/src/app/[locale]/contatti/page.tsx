@@ -15,7 +15,6 @@ import {
 } from "@/lib/seo";
 import { RequestForm } from "@/components/ui/RequestForm";
 import { Reveal } from "@/components/ui/Reveal";
-import { SiteMap } from "@/components/ui/SiteMap";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -142,15 +141,6 @@ export default async function ContattiPage({ params }: PageProps) {
                     </span>
                   </div>
                 ) : null}
-              </Reveal>
-
-              <Reveal>
-                <SiteMap
-                  lat={settings.coordinate.lat}
-                  lng={settings.coordinate.lng}
-                  label={settings.indirizzo}
-                  mapsUrl={settings.mapsUrl}
-                />
               </Reveal>
             </aside>
           </div>
