@@ -128,17 +128,7 @@
   "Azienda": {
     "breadcrumbHome": "Home",
     "current": "Azienda",
-    "storiaKick": "La storia",
-    "valoriKick": "I valori",
-    "valoriTitle": "Come lavoriamo.",
-    "officinaKick": "Officina & team",
-    "sedeKick": "Dove siamo",
-    "indirizzo": "Indirizzo",
-    "zona": "Zona",
-    "telefono": "Telefono",
-    "email": "Email",
-    "orari": "Orari",
-    "contattaci": "Contattaci →"
+    "storiaKick": "La storia"
   },
   "Contatti": {
     "breadcrumbHome": "Home",
