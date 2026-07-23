@@ -9,20 +9,55 @@ type HeroProps = {
   locale: Locale;
   /** Foto reale dell'hero (da `settings.heroImage`); assente ⇒ fallback al disegno blueprint. */
   heroImage?: ImageDto;
-  /** Credito fotografico opzionale, mostrato sotto la foto. */
+  /** Credito fotografico opzionale, mostrato sotto la foto (ignorato in modalità `photoOnly`). */
   fotoCredit?: string;
+  /**
+   * Modalità "solo foto" (sito storico): niente eyebrow/titolo/sottotitolo/
+   * CTA/barra indice, solo la foto a piena larghezza. In assenza di foto
+   * ricade comunque sul disegno blueprint, per non lasciare la sezione vuota.
+   */
+  photoOnly?: boolean;
 };
 
-/** Prefissa un path editoriale (relativo alla root del locale) con la locale. */
 function withLocale(locale: Locale, href: string): string {
   return `/${locale}${href.startsWith("/") ? href : `/${href}`}`;
 }
 
 /**
- * Hero editoriale asimmetrico della home: testo + foto reale (o, in assenza,
- * disegno tecnico blueprint), con barra-indice mono. Un solo `h1` per pagina (WCAG).
+ * Hero della home. Due modalità:
+ * - editoriale (default): testo + foto/disegno blueprint affiancati, con barra-indice mono;
+ * - `photoOnly` (fedele al sito storico): solo foto a piena larghezza, nessun testo sopra.
+ * Un solo `h1` per pagina (WCAG) — assente del tutto in modalità `photoOnly`.
  */
-export function Hero({ hero, locale, heroImage, fotoCredit }: HeroProps) {
+export function Hero({ hero, locale, heroImage, fotoCredit, photoOnly = false }: HeroProps) {
+  if (photoOnly) {
+    return (
+      <section className="hero hero--photo-only">
+        {heroImage ? (
+          <div className="hero__full-photo">
+            <Image
+              src={heroImage.src}
+              alt={heroImage.alt}
+              width={heroImage.width}
+              height={heroImage.height}
+              sizes="100vw"
+              priority
+            />
+          </div>
+        ) : (
+          <div className="container">
+            <div className="hero__draw tick">
+              <Blueprint
+                ariaLabel="Schema tecnico di un telaio in acciaio con capriata"
+                withDims
+              />
+            </div>
+          </div>
+        )}
+      </section>
+    );
+  }
+
   return (
     <section className="hero">
       <div className="container">

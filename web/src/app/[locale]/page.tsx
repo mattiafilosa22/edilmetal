@@ -64,7 +64,7 @@ export default async function HomePage({ params }: PageProps) {
         hero={home.hero}
         locale={locale}
         heroImage={settings.heroImage}
-        fotoCredit={settings.fotoCredit}
+        photoOnly
       />
 
       {/* In evidenza — 2 categorie con foto reale (blocco storico) */}
