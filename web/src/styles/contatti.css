@@ -1,5 +1,5 @@
 /* ============================================================
-   EDILMETAL — Contatti (form preventivo + info + mappa)
+   EDILMETAL — Contatti (form preventivo + info)
    ============================================================ */
 
 .ct-layout{ display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(28px,4vw,64px); align-items:start; }
