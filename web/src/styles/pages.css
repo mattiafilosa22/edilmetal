@@ -100,7 +100,7 @@
 .proj{ scroll-snap-align:start; flex:0 0 clamp(280px,32vw,380px); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; display:flex; flex-direction:column; transition:border-color .2s, transform .2s, box-shadow .2s; }
 .proj:hover{ border-color:var(--accent-ui); transform:translateY(-4px); box-shadow:var(--shadow); }
 .proj__media{ aspect-ratio:4/3; position:relative; }
-.proj__tag{ position:absolute; top:12px; left:12px; font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.05em; text-transform:uppercase; background:var(--deep); color:#fff; padding:4px 10px; border-radius:2px; z-index:1; }
+.proj__tag{ position:absolute; top:12px; left:12px; font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.05em; text-transform:uppercase; background:var(--anthra); color:#fff; padding:4px 10px; border-radius:2px; z-index:1; }
 .proj__body{ padding:var(--sp-5); }
 .proj__body .cli{ font-family:var(--f-mono); font-size:var(--fs-xs); color:var(--accent-ui); letter-spacing:.05em; text-transform:uppercase; }
 .proj__body h3{ font-size:var(--fs-h4); color:var(--ink); margin-top:6px; }
@@ -126,7 +126,7 @@
 .clients span{ font-family:var(--f-mono); font-size:var(--fs-sm); letter-spacing:.04em; color:var(--ink-2); border:1px solid var(--line); border-radius:var(--radius); padding:10px 18px; background:var(--surface); }
 
 /* ---------- CTA band ---------- */
-.cta-band{ background:var(--deep); color:#fff; border-radius:var(--radius-lg); padding:clamp(32px,5vw,56px); display:flex; align-items:center; justify-content:space-between; gap:var(--sp-5); flex-wrap:wrap; position:relative; overflow:hidden; }
+.cta-band{ background:var(--anthra); color:#fff; border-radius:var(--radius-lg); padding:clamp(32px,5vw,56px); display:flex; align-items:center; justify-content:space-between; gap:var(--sp-5); flex-wrap:wrap; position:relative; overflow:hidden; }
 .cta-band::after{ content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent 47px, rgba(255,255,255,.05) 48px); background-size:48px 48px; pointer-events:none; }
 .cta-band h2{ font-size:var(--fs-h2); position:relative; }
 .cta-band p{ color:rgba(255,255,255,.75); margin-top:8px; position:relative; }
@@ -184,7 +184,7 @@
 @media (max-width:720px){ .featured{ grid-template-columns:1fr; } }
 
 /* ---------- Realizzazioni (banda scura, blocco storico) ---------- */
-.realiz-band{ background:var(--deep); }
+.realiz-band{ background:var(--anthra); }
 .realiz-band .rail-head .kicker .txt{ color:rgba(255,255,255,.6); }
 .realiz-band .rail-head .kicker .num{ color:var(--accent); }
 .realiz-band .rail-head h2{ color:#fff; }

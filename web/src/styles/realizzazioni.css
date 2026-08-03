@@ -18,7 +18,7 @@
 .chips{ display:flex; flex-wrap:wrap; gap:8px; }
 .chip{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.04em; color:var(--ink-2); border:1.5px solid var(--line-2); border-radius:var(--radius); padding:9px 14px; min-height:var(--touch); display:inline-flex; align-items:center; background:var(--surface); transition:border-color .16s, color .16s, background .16s; }
 .chip:hover{ border-color:var(--accent-ui); color:var(--accent-ui); }
-.chip[aria-pressed="true"]{ background:var(--deep); border-color:var(--deep); color:#fff; }
+.chip[aria-pressed="true"]{ background:var(--anthra); border-color:var(--anthra); color:#fff; }
 :root[data-theme="dark"] .chip[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:#fff; }
 
 /* Testata del drawer + backdrop (solo mobile) */
@@ -28,6 +28,15 @@
 /* Griglia progetti */
 .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-5); }
 .proj-grid .proj{ flex:initial; }
+
+/* Paginazione */
+.rz-pagination{ display:flex; align-items:center; justify-content:center; gap:var(--sp-4); margin-top:var(--sp-6); flex-wrap:wrap; }
+.rz-pagination__label{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.04em; color:var(--ink-2); }
+.rz-pagination__pages{ display:flex; flex-wrap:wrap; gap:6px; }
+.rz-pagination__page{ font-family:var(--f-mono); font-size:var(--fs-xs); min-width:var(--touch); min-height:var(--touch); padding:0 6px; border:1.5px solid var(--line-2); border-radius:var(--radius); color:var(--ink-2); background:var(--surface); transition:border-color .16s, color .16s, background .16s; }
+.rz-pagination__page:hover{ border-color:var(--accent-ui); color:var(--accent-ui); }
+.rz-pagination__page[aria-current="page"]{ background:var(--anthra); border-color:var(--anthra); color:#fff; }
+.rz-pagination .icon-btn:disabled{ opacity:.35; pointer-events:none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width:1080px){
