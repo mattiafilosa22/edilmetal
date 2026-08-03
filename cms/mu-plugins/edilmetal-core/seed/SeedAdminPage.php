@@ -28,6 +28,13 @@ final class SeedAdminPage {
 	private const ACTION = 'edilmetal_run_seed';
 
 	/**
+	 * Nome dell'azione admin-post.php per la sola rimozione delle demo.
+	 *
+	 * @var string
+	 */
+	private const PURGE_ACTION = 'edilmetal_purge_demo_progetti';
+
+	/**
 	 * Chiave del transient usato per passare l'esito tra submit e render.
 	 *
 	 * @var string
@@ -63,6 +70,7 @@ final class SeedAdminPage {
 	public function register(): void {
 		add_action( 'admin_menu', array( $this, 'add_page' ) );
 		add_action( 'admin_post_' . self::ACTION, array( $this, 'handle_submit' ) );
+		add_action( 'admin_post_' . self::PURGE_ACTION, array( $this, 'handle_purge_demo' ) );
 	}
 
 	/**
@@ -97,6 +105,15 @@ final class SeedAdminPage {
 		echo '<input type="hidden" name="action" value="' . esc_attr( self::ACTION ) . '" />';
 		echo '<p><label><input type="checkbox" name="fresh" value="1" /> ' . esc_html__( 'Elimina prima i contenuti di demo esistenti (--fresh)', 'edilmetal-core' ) . '</label></p>';
 		submit_button( __( 'Esegui seed', 'edilmetal-core' ) );
+		echo '</form>';
+
+		echo '<hr />';
+		echo '<h2>' . esc_html__( 'Rimuovi realizzazioni fittizie', 'edilmetal-core' ) . '</h2>';
+		echo '<p>' . esc_html__( 'Elimina solo le realizzazioni con clienti inventati (es. Parmalat, Aiassa Costruzioni, Pinko) create dalle versioni precedenti del seeder, lasciando intatte le realizzazioni storiche reali, le pagine e le impostazioni.', 'edilmetal-core' ) . '</p>';
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+		wp_nonce_field( self::PURGE_ACTION );
+		echo '<input type="hidden" name="action" value="' . esc_attr( self::PURGE_ACTION ) . '" />';
+		submit_button( __( 'Rimuovi realizzazioni fittizie', 'edilmetal-core' ), 'delete' );
 		echo '</form>';
 		echo '</div>';
 	}
@@ -162,7 +179,36 @@ final class SeedAdminPage {
 
 		$fresh = isset( $_POST['fresh'] ) && '1' === sanitize_text_field( wp_unslash( $_POST['fresh'] ) );
 
+		// L'import media (generazione miniature via Imagick per ~180+ foto) supera
+		// facilmente il max_execution_time di default su hosting condiviso quando
+		// gira dentro un'unica richiesta HTTP sincrona (a differenza di WP-CLI,
+		// che non ha questo limite). Rimuoviamo il limite solo per questa richiesta.
+		if ( function_exists( 'set_time_limit' ) ) {
+			@set_time_limit( 0 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+		}
+		if ( function_exists( 'ini_set' ) ) {
+			@ini_set( 'memory_limit', '512M' ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged, WordPress.PHP.IniSet.Risky, WordPress.PHP.IniSet.memory_limit_Disallowed
+		}
+
 		$lines = $this->command->run( $fresh );
+
+		set_transient( self::RESULT_TRANSIENT, $lines, 60 );
+
+		wp_safe_redirect( admin_url( 'tools.php?page=' . self::PAGE_SLUG . '&done=1' ) );
+		exit;
+	}
+
+	/**
+	 * Rimuove le sole realizzazioni fittizie a partire dal submit del form.
+	 */
+	public function handle_purge_demo(): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Non hai i permessi necessari per eseguire questa azione.', 'edilmetal-core' ) );
+		}
+
+		check_admin_referer( self::PURGE_ACTION );
+
+		$lines = $this->command->purge_demo_progetti();
 
 		set_transient( self::RESULT_TRANSIENT, $lines, 60 );
 

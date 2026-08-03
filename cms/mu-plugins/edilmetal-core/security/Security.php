@@ -31,5 +31,6 @@ final class Security implements Module {
 		add_filter( 'allow_major_auto_core_updates', '__return_false' );
 
 		( new AdminMenu() )->register();
+		( new FrontendOnlyBackoffice() )->register();
 	}
 }

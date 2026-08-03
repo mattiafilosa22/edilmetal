@@ -27,6 +27,7 @@ final class Branding implements Module {
 	 */
 	public function register(): void {
 		( new FrontendLink() )->register();
+		( new FrontendPostLink() )->register();
 		( new LoginScreen() )->register();
 	}
 }

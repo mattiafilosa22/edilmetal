@@ -55,11 +55,7 @@ final class FrontendLink {
 	 * costante non e definita in un ambiente non ancora configurato.
 	 */
 	public function frontend_url(): string {
-		if ( defined( 'EDILMETAL_FRONTEND_URL' ) && '' !== EDILMETAL_FRONTEND_URL ) {
-			return EDILMETAL_FRONTEND_URL;
-		}
-
-		return home_url( '/' );
+		return FrontendUrl::base() . '/';
 	}
 
 	/**

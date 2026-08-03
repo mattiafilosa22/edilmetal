@@ -82,6 +82,34 @@ final class ProgettoSeeder {
 	}
 
 	/**
+	 * Elimina solo le realizzazioni fittizie di sviluppo gia seedate in
+	 * precedenza (quando {@see Catalog::progetti()} includeva ancora
+	 * {@see Catalog::curated_progetti()}), senza toccare le storiche reali.
+	 *
+	 * @return int Numero di realizzazioni eliminate.
+	 */
+	public function purge_curated(): int {
+		$deleted = 0;
+		$langs   = array( $this->language->default_language() );
+
+		if ( $this->language->is_active() ) {
+			$langs = array_merge( $langs, $this->language->secondary_languages() );
+		}
+
+		foreach ( Catalog::curated_progetti() as $record ) {
+			foreach ( $langs as $lang ) {
+				$post_id = SeedMeta::find( 'progetto:' . $record['ref'] . ':' . $lang );
+
+				if ( null !== $post_id && wp_delete_post( $post_id, true ) ) {
+					++$deleted;
+				}
+			}
+		}
+
+		return $deleted;
+	}
+
+	/**
 	 * Seeda un singolo record (IT + EN) e collega le traduzioni.
 	 *
 	 * @param array<string,mixed> $record        Dati della realizzazione.

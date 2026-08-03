@@ -102,11 +102,15 @@ final class Catalog {
 	}
 
 	/**
-	 * Elenco delle realizzazioni curate a mano (12 case study Edilmetal).
+	 * Elenco delle realizzazioni fittizie usate solo per popolare l'ambiente
+	 * di sviluppo (clienti inventati: Parmalat, Aiassa, Pinko, ecc.). Non
+	 * viene piu incluso in produzione da {@see progetti()}; resta pubblico
+	 * cosi {@see ProgettoSeeder::purge_curated()} puo individuare ed
+	 * eliminare i record gia seedati sui siti in cui erano stati creati.
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
-	private static function curated_progetti(): array {
+	public static function curated_progetti(): array {
 		return array(
 			self::progetto(
 				'parmalat-pensilina-collecchio',
@@ -384,12 +388,13 @@ final class Catalog {
 	}
 
 	/**
-	 * Tutte le realizzazioni: curate a mano + storiche reali importate.
+	 * Tutte le realizzazioni da seedare in produzione: solo le storiche reali
+	 * importate da realizzazioni-storiche.json (niente clienti fittizi).
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	public static function progetti(): array {
-		return array_merge( self::curated_progetti(), self::historic_progetti() );
+		return self::historic_progetti();
 	}
 
 	/**
@@ -605,12 +610,12 @@ final class Catalog {
 			'title_en' => 'Company',
 			'meta'     => array(
 				'edilmetal_azienda_sottotitolo'   => 'Fondata a Noceto (PR) da Alessio Ricci e Aldo Medioli, Edilmetal realizza strutture in acciaio su commessa per clienti industriali e prestigiosi.',
-				'edilmetal_azienda_storia_titolo' => 'La società.',
+				'edilmetal_azienda_storia_titolo' => 'La società',
 				'edilmetal_azienda_storia'        => '<p>Edilmetal S.r.l. nasce nel 1997 dall\'iniziativa di Alessio Ricci e Aldo Medioli. Da allora l\'azienda progetta, produce e monta strutture in carpenteria metallica per l\'edilizia industriale, commerciale e terziaria, sia in nuova costruzione sia in ristrutturazione.</p><p>Lavoriamo su commessa, con progettazione dedicata e relazioni di calcolo firmate da tecnici abilitati iscritti agli albi. Dal sopralluogo al montaggio siamo l\'unico interlocutore del cliente, con assistenza post-vendita.</p>',
 			),
 			'meta_en'  => array(
 				'edilmetal_azienda_sottotitolo'   => 'Founded in Noceto (PR) by Alessio Ricci and Aldo Medioli, Edilmetal builds made-to-order steel structures for industrial and prestigious clients.',
-				'edilmetal_azienda_storia_titolo' => 'The company.',
+				'edilmetal_azienda_storia_titolo' => 'The company',
 				'edilmetal_azienda_storia'        => '<p>Edilmetal S.r.l. was founded in 1997 by Alessio Ricci and Aldo Medioli. Since then the company has designed, fabricated and assembled structural steelwork for industrial, commercial and tertiary construction, both new builds and renovations.</p><p>We work to order, with dedicated design and structural calculations signed by qualified engineers. From survey to assembly we are the client\'s single point of contact, with after-sales support.</p>',
 			),
 		);
@@ -654,11 +659,11 @@ final class Catalog {
 			'title'    => 'Privacy Policy',
 			'title_en' => 'Privacy Policy',
 			'meta'     => array(
-				'edilmetal_privacy_body'    => "<p>La presente informativa descrive le modalità di trattamento dei dati personali degli utenti che consultano il sito e utilizzano i moduli di contatto, ai sensi del Regolamento UE 2016/679 (GDPR).</p><h2>Titolare del trattamento</h2><p>Titolare del trattamento è Edilmetal S.r.l., Piazza Alpini d'Italia 10/A, 43015 Noceto (PR).</p><h2>Finalità e base giuridica</h2><p>I dati forniti tramite i moduli sono trattati per rispondere alle richieste di informazioni e di preventivo. Il conferimento è facoltativo ma necessario per dare seguito alla richiesta.</p><h2>Conservazione</h2><p>I dati sono conservati per il tempo necessario a gestire la richiesta e ad adempiere agli obblighi di legge.</p><h2>Diritti dell'interessato</h2><p>In ogni momento è possibile esercitare i diritti di accesso, rettifica, cancellazione e opposizione scrivendo a info@edilmetal.it.</p>",
-				'edilmetal_privacy_updated' => '2026-01-01',
+				'edilmetal_privacy_body'    => "<p>La presente informativa descrive le modalità di trattamento dei dati personali degli utenti che consultano il sito e utilizzano i moduli di contatto, ai sensi del Regolamento UE 2016/679 (GDPR).</p><h2>Titolare del trattamento</h2><p>Titolare del trattamento è Edilmetal S.r.l., con sede in Piazza Alpini d'Italia 10/A, 43015 Noceto (PR), P.IVA 01234567890 — email: info@edilmetal.it.</p><h2>Dati trattati</h2><p>Tramite il modulo di contatto raccogliamo nome, email, telefono (facoltativo) e il testo della richiesta: nessun altro dato personale viene raccolto al di fuori di quanto necessario a rispondere.</p><h2>Finalità e base giuridica</h2><p>I dati sono trattati per rispondere alle richieste di informazioni e di preventivo, sulla base dell'esecuzione di misure precontrattuali richieste dall'interessato (art. 6.1.b GDPR). Il conferimento è facoltativo ma necessario per dare seguito alla richiesta: in assenza non sarà possibile fornire una risposta. Non effettuiamo profilazione né processi decisionali automatizzati.</p><h2>Destinatari dei dati</h2><p>I dati sono trattati da personale Edilmetal autorizzato e possono essere conosciuti da fornitori che agiscono come responsabili del trattamento (art. 28 GDPR), quali il fornitore del servizio di hosting/CMS e della posta elettronica, solo per le finalità indicate. I dati non sono ceduti a terzi per finalità di marketing.</p><h2>Trasferimento dei dati</h2><p>I dati sono conservati su server ubicati in Unione Europea e non vengono trasferiti verso paesi extra-UE.</p><h2>Conservazione</h2><p>I dati sono conservati per il tempo necessario a gestire la richiesta e comunque non oltre 24 mesi dall'ultimo contatto, salvi gli obblighi di legge (es. contabili/fiscali in caso di rapporto contrattuale).</p><h2>Diritti dell'interessato</h2><p>Scrivendo a info@edilmetal.it è possibile esercitare in ogni momento i diritti previsti dagli artt. 15-22 GDPR: accesso, rettifica, cancellazione, limitazione, portabilità e opposizione al trattamento. È inoltre possibile proporre reclamo al Garante per la protezione dei dati personali (www.garanteprivacy.it).</p>",
+				'edilmetal_privacy_updated' => '2026-08-03',
 			),
 			'meta_en'  => array(
-				'edilmetal_privacy_body' => '<p>This notice describes how the personal data of users who browse the site and use the contact forms is processed, pursuant to EU Regulation 2016/679 (GDPR).</p><h2>Data controller</h2><p>The data controller is Edilmetal S.r.l., Piazza Alpini d\'Italia 10/A, 43015 Noceto (PR), Italy.</p><h2>Purposes and legal basis</h2><p>Data provided through the forms is processed to respond to requests for information and quotes. Providing it is optional but required to follow up on the request.</p><h2>Retention</h2><p>Data is kept for as long as necessary to handle the request and to comply with legal obligations.</p><h2>Rights of the data subject</h2><p>You may exercise your rights of access, rectification, erasure and objection at any time by writing to info@edilmetal.it.</p>',
+				'edilmetal_privacy_body' => '<p>This notice describes how the personal data of users who browse the site and use the contact forms is processed, pursuant to EU Regulation 2016/679 (GDPR).</p><h2>Data controller</h2><p>The data controller is Edilmetal S.r.l., Piazza Alpini d\'Italia 10/A, 43015 Noceto (PR), Italy, VAT 01234567890 — email: info@edilmetal.it.</p><h2>Data collected</h2><p>Through the contact form we collect name, email, phone (optional) and the text of the request: no other personal data is collected beyond what is needed to respond.</p><h2>Purposes and legal basis</h2><p>Data is processed to respond to requests for information and quotes, on the basis of pre-contractual measures requested by the data subject (Art. 6.1.b GDPR). Providing it is optional but required to follow up on the request: without it we cannot respond. We do not carry out profiling or automated decision-making.</p><h2>Recipients of the data</h2><p>Data is processed by authorised Edilmetal staff and may be accessed by suppliers acting as data processors (Art. 28 GDPR), such as our hosting/CMS and email providers, solely for the purposes stated. Data is not shared with third parties for marketing purposes.</p><h2>Data transfers</h2><p>Data is stored on servers located in the European Union and is not transferred to non-EU countries.</p><h2>Retention</h2><p>Data is kept for as long as necessary to handle the request and in any case no longer than 24 months from the last contact, except where a longer retention is required by law (e.g. accounting/tax obligations under a contract).</p><h2>Rights of the data subject</h2><p>By writing to info@edilmetal.it you may at any time exercise the rights set out in Articles 15-22 GDPR: access, rectification, erasure, restriction, portability and objection. You may also lodge a complaint with the Italian Data Protection Authority (www.garanteprivacy.it).</p>',
 			),
 		);
 	}
@@ -674,11 +679,11 @@ final class Catalog {
 			'title'    => 'Cookie Policy',
 			'title_en' => 'Cookie Policy',
 			'meta'     => array(
-				'edilmetal_cookie_body'    => '<p>Questo sito utilizza cookie tecnici necessari al funzionamento e, previo consenso, cookie di terze parti per finalità statistiche.</p><h2>Cookie tecnici</h2><p>Sono indispensabili per la corretta navigazione del sito e non richiedono consenso.</p><h2>Mappa OpenStreetMap</h2><p>Le mappe delle pagine Contatti e Azienda sono servite tramite tile OpenStreetMap, senza cookie di profilazione.</p><h2>Gestione delle preferenze</h2><p>È possibile gestire o revocare il consenso in qualsiasi momento dalle impostazioni del browser.</p>',
-				'edilmetal_cookie_updated' => '2026-01-01',
+				'edilmetal_cookie_body'    => "<p>Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento, per i quali non è richiesto il consenso dell'utente (art. 122 Codice Privacy e Linee guida cookie del Garante Privacy). Il sito non utilizza cookie di profilazione né cookie di terze parti per finalità statistiche o pubblicitarie.</p><h2>Cookie tecnici utilizzati</h2><ul><li><strong>Preferenza di tema (chiaro/scuro)</strong>: memorizzata nel browser, nessun dato inviato a terzi.</li><li><strong>Preferenza di lingua</strong>: memorizzata nel browser, stessa finalità.</li></ul><h2>Mappa OpenStreetMap</h2><p>Le mappe delle pagine Contatti e Azienda sono servite tramite tile OpenStreetMap in modalità cookieless, senza cookie di profilazione né raccolta di dati personali.</p><h2>Servizi futuri</h2><p>Se in futuro venissero attivati strumenti di analisi statistica o servizi di terze parti con cookie non tecnici, questa informativa sarà aggiornata e verrà richiesto il consenso dell'utente tramite apposito banner prima della loro attivazione.</p><h2>Gestione dei cookie</h2><p>È possibile eliminare i cookie già presenti e disabilitarne la memorizzazione futura dalle impostazioni del proprio browser.</p>",
+				'edilmetal_cookie_updated' => '2026-08-03',
 			),
 			'meta_en'  => array(
-				'edilmetal_cookie_body' => '<p>This site uses technical cookies necessary for its operation and, subject to consent, third-party cookies for statistical purposes.</p><h2>Technical cookies</h2><p>They are essential for correct browsing and do not require consent.</p><h2>OpenStreetMap map</h2><p>The maps on the Contact and Company pages are served through OpenStreetMap tiles, without profiling cookies.</p><h2>Managing preferences</h2><p>You can manage or withdraw consent at any time from your browser settings.</p>',
+				'edilmetal_cookie_body' => '<p>This site uses only technical cookies necessary for its operation, for which no user consent is required (Art. 122 of the Italian Privacy Code and the Garante\'s cookie guidelines). The site does not use profiling cookies or third-party cookies for statistical or advertising purposes.</p><h2>Technical cookies in use</h2><ul><li><strong>Theme preference (light/dark)</strong>: stored in the browser, no data sent to third parties.</li><li><strong>Language preference</strong>: stored in the browser, same purpose.</li></ul><h2>OpenStreetMap map</h2><p>The maps on the Contact and Company pages are served through OpenStreetMap tiles in cookieless mode, without profiling cookies or collection of personal data.</p><h2>Future services</h2><p>Should statistical analysis tools or third-party services using non-technical cookies be introduced in the future, this notice will be updated and the user\'s consent will be requested via a dedicated banner before they are activated.</p><h2>Managing cookies</h2><p>You can delete cookies already stored and disable future storage from your browser settings.</p>',
 			),
 		);
 	}

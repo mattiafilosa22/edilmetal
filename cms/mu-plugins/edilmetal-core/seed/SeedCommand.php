@@ -152,6 +152,24 @@ final class SeedCommand {
 	}
 
 	/**
+	 * Elimina le sole realizzazioni fittizie di sviluppo gia seedate in
+	 * precedenza, lasciando intatte le storiche reali e le pagine/impostazioni.
+	 *
+	 * @return array<int,array{level:string,message:string}> Righe di log.
+	 */
+	public function purge_demo_progetti(): array {
+		$lines     = array( $this->line( 'log', '▸ Rimozione realizzazioni fittizie di demo ...' ) );
+		$eliminate = $this->progetti->purge_curated();
+		$lines[]   = $this->line( 'log', sprintf( '  %d realizzazioni fittizie eliminate.', $eliminate ) );
+
+		$this->finish();
+
+		$lines[] = $this->line( 'success', 'Pulizia completata.' );
+
+		return $lines;
+	}
+
+	/**
 	 * Costruisce una riga di log strutturata.
 	 *
 	 * @param string $level   Livello ("log"|"warning"|"success").

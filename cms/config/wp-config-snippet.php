@@ -30,11 +30,11 @@ if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) ) {
 if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
 	define( 'DISALLOW_FILE_EDIT', true );
 }
-
-/*
- * Decommentare per bloccare anche installazioni/aggiornamenti dalla dashboard:
- * define( 'DISALLOW_FILE_MODS', true );
- */
+if ( ! defined( 'DISALLOW_FILE_MODS' ) ) {
+	// Blocca anche installazioni/aggiornamenti manuali di core, plugin e temi
+	// dalla dashboard: il codice e gestito solo via deploy da git/CI.
+	define( 'DISALLOW_FILE_MODS', true );
+}
 
 /*
  * -------------------------------------------------------------------------
@@ -44,7 +44,7 @@ if ( ! defined( 'DISALLOW_FILE_EDIT' ) ) {
  * -------------------------------------------------------------------------
  */
 if ( ! defined( 'EDILMETAL_FRONTEND_URL' ) ) {
-	define( 'EDILMETAL_FRONTEND_URL', 'https://www.edilmetal.it' );
+	define( 'EDILMETAL_FRONTEND_URL', 'https://edilmetal.it' );
 }
 
 /*
