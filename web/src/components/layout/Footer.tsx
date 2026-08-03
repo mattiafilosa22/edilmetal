@@ -42,7 +42,7 @@ export async function Footer({ locale, settings }: FooterProps) {
             className="brand__img"
             src="/logo-edilmetal.png"
             alt={settings.nomeAzienda}
-            width={165}
+            width={133}
             height={42}
           />
           <p>{t("tagline")}</p>
@@ -90,6 +90,10 @@ export async function Footer({ locale, settings }: FooterProps) {
         <span>
           © {year} {settings.ragioneSociale} · P.IVA {settings.partitaIva}
         </span>
+        <nav className="footer-legal" aria-label={t("legalNav")}>
+          <Link href={`${base}/privacy-policy`}>{t("privacyPolicy")}</Link>
+          <Link href={`${base}/cookie-policy`}>{t("cookiePolicy")}</Link>
+        </nav>
         <span>{t("rights")}</span>
       </div>
     </footer>

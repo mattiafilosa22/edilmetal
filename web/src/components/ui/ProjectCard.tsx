@@ -19,14 +19,16 @@ export function ProjectCard({ progetto, locale }: ProjectCardProps) {
       <div className="proj__media">
         <span className="proj__tag">{progetto.categoria.nome}</span>
         <Image
-          src={copertina.src}
-          alt={copertina.alt}
+          src={copertina?.src ?? "/placeholder-progetto.svg"}
+          alt={copertina?.alt ?? progetto.titolo}
           fill
           sizes="(max-width: 620px) 100vw, (max-width: 1080px) 50vw, 380px"
         />
       </div>
       <div className="proj__body">
-        <span className="cli">{progetto.cliente}</span>
+        {progetto.cliente !== progetto.titolo ? (
+          <span className="cli">{progetto.cliente}</span>
+        ) : null}
         <h3>{progetto.titolo}</h3>
         <div className="meta">
           <span>{progetto.luogo}</span>

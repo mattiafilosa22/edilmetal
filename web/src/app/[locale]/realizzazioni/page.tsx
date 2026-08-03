@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { getProgetti } from "@/lib/api";
-import {
-  anniFrom,
-  categorieFrom,
-  settoriFrom,
-} from "@/lib/mappers/progetto";
+import { categorieFrom } from "@/lib/mappers/progetto";
 import {
   JsonLd,
   absoluteUrl,
@@ -17,8 +14,8 @@ import {
   localePathsFor,
 } from "@/lib/seo";
 import { RealizzazioniView } from "@/components/ui/RealizzazioniView";
-import { Reveal } from "@/components/ui/Reveal";
-import { CtaBand, SectionLabel } from "@/components/ui/blocks";
+import { RealizzazioniViewFromQuery } from "@/components/ui/RealizzazioniViewFromQuery";
+import { SectionLabel } from "@/components/ui/blocks";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -46,11 +43,8 @@ export default async function RealizzazioniPage({ params }: PageProps) {
   const summaries = await getProgetti({ locale });
   const t = await getTranslations("Realizzazioni");
   const tSeo = await getTranslations("SEO");
-  const tNav = await getTranslations("Nav");
 
   const categorie = categorieFrom(summaries);
-  const settori = settoriFrom(summaries);
-  const anni = anniFrom(summaries);
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: t("breadcrumbHome"), url: absoluteUrl(localePath(locale)) },
@@ -77,27 +71,16 @@ export default async function RealizzazioniPage({ params }: PageProps) {
         <div className="container sec-grid">
           <SectionLabel num="01" kick={t("portfolioKick")} />
           <div>
-            <RealizzazioniView
-              summaries={summaries}
-              categorie={categorie}
-              settori={settori}
-              anni={anni}
-              locale={locale}
-            />
+            <Suspense
+              fallback={<RealizzazioniView summaries={summaries} categorie={categorie} locale={locale} />}
+            >
+              <RealizzazioniViewFromQuery
+                summaries={summaries}
+                categorie={categorie}
+                locale={locale}
+              />
+            </Suspense>
           </div>
-        </div>
-      </section>
-
-      <section className="section section--alt">
-        <div className="container">
-          <Reveal>
-            <CtaBand
-              titolo={t("ctaTitle")}
-              testo={t("ctaText")}
-              ctaLabel={tNav("ctaPreventivo")}
-              ctaHref={`/${locale}/contatti`}
-            />
-          </Reveal>
         </div>
       </section>
     </>

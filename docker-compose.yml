@@ -45,6 +45,7 @@ services:
         define('WP_AUTO_UPDATE_CORE', false);
         define('AUTOMATIC_UPDATER_DISABLED', true);
         define('DISALLOW_FILE_EDIT', true);
+        define('EDILMETAL_FRONTEND_URL', 'http://localhost:3000');
     volumes:
       - wp_data:/var/www/html
       # Codice custom montato: le modifiche in cms/ si riflettono subito.

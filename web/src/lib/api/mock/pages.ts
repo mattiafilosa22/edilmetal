@@ -1,4 +1,4 @@
-import type { CategoriaRef, Feature, PageContent, Step } from "@/domain";
+import type { CategoriaRef, PageContent } from "@/domain";
 import type { Locale } from "@/i18n/routing";
 
 /**
@@ -20,22 +20,6 @@ const CATEGORIE: CategoriaRef[] = [
   { slug: "opere-speciali", nome: "Opere speciali", dettaglio: "Su disegno · carpenteria di dettaglio" },
 ];
 
-/** Le 4 fasi della commessa. */
-const PROCESSO: Step[] = [
-  { titolo: "Sopralluogo & progetto", testo: "Rilievo in loco, consulenza rapida e progettazione dedicata sulla commessa." },
-  { titolo: "Calcolo strutturale", testo: "Relazioni di calcolo firmate da tecnici abilitati e iscritti agli albi." },
-  { titolo: "Produzione", testo: "Taglio, saldatura, trattamenti e finiture nella nostra officina." },
-  { titolo: "Montaggio", testo: "Posa in cantiere con squadra interna e assistenza post-vendita." },
-];
-
-/** I 4 punti di forza. */
-const PERCHE: Feature[] = [
-  { titolo: "Un solo interlocutore", testo: "Progettazione, produzione e montaggio gestiti internamente, senza rimpalli." },
-  { titolo: "Calcoli firmati", testo: "Relazioni di calcolo redatte e sottoscritte da tecnici abilitati e iscritti agli albi." },
-  { titolo: "Su misura", testo: "Ogni opera è progettata sulla commessa e sul contesto del cliente." },
-  { titolo: "Post-vendita", testo: "Consulenza rapida e assistenza anche dopo la consegna." },
-];
-
 const home: PageContent = {
   key: "home",
   title: "Edilmetal · Carpenteria metallica su commessa",
@@ -49,32 +33,33 @@ const home: PageContent = {
       subtitle:
         "Dal sopralluogo alle relazioni di calcolo firmate, fino al montaggio in cantiere e al post-vendita. Un unico interlocutore per l'edilizia industriale, commerciale e terziaria.",
       ctaPrimary: { label: "Le realizzazioni", href: "/realizzazioni" },
-      ctaSecondary: { label: "Richiedi un preventivo →", href: "/contatti" },
+      ctaSecondary: { label: "Richiedi un preventivo", href: "/contatti" },
       index: [
         { valore: "Dal 1997", etichetta: "Esperienza in cantiere" },
         { valore: "Su commessa", etichetta: "Calcoli firmati da tecnici abilitati" },
         { valore: "Noceto (PR)", etichetta: "Progettazione · produzione · montaggio" },
       ],
     },
-    statsIntro: {
-      titolo: "Numeri che tengono.",
-      testo:
-        "Nata nel 1997 dall'incontro di Alessio Ricci e Aldo Medioli, Edilmetal costruisce e monta carpenteria metallica in tutta Italia.",
-    },
-    stats: [
-      { valore: "27+", etichetta: "Anni di attività" },
-      { valore: "500+", etichetta: "Opere realizzate" },
-      { valore: "8", etichetta: "Famiglie di opere" },
-      { valore: "100%", etichetta: "Calcoli firmati" },
+    inEvidenza: [
+      {
+        categoria: { slug: "strutture-acciaio", nome: "Strutture in acciaio" },
+        immagine: {
+          src: "/placeholder-progetto.svg",
+          width: 1200,
+          height: 900,
+          alt: "Struttura in acciaio per capannone industriale",
+        },
+      },
+      {
+        categoria: { slug: "pensiline", nome: "Pensiline" },
+        immagine: {
+          src: "/placeholder-progetto.svg",
+          width: 1200,
+          height: 900,
+          alt: "Pensilina industriale in acciaio",
+        },
+      },
     ],
-    categorie: CATEGORIE,
-    processo: PROCESSO,
-    perche: PERCHE,
-    referenze: ["Parmalat", "Italbox", "Bervini", "Iris", "Aiassa", "Meta", "+ molti altri"],
-    cta: {
-      titolo: "Hai una struttura in mente?",
-      testo: "Raccontaci la commessa: ti rispondiamo con un preventivo.",
-    },
   },
 };
 
@@ -84,18 +69,7 @@ const servizi: PageContent = {
   subtitle:
     "Progettazione, costruzione e montaggio di strutture in carpenteria metallica per l'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.",
   servizi: {
-    processo: PROCESSO,
     tipologie: CATEGORIE,
-    vantaggi: PERCHE,
-    callout: {
-      titolo: "Relazioni di calcolo firmate",
-      testo:
-        "Ogni struttura è accompagnata da relazioni di calcolo redatte secondo NTC 2018 e firmate da tecnici abilitati iscritti agli albi: la garanzia documentale che l'opera è verificata e a norma.",
-    },
-    cta: {
-      titolo: "Hai una commessa da valutare?",
-      testo: "Raccontaci l'opera: ti rispondiamo con un preventivo.",
-    },
   },
 };
 
@@ -110,35 +84,6 @@ const azienda: PageContent = {
       "Edilmetal S.r.l. nasce nel 1997 dall'iniziativa di Alessio Ricci e Aldo Medioli, con una vocazione precisa: la costruzione e il montaggio di strutture in carpenteria metallica per l'edilizia industriale, commerciale e terziaria, sia in nuova costruzione sia in ristrutturazione.",
       "Lavoriamo su progettazione dedicata per ogni cliente, dalla consulenza rapida alla preventivazione, fino alle relazioni di calcolo firmate da tecnici abilitati, al montaggio in cantiere e al post-vendita. Negli anni ci hanno scelto realtà anche prestigiose come Parmalat, Italbox, Bervini e Iris.",
     ],
-    stats: [
-      { valore: "1997", etichetta: "Anno di fondazione" },
-      { valore: "500+", etichetta: "Opere realizzate" },
-      { valore: "8", etichetta: "Famiglie di opere" },
-      { valore: "4,5★", etichetta: "Recensioni Google" },
-    ],
-    valori: [
-      { titolo: "Rigore tecnico", testo: "Calcoli firmati e opere verificate secondo normativa: nessuna scorciatoia." },
-      { titolo: "Responsabilità unica", testo: "Un solo referente dalla progettazione al montaggio, per tempi certi." },
-      { titolo: "Su misura", testo: "Ogni commessa è progettata sul cliente e sul contesto del cantiere." },
-      { titolo: "Relazione nel tempo", testo: "Assistenza post-vendita e disponibilità anche dopo la consegna." },
-    ],
-    officinaTitolo: "Dentro l'officina.",
-    officinaSubtitle:
-      "Produzione interna: taglio, saldatura certificata, trattamenti e finiture.",
-    officina: [
-      { tag: "Officina", cliente: "Produzione", titolo: "Area saldatura", luogo: "Noceto (PR)" },
-      { tag: "Officina", cliente: "Produzione", titolo: "Taglio e assemblaggio", luogo: "Noceto (PR)" },
-      { tag: "Team", cliente: "Squadra", titolo: "Montaggio in cantiere", luogo: "In trasferta" },
-      { tag: "Officina", cliente: "Produzione", titolo: "Trattamenti e finiture", luogo: "Noceto (PR)" },
-    ],
-    sedeTitolo: "La sede.",
-    zona: "Ponte Taro · Provincia di Parma",
-    comeArrivare:
-      "Come raggiungerci — uscita A15 Parma Ovest / SS9 Via Emilia, a pochi minuti dal casello.",
-    cta: {
-      titolo: "Lavoriamo insieme?",
-      testo: "Raccontaci la commessa: ti rispondiamo con un preventivo.",
-    },
   },
 };
 
@@ -150,11 +95,31 @@ const contatti: PageContent = {
   contatti: {},
 };
 
+const privacyPolicy: PageContent = {
+  key: "privacy-policy",
+  title: "Privacy Policy",
+  legal: {
+    body: "<p>La presente informativa descrive le modalità di trattamento dei dati personali degli utenti che consultano il sito e utilizzano i moduli di contatto, ai sensi del Regolamento UE 2016/679 (GDPR).</p>",
+    updatedAt: "2026-01-01",
+  },
+};
+
+const cookiePolicy: PageContent = {
+  key: "cookie-policy",
+  title: "Cookie Policy",
+  legal: {
+    body: "<p>Questo sito utilizza solo cookie tecnici necessari al funzionamento.</p>",
+    updatedAt: "2026-01-01",
+  },
+};
+
 const itPages: Record<string, PageContent> = {
   home,
   servizi,
   azienda,
   contatti,
+  "privacy-policy": privacyPolicy,
+  "cookie-policy": cookiePolicy,
 };
 
 export const mockPages: Record<Locale, Record<string, PageContent>> = {

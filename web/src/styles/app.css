@@ -20,12 +20,6 @@
 .map__placeholder{ position:absolute; inset:0; display:grid; place-items:center; color:var(--accent-ui); }
 .map__open{ align-self:flex-start; }
 
-/* ---------- Pager a bottoni (versione React del pager wireframe) ---------- */
-.pager button{ min-width:var(--touch); min-height:var(--touch); padding:0 12px; display:inline-flex; align-items:center; justify-content:center; font-family:var(--f-mono); font-size:var(--fs-sm); border:1.5px solid var(--line-2); border-radius:var(--radius); color:var(--ink); background:var(--surface); }
-.pager button:hover:not(.is-disabled){ border-color:var(--accent-ui); color:var(--accent-ui); }
-.pager button[aria-current="page"]{ background:var(--deep); border-color:var(--deep); color:#fff; }
-.pager button.is-disabled{ opacity:.4; pointer-events:none; }
-
 /* ---------- Empty state realizzazioni (filtri senza risultati) ---------- */
 .rz-empty{ border:1px dashed var(--line-2); border-radius:var(--radius-lg); padding:var(--sp-8) var(--sp-5); text-align:center; margin-top:var(--sp-6); }
 .rz-empty h3{ font-size:var(--fs-h4); color:var(--ink); }

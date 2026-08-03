@@ -11,7 +11,11 @@
     "aziendaHeading": "Azienda",
     "aziendaDescription": "Edilmetal S.r.l.: dal 1997 carpenteria metallica su commessa a Noceto (PR). Storia, valori, officina e come raggiungerci.",
     "contattiHeading": "Contatti",
-    "contattiDescription": "Contatta Edilmetal: richiedi un preventivo per la tua struttura in carpenteria metallica. Noceto (PR), tel 0521 615023."
+    "contattiDescription": "Contatta Edilmetal: richiedi un preventivo per la tua struttura in carpenteria metallica. Noceto (PR), tel 0521 615023.",
+    "privacyPolicyHeading": "Privacy Policy",
+    "privacyPolicyDescription": "Informativa sul trattamento dei dati personali di Edilmetal S.r.l., ai sensi del Regolamento UE 2016/679 (GDPR).",
+    "cookiePolicyHeading": "Cookie Policy",
+    "cookiePolicyDescription": "Informativa sui cookie utilizzati dal sito Edilmetal."
   },
   "Common": {
     "skipToContent": "Salta al contenuto"
@@ -28,12 +32,10 @@
     "servizi": "Servizi",
     "azienda": "Azienda",
     "contatti": "Contatti",
-    "preventivo": "Preventivo",
     "menu": "Menù",
     "menuTitle": "Edilmetal — menù",
     "openMenu": "Apri menù",
-    "closeMenu": "Chiudi menù",
-    "ctaPreventivo": "Richiedi un preventivo →"
+    "closeMenu": "Chiudi menù"
   },
   "Theme": {
     "toggle": "Tema chiaro/scuro",
@@ -53,27 +55,21 @@
     "chiSiamo": "Chi siamo",
     "doveSiamo": "Dove siamo",
     "servizi": "Servizi",
-    "rights": "Tutti i diritti riservati"
+    "rights": "Tutti i diritti riservati",
+    "legalNav": "Informazioni legali",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
   },
   "Rail": {
     "prev": "Scorri indietro",
     "next": "Scorri avanti"
   },
   "Home": {
-    "aziendaKick": "L'azienda",
-    "cosaKick": "Cosa realizziamo",
-    "cosaTitle": "Otto famiglie di opere in acciaio.",
-    "cosaSub": "Dalla singola scala su misura al capannone industriale chiavi in mano.",
-    "processoKick": "Come lavoriamo",
-    "processoTitle": "Dal sopralluogo al montaggio.",
-    "processoSub": "Un unico interlocutore per tutte le fasi della commessa.",
+    "categorieKick": "In evidenza",
+    "categorieCtaLabel": "Vai alla sezione prodotti",
     "evidenzaKick": "In evidenza",
     "evidenzaTitle": "Realizzazioni recenti.",
     "evidenzaSub": "Una selezione di commesse in carpenteria metallica.",
-    "percheKick": "Perché Edilmetal",
-    "referenzeKick": "Referenze",
-    "referenzeTitle": "Hanno scelto Edilmetal.",
-    "referenzeSub": "Aziende dell'industria, del commercio e del terziario.",
     "tutteLeRealizzazioni": "Tutte le realizzazioni"
   },
   "Realizzazioni": {
@@ -83,23 +79,22 @@
     "filters": "Filtri",
     "closeFilters": "Chiudi filtri",
     "categoria": "Categoria",
-    "settore": "Settore",
-    "anno": "Anno",
     "tutte": "Tutte",
-    "tutti": "Tutti",
     "countFound": "{count, plural, one {# progetto trovato} other {# progetti trovati}}",
-    "sortLabel": "Ordina",
-    "sortRecent": "Più recenti",
-    "sortOldest": "Meno recenti",
-    "sortCategoria": "Categoria (A–Z)",
-    "sortCliente": "Cliente (A–Z)",
     "apply": "Applica i filtri",
     "openFilters": "Filtri",
     "emptyTitle": "Nessuna realizzazione",
     "emptyText": "Nessun progetto corrisponde ai filtri selezionati.",
     "resetFilters": "Rimuovi i filtri",
-    "ctaTitle": "Non trovi un caso simile al tuo?",
-    "ctaText": "Raccontaci la commessa: progettiamo la struttura su misura."
+    "pagination": "Paginazione",
+    "pagePrev": "Pagina precedente",
+    "pageNext": "Pagina successiva",
+    "pageLabel": "Pagina {current} di {total}",
+    "pageGoTo": "Vai a pagina {page}"
+  },
+  "Legal": {
+    "breadcrumbHome": "Home",
+    "updatedAt": "Ultimo aggiornamento: {date}"
   },
   "Scheda": {
     "breadcrumbHome": "Home",
@@ -130,29 +125,14 @@
   "Servizi": {
     "breadcrumbHome": "Home",
     "current": "Servizi",
-    "processoKick": "Come lavoriamo",
-    "processoTitle": "Dal sopralluogo al montaggio.",
-    "processoSub": "Quattro fasi gestite internamente, senza rimpalli tra fornitori.",
     "tipologieKick": "Cosa realizziamo",
     "tipologieTitle": "Otto tipologie di opere.",
-    "tipologieSub": "Dalla singola scala su misura al capannone industriale chiavi in mano.",
-    "vantaggiKick": "Perché noi",
-    "vantaggiTitle": "I vantaggi di lavorare con Edilmetal."
+    "tipologieSub": "Dalla singola scala su misura al capannone industriale chiavi in mano."
   },
   "Azienda": {
     "breadcrumbHome": "Home",
     "current": "Azienda",
-    "storiaKick": "La storia",
-    "valoriKick": "I valori",
-    "valoriTitle": "Come lavoriamo.",
-    "officinaKick": "Officina & team",
-    "sedeKick": "Dove siamo",
-    "indirizzo": "Indirizzo",
-    "zona": "Zona",
-    "telefono": "Telefono",
-    "email": "Email",
-    "orari": "Orari",
-    "contattaci": "Contattaci →"
+    "storiaKick": "La storia"
   },
   "Contatti": {
     "breadcrumbHome": "Home",
@@ -174,7 +154,8 @@
     "esigenza": "La tua esigenza",
     "messaggioPlaceholder": "Descrivi l'opera: dimensioni indicative, luogo, tempistiche…",
     "esigenzaPlaceholder": "Es. pensilina di carico su luce di ~20 m…",
-    "gdpr": "Ho letto l'informativa privacy e acconsento al trattamento dei dati per rispondere alla richiesta.",
+    "gdpr": "Acconsento al trattamento dei dati per rispondere alla richiesta, come descritto nell'",
+    "gdprLink": "informativa privacy",
     "submit": "Invia richiesta →",
     "sending": "Invio in corso…",
     "requiredNote": "I campi con * sono obbligatori",
@@ -188,5 +169,12 @@
     "aria": "Mappa della sede: {label}",
     "open": "Apri in mappe",
     "openAria": "Apri la posizione di {label} in una nuova scheda"
+  },
+  "ContactBand": {
+    "contattiTitle": "Contatti",
+    "orariTitle": "Orari ufficio",
+    "telefonoTitle": "Telefono",
+    "faxLabel": "Fax",
+    "preventiviText": "Per informazioni e preventivi contattateci!"
   }
 }

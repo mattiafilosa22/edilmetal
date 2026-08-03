@@ -82,6 +82,34 @@ final class ProgettoSeeder {
 	}
 
 	/**
+	 * Elimina solo le realizzazioni fittizie di sviluppo gia seedate in
+	 * precedenza (quando {@see Catalog::progetti()} includeva ancora
+	 * {@see Catalog::curated_progetti()}), senza toccare le storiche reali.
+	 *
+	 * @return int Numero di realizzazioni eliminate.
+	 */
+	public function purge_curated(): int {
+		$deleted = 0;
+		$langs   = array( $this->language->default_language() );
+
+		if ( $this->language->is_active() ) {
+			$langs = array_merge( $langs, $this->language->secondary_languages() );
+		}
+
+		foreach ( Catalog::curated_progetti() as $record ) {
+			foreach ( $langs as $lang ) {
+				$post_id = SeedMeta::find( 'progetto:' . $record['ref'] . ':' . $lang );
+
+				if ( null !== $post_id && wp_delete_post( $post_id, true ) ) {
+					++$deleted;
+				}
+			}
+		}
+
+		return $deleted;
+	}
+
+	/**
 	 * Seeda un singolo record (IT + EN) e collega le traduzioni.
 	 *
 	 * @param array<string,mixed> $record        Dati della realizzazione.
@@ -140,7 +168,7 @@ final class ProgettoSeeder {
 		$this->normalize_slug( $post_id, (string) $record['ref'] );
 		$this->assign_terms( $post_id, $record );
 		$this->write_meta( $post_id, $record );
-		$this->write_gallery( $post_id, $media_library );
+		$this->write_gallery( $post_id, $record, $media_library );
 		SeedMeta::mark( $post_id, $ref );
 
 		return $post_id;
@@ -215,16 +243,18 @@ final class ProgettoSeeder {
 	}
 
 	/**
-	 * Sostituisce la galleria con i segnaposto di demo.
+	 * Sostituisce la galleria con le foto del record, o i segnaposto di demo.
 	 *
-	 * @param int          $post_id       ID del post.
-	 * @param MediaLibrary $media_library Libreria immagini seedata.
+	 * @param int                 $post_id       ID del post.
+	 * @param array<string,mixed> $record        Dati della realizzazione.
+	 * @param MediaLibrary        $media_library Libreria immagini seedata.
 	 */
-	private function write_gallery( int $post_id, MediaLibrary $media_library ): void {
+	private function write_gallery( int $post_id, array $record, MediaLibrary $media_library ): void {
 		$key = Schema::meta( 'galleria' );
 		delete_post_meta( $post_id, $key );
 
-		$attachments = $media_library->gallery( self::GALLERY_KEYS );
+		$media_keys  = ! empty( $record['media'] ) ? $record['media'] : self::GALLERY_KEYS;
+		$attachments = $media_library->gallery( $media_keys );
 		$first       = null;
 
 		foreach ( $attachments as $attachment_id ) {

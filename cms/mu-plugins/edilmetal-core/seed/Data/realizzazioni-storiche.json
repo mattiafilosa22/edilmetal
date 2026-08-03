@@ -1,0 +1,759 @@
+[
+  {
+    "ref": "strutture-acciaio-acetum",
+    "titolo": "Acetum",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-acetum/01",
+      "real:strutture-acciaio/strutture-acciaio-acetum/02",
+      "real:strutture-acciaio/strutture-acciaio-acetum/03",
+      "real:strutture-acciaio/strutture-acciaio-acetum/04"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-albinea",
+    "titolo": "Albinea",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-albinea/01"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-bervini",
+    "titolo": "Bervini",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-bervini/01",
+      "real:strutture-acciaio/strutture-acciaio-bervini/02",
+      "real:strutture-acciaio/strutture-acciaio-bervini/03",
+      "real:strutture-acciaio/strutture-acciaio-bervini/04",
+      "real:strutture-acciaio/strutture-acciaio-bervini/05",
+      "real:strutture-acciaio/strutture-acciaio-bervini/06"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-castellazzo-piscina",
+    "titolo": "Castellazzo Piscina",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-castellazzo-piscina/01"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-fiordilatte",
+    "titolo": "Fiordilatte",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-fiordilatte/01",
+      "real:strutture-acciaio/strutture-acciaio-fiordilatte/02"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-oiki",
+    "titolo": "Oiki",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-oiki/01"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-parmalat-collecchio",
+    "titolo": "Parmalat Collecchio",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/01",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/02",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/03",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/04",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/05"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-parmalat-medioli",
+    "titolo": "Parmalat Medioli",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-parmalat-medioli/01"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-parmalat-udine",
+    "titolo": "Parmalat Udine",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-parmalat-udine/01",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-udine/02",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-udine/03"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-schiaretti",
+    "titolo": "Schiaretti",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-schiaretti/01"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-speedy-block",
+    "titolo": "Speedy Block",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-speedy-block/01",
+      "real:strutture-acciaio/strutture-acciaio-speedy-block/02",
+      "real:strutture-acciaio/strutture-acciaio-speedy-block/03"
+    ]
+  },
+  {
+    "ref": "strutture-acciaio-toscanini",
+    "titolo": "Toscanini",
+    "categoria": "strutture-acciaio",
+    "media": [
+      "real:strutture-acciaio/strutture-acciaio-toscanini/01",
+      "real:strutture-acciaio/strutture-acciaio-toscanini/02"
+    ]
+  },
+  {
+    "ref": "strutture-miste-aiassa",
+    "titolo": "Aiassa",
+    "categoria": "strutture-miste",
+    "media": [
+      "real:strutture-miste/strutture-miste-aiassa/01",
+      "real:strutture-miste/strutture-miste-aiassa/02",
+      "real:strutture-miste/strutture-miste-aiassa/03"
+    ]
+  },
+  {
+    "ref": "strutture-miste-castellazzo-maneggio",
+    "titolo": "Castellazzo Maneggio",
+    "categoria": "strutture-miste",
+    "media": [
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/01",
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/02",
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/03",
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/04",
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/05"
+    ]
+  },
+  {
+    "ref": "strutture-miste-cls-palazzina",
+    "titolo": "CLS Palazzina",
+    "categoria": "strutture-miste",
+    "media": [
+      "real:strutture-miste/strutture-miste-cls-palazzina/01",
+      "real:strutture-miste/strutture-miste-cls-palazzina/02",
+      "real:strutture-miste/strutture-miste-cls-palazzina/03"
+    ]
+  },
+  {
+    "ref": "strutture-miste-iris",
+    "titolo": "Iris",
+    "categoria": "strutture-miste",
+    "media": [
+      "real:strutture-miste/strutture-miste-iris/01",
+      "real:strutture-miste/strutture-miste-iris/02",
+      "real:strutture-miste/strutture-miste-iris/03",
+      "real:strutture-miste/strutture-miste-iris/04",
+      "real:strutture-miste/strutture-miste-iris/05"
+    ]
+  },
+  {
+    "ref": "strutture-miste-noceto",
+    "titolo": "Noceto",
+    "categoria": "strutture-miste",
+    "media": [
+      "real:strutture-miste/strutture-miste-noceto/01",
+      "real:strutture-miste/strutture-miste-noceto/02",
+      "real:strutture-miste/strutture-miste-noceto/03"
+    ]
+  },
+  {
+    "ref": "scale-ct-reggio",
+    "titolo": "CT Reggio",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-ct-reggio/01"
+    ]
+  },
+  {
+    "ref": "scale-doppel-scala",
+    "titolo": "Doppel Scala",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-doppel-scala/01"
+    ]
+  },
+  {
+    "ref": "scale-immergas-passerella",
+    "titolo": "Immergas Passerella",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-immergas-passerella/01",
+      "real:scale/scale-immergas-passerella/02"
+    ]
+  },
+  {
+    "ref": "scale-immergas-mag07",
+    "titolo": "Immergas-mag07",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-immergas-mag07/01"
+    ]
+  },
+  {
+    "ref": "scale-italbox-scala",
+    "titolo": "Italbox Scala",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-italbox-scala/01"
+    ]
+  },
+  {
+    "ref": "scale-meta-scala",
+    "titolo": "Meta Scala",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-meta-scala/01",
+      "real:scale/scale-meta-scala/02"
+    ]
+  },
+  {
+    "ref": "scale-pinko",
+    "titolo": "Pinko",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-pinko/01",
+      "real:scale/scale-pinko/02"
+    ]
+  },
+  {
+    "ref": "scale-plan",
+    "titolo": "Plan",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-plan/01",
+      "real:scale/scale-plan/02",
+      "real:scale/scale-plan/03"
+    ]
+  },
+  {
+    "ref": "scale-ricci-casa-apr07",
+    "titolo": "Ricci Casa-apr07",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-ricci-casa-apr07/01",
+      "real:scale/scale-ricci-casa-apr07/02",
+      "real:scale/scale-ricci-casa-apr07/03"
+    ]
+  },
+  {
+    "ref": "scale-scala-max-mara",
+    "titolo": "Scala Max Mara",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-scala-max-mara/01"
+    ]
+  },
+  {
+    "ref": "scale-scala-s-agostino",
+    "titolo": "Scala S. Agostino",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-scala-s-agostino/01"
+    ]
+  },
+  {
+    "ref": "scale-ubaldi",
+    "titolo": "Ubaldi",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-ubaldi/01"
+    ]
+  },
+  {
+    "ref": "scale-zrh",
+    "titolo": "ZRH",
+    "categoria": "scale",
+    "media": [
+      "real:scale/scale-zrh/01",
+      "real:scale/scale-zrh/02",
+      "real:scale/scale-zrh/03"
+    ]
+  },
+  {
+    "ref": "pensiline-padana-gru",
+    "titolo": "Padana Gru",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-padana-gru/01"
+    ]
+  },
+  {
+    "ref": "pensiline-acmi-rubbiano",
+    "titolo": "Acmi Rubbiano",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-acmi-rubbiano/01"
+    ]
+  },
+  {
+    "ref": "pensiline-bartolini-caorso",
+    "titolo": "Bartolini Caorso",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-bartolini-caorso/01",
+      "real:pensiline/pensiline-bartolini-caorso/02"
+    ]
+  },
+  {
+    "ref": "pensiline-bartolini-samoggia",
+    "titolo": "Bartolini Samoggia",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-bartolini-samoggia/01",
+      "real:pensiline/pensiline-bartolini-samoggia/02"
+    ]
+  },
+  {
+    "ref": "pensiline-conad",
+    "titolo": "Conad",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-conad/01"
+    ]
+  },
+  {
+    "ref": "pensiline-consultimpianti",
+    "titolo": "Consultimpianti",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-consultimpianti/01"
+    ]
+  },
+  {
+    "ref": "pensiline-doppel-passerella",
+    "titolo": "Doppel Passerella",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-doppel-passerella/01"
+    ]
+  },
+  {
+    "ref": "pensiline-ferrari",
+    "titolo": "Ferrari",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-ferrari/01",
+      "real:pensiline/pensiline-ferrari/02"
+    ]
+  },
+  {
+    "ref": "pensiline-fornovo-gas",
+    "titolo": "Fornovo Gas",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-fornovo-gas/01",
+      "real:pensiline/pensiline-fornovo-gas/02"
+    ]
+  },
+  {
+    "ref": "pensiline-furia",
+    "titolo": "Furia",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-furia/01",
+      "real:pensiline/pensiline-furia/02"
+    ]
+  },
+  {
+    "ref": "pensiline-immergas-pensilina",
+    "titolo": "Immergas Pensilina",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-immergas-pensilina/01",
+      "real:pensiline/pensiline-immergas-pensilina/02"
+    ]
+  },
+  {
+    "ref": "pensiline-immergas-mag07",
+    "titolo": "Immergas-mag07",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-immergas-mag07/01"
+    ]
+  },
+  {
+    "ref": "pensiline-italbox-pensilina",
+    "titolo": "Italbox Pensilina",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-italbox-pensilina/01",
+      "real:pensiline/pensiline-italbox-pensilina/02"
+    ]
+  },
+  {
+    "ref": "pensiline-moreno-macchine",
+    "titolo": "Moreno Macchine",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-moreno-macchine/01",
+      "real:pensiline/pensiline-moreno-macchine/02"
+    ]
+  },
+  {
+    "ref": "pensiline-new-house",
+    "titolo": "New House",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-new-house/01"
+    ]
+  },
+  {
+    "ref": "pensiline-pinko",
+    "titolo": "Pinko",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-pinko/01"
+    ]
+  },
+  {
+    "ref": "pensiline-protecno",
+    "titolo": "Protecno",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-protecno/01",
+      "real:pensiline/pensiline-protecno/02"
+    ]
+  },
+  {
+    "ref": "pensiline-ricci-pensiline",
+    "titolo": "Ricci Pensiline",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-ricci-pensiline/01"
+    ]
+  },
+  {
+    "ref": "pensiline-torri-modena",
+    "titolo": "Torri Modena",
+    "categoria": "pensiline",
+    "media": [
+      "real:pensiline/pensiline-torri-modena/01",
+      "real:pensiline/pensiline-torri-modena/02",
+      "real:pensiline/pensiline-torri-modena/03"
+    ]
+  },
+  {
+    "ref": "pensiline-auto-tagliavini",
+    "titolo": "Tagliavini",
+    "categoria": "pensiline-auto",
+    "media": [
+      "real:pensiline-auto/pensiline-auto-tagliavini/01"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-amoretti",
+    "titolo": "Amoretti",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-amoretti/01"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-baie-metasystem",
+    "titolo": "Baie Metasystem",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-baie-metasystem/01",
+      "real:coperture-tamponamenti/coperture-tamponamenti-baie-metasystem/02"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-copertura-collecchio",
+    "titolo": "Copertura Collecchio",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-copertura-collecchio/01",
+      "real:coperture-tamponamenti/coperture-tamponamenti-copertura-collecchio/02",
+      "real:coperture-tamponamenti/coperture-tamponamenti-copertura-collecchio/03"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-italstick",
+    "titolo": "Italstick",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-italstick/01",
+      "real:coperture-tamponamenti/coperture-tamponamenti-italstick/02",
+      "real:coperture-tamponamenti/coperture-tamponamenti-italstick/03"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-iton",
+    "titolo": "Iton",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-iton/01"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-mazzoni",
+    "titolo": "Mazzoni",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-mazzoni/01"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-mercantile",
+    "titolo": "Mercantile",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/01",
+      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/02",
+      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/03",
+      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/04",
+      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/05"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-pegognaga",
+    "titolo": "Pegognaga",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-pegognaga/01",
+      "real:coperture-tamponamenti/coperture-tamponamenti-pegognaga/02"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-zecchetti-calderara",
+    "titolo": "Zecchetti Calderara",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-zecchetti-calderara/01",
+      "real:coperture-tamponamenti/coperture-tamponamenti-zecchetti-calderara/02"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-zecchetti-x",
+    "titolo": "Zecchetti X",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-zecchetti-x/01"
+    ]
+  },
+  {
+    "ref": "coperture-tamponamenti-zecchetti-y",
+    "titolo": "Zecchetti Y",
+    "categoria": "coperture-tamponamenti",
+    "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-zecchetti-y/01"
+    ]
+  },
+  {
+    "ref": "rivestimenti-facciata-fbp-piacenza",
+    "titolo": "FBP Piacenza",
+    "categoria": "rivestimenti-facciata",
+    "media": [
+      "real:rivestimenti-facciata/rivestimenti-facciata-fbp-piacenza/01",
+      "real:rivestimenti-facciata/rivestimenti-facciata-fbp-piacenza/02"
+    ]
+  },
+  {
+    "ref": "rivestimenti-facciata-alubel-soliera",
+    "titolo": "Alubel Soliera",
+    "categoria": "rivestimenti-facciata",
+    "media": [
+      "real:rivestimenti-facciata/rivestimenti-facciata-alubel-soliera/01",
+      "real:rivestimenti-facciata/rivestimenti-facciata-alubel-soliera/02",
+      "real:rivestimenti-facciata/rivestimenti-facciata-alubel-soliera/03"
+    ]
+  },
+  {
+    "ref": "rivestimenti-facciata-massenza",
+    "titolo": "Massenza",
+    "categoria": "rivestimenti-facciata",
+    "media": [
+      "real:rivestimenti-facciata/rivestimenti-facciata-massenza/01",
+      "real:rivestimenti-facciata/rivestimenti-facciata-massenza/02",
+      "real:rivestimenti-facciata/rivestimenti-facciata-massenza/03",
+      "real:rivestimenti-facciata/rivestimenti-facciata-massenza/04",
+      "real:rivestimenti-facciata/rivestimenti-facciata-massenza/05",
+      "real:rivestimenti-facciata/rivestimenti-facciata-massenza/06"
+    ]
+  },
+  {
+    "ref": "rivestimenti-facciata-meta",
+    "titolo": "Meta",
+    "categoria": "rivestimenti-facciata",
+    "media": [
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/01",
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/02",
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/03",
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/04",
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/05"
+    ]
+  },
+  {
+    "ref": "rivestimenti-facciata-serigrafica",
+    "titolo": "Serigrafica",
+    "categoria": "rivestimenti-facciata",
+    "media": [
+      "real:rivestimenti-facciata/rivestimenti-facciata-serigrafica/01",
+      "real:rivestimenti-facciata/rivestimenti-facciata-serigrafica/02"
+    ]
+  },
+  {
+    "ref": "rivestimenti-facciata-veca",
+    "titolo": "Veca",
+    "categoria": "rivestimenti-facciata",
+    "media": [
+      "real:rivestimenti-facciata/rivestimenti-facciata-veca/01",
+      "real:rivestimenti-facciata/rivestimenti-facciata-veca/02",
+      "real:rivestimenti-facciata/rivestimenti-facciata-veca/03",
+      "real:rivestimenti-facciata/rivestimenti-facciata-veca/04"
+    ]
+  },
+  {
+    "ref": "opere-speciali-cna",
+    "titolo": "CNA",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-cna/01"
+    ]
+  },
+  {
+    "ref": "opere-speciali-unieco",
+    "titolo": "Unieco",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-unieco/01"
+    ]
+  },
+  {
+    "ref": "opere-speciali-unieco-bs",
+    "titolo": "Unieco BS",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-unieco-bs/01"
+    ]
+  },
+  {
+    "ref": "opere-speciali-via-spezia",
+    "titolo": "Via Spezia",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-via-spezia/01"
+    ]
+  },
+  {
+    "ref": "opere-speciali-cappuccini",
+    "titolo": "Cappuccini",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-cappuccini/01",
+      "real:opere-speciali/opere-speciali-cappuccini/02",
+      "real:opere-speciali/opere-speciali-cappuccini/03"
+    ]
+  },
+  {
+    "ref": "opere-speciali-castellazzo-piscina",
+    "titolo": "Castellazzo Piscina",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-castellazzo-piscina/01",
+      "real:opere-speciali/opere-speciali-castellazzo-piscina/02",
+      "real:opere-speciali/opere-speciali-castellazzo-piscina/03"
+    ]
+  },
+  {
+    "ref": "opere-speciali-doppel",
+    "titolo": "Doppel",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-doppel/01",
+      "real:opere-speciali/opere-speciali-doppel/02",
+      "real:opere-speciali/opere-speciali-doppel/03"
+    ]
+  },
+  {
+    "ref": "opere-speciali-immergas-frangisole",
+    "titolo": "Immergas Frangisole",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-immergas-frangisole/01",
+      "real:opere-speciali/opere-speciali-immergas-frangisole/02"
+    ]
+  },
+  {
+    "ref": "opere-speciali-mercantile",
+    "titolo": "Mercantile",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-mercantile/01",
+      "real:opere-speciali/opere-speciali-mercantile/02",
+      "real:opere-speciali/opere-speciali-mercantile/03"
+    ]
+  },
+  {
+    "ref": "opere-speciali-mugello",
+    "titolo": "Mugello",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-mugello/01",
+      "real:opere-speciali/opere-speciali-mugello/02"
+    ]
+  },
+  {
+    "ref": "opere-speciali-noceto",
+    "titolo": "Noceto",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-noceto/01",
+      "real:opere-speciali/opere-speciali-noceto/02",
+      "real:opere-speciali/opere-speciali-noceto/03",
+      "real:opere-speciali/opere-speciali-noceto/04"
+    ]
+  },
+  {
+    "ref": "opere-speciali-pam",
+    "titolo": "Pam",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-pam/01",
+      "real:opere-speciali/opere-speciali-pam/02",
+      "real:opere-speciali/opere-speciali-pam/03"
+    ]
+  },
+  {
+    "ref": "opere-speciali-parco-ottavi",
+    "titolo": "Parco Ottavi",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-parco-ottavi/01",
+      "real:opere-speciali/opere-speciali-parco-ottavi/02",
+      "real:opere-speciali/opere-speciali-parco-ottavi/03",
+      "real:opere-speciali/opere-speciali-parco-ottavi/04"
+    ]
+  },
+  {
+    "ref": "opere-speciali-siri",
+    "titolo": "Siri",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-siri/01",
+      "real:opere-speciali/opere-speciali-siri/02"
+    ]
+  },
+  {
+    "ref": "opere-speciali-sit",
+    "titolo": "SIT",
+    "categoria": "opere-speciali",
+    "media": [
+      "real:opere-speciali/opere-speciali-sit/01",
+      "real:opere-speciali/opere-speciali-sit/02",
+      "real:opere-speciali/opere-speciali-sit/03",
+      "real:opere-speciali/opere-speciali-sit/04"
+    ]
+  }
+]

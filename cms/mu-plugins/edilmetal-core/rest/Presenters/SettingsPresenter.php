@@ -84,6 +84,11 @@ final class SettingsPresenter {
 			$dto['fotoCredit'] = $foto_credit;
 		}
 
+		$fax = $meta->string( 'edilmetal_set_fax' );
+		if ( '' !== $fax ) {
+			$dto['fax'] = $fax;
+		}
+
 		return $dto;
 	}
 

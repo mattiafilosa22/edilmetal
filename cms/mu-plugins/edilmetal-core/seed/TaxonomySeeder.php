@@ -31,7 +31,9 @@ final class TaxonomySeeder {
 
 		foreach ( Catalog::taxonomies() as $taxonomy => $terms ) {
 			foreach ( $terms as $term ) {
-				if ( $this->ensure_term( $taxonomy, (string) $term['slug'], (string) $term['name'] ) ) {
+				$description = (string) ( $term['description'] ?? '' );
+
+				if ( $this->ensure_term( $taxonomy, (string) $term['slug'], (string) $term['name'], $description ) ) {
 					++$created;
 				}
 			}
@@ -41,29 +43,42 @@ final class TaxonomySeeder {
 	}
 
 	/**
-	 * Crea il termine se assente, altrimenti ne allinea il nome.
+	 * Crea il termine se assente, altrimenti ne allinea il nome e la descrizione.
 	 *
-	 * @param string $taxonomy Tassonomia di destinazione.
-	 * @param string $slug     Slug univoco del termine.
-	 * @param string $name     Nome visualizzato.
+	 * @param string $taxonomy    Tassonomia di destinazione.
+	 * @param string $slug        Slug univoco del termine.
+	 * @param string $name        Nome visualizzato.
+	 * @param string $description Descrizione breve del termine (usata come "dettaglio" nel frontend).
 	 * @return bool True se il termine e stato creato ora.
 	 */
-	private function ensure_term( string $taxonomy, string $slug, string $name ): bool {
+	private function ensure_term( string $taxonomy, string $slug, string $name, string $description = '' ): bool {
 		$existing = get_term_by( 'slug', $slug, $taxonomy );
 
 		if ( $existing instanceof \WP_Term ) {
+			$changes = array();
+
 			if ( $existing->name !== $name ) {
-				wp_update_term( $existing->term_id, $taxonomy, array( 'name' => $name ) );
+				$changes['name'] = $name;
+			}
+
+			if ( '' !== $description && $existing->description !== $description ) {
+				$changes['description'] = $description;
+			}
+
+			if ( array() !== $changes ) {
+				wp_update_term( $existing->term_id, $taxonomy, $changes );
 			}
 
 			return false;
 		}
 
-		wp_insert_term(
-			$name,
-			$taxonomy,
-			array( 'slug' => $slug )
-		);
+		$args = array( 'slug' => $slug );
+
+		if ( '' !== $description ) {
+			$args['description'] = $description;
+		}
+
+		wp_insert_term( $name, $taxonomy, $args );
 
 		return true;
 	}

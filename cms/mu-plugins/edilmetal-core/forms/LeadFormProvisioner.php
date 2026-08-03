@@ -41,7 +41,7 @@ final class LeadFormProvisioner {
 	 *
 	 * @var string
 	 */
-	private const DEFAULT_RECIPIENT = 'info@edilmetal.it';
+	private const DEFAULT_RECIPIENT = 'edilmetal@edilmetal.it';
 
 	/**
 	 * Gateway verso Fluent Forms.
@@ -62,6 +62,10 @@ final class LeadFormProvisioner {
 	/**
 	 * Restituisce l'ID del form garantendone l'esistenza (crea se assente).
 	 *
+	 * Se il form esiste gia, ne risincronizza comunque i meta (in particolare
+	 * l'email di notifica): cosi un cambio del destinatario nel codice si
+	 * applica anche a un form provisionato in precedenza, senza ricrearlo.
+	 *
 	 * @return int ID del form, oppure 0 se Fluent Forms non e disponibile.
 	 */
 	public function ensure_form(): int {
@@ -72,6 +76,8 @@ final class LeadFormProvisioner {
 		$stored = (int) get_option( self::OPTION_FORM_ID, 0 );
 
 		if ( $stored > 0 && $this->gateway->form_exists( $stored ) ) {
+			$this->gateway->update_metas( $stored, $this->metas() );
+
 			return $stored;
 		}
 

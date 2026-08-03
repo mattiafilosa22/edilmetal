@@ -22,6 +22,7 @@ spl_autoload_register(
 			'Edilmetal\\Core\\Rest\\'      => 'rest/',
 			'Edilmetal\\Core\\I18n\\'      => 'i18n/',
 			'Edilmetal\\Core\\Security\\'  => 'security/',
+			'Edilmetal\\Core\\Branding\\'  => 'branding/',
 			'Edilmetal\\Core\\Webhook\\'   => 'webhook/',
 			'Edilmetal\\Core\\Mail\\'      => 'mail/',
 			'Edilmetal\\Core\\Forms\\'     => 'forms/',

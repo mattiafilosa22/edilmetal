@@ -68,7 +68,7 @@ export function Rail({ children }: RailProps) {
       const rail = railRef.current;
       if (!rail || !drag.current.down) return;
       const dx = e.clientX - drag.current.startX;
-      if (Math.abs(dx) > 4) drag.current.moved = true;
+      if (Math.abs(dx) > 10) drag.current.moved = true;
       rail.scrollLeft = drag.current.startScroll - dx;
     }
     function onUp() {

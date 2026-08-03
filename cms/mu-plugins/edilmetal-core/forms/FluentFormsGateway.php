@@ -87,7 +87,6 @@ final class FluentFormsGateway {
 
 		try {
 			$model = self::FORM_MODEL;
-			$meta  = self::FORM_META_MODEL;
 
 			$form = ( new $model() )->create( $attributes );
 
@@ -97,13 +96,50 @@ final class FluentFormsGateway {
 
 			$form_id = (int) $form->id;
 
-			foreach ( $metas as $key => $value ) {
-				$meta::persist( $form_id, $key, $value );
-			}
+			$this->write_metas( $form_id, $metas );
 
 			return $form_id;
 		} catch ( Throwable $e ) {
 			return new WP_Error( 'edilmetal_ff_create_exception', $e->getMessage() );
+		}
+	}
+
+	/**
+	 * Aggiorna i meta di un form gia esistente (es. email di notifica),
+	 * riusando lo stesso metodo di persistenza della creazione: cosi le
+	 * impostazioni restano sincronizzate col codice anche dopo il primo
+	 * provisioning, senza ricreare il form.
+	 *
+	 * @param int                               $form_id ID del form esistente.
+	 * @param array<string,array<mixed>|string> $metas   Meta da persistere (formSettings, notifications, ...).
+	 * @return true|WP_Error
+	 */
+	public function update_metas( int $form_id, array $metas ) {
+		if ( ! $this->form_exists( $form_id ) ) {
+			return new WP_Error( 'edilmetal_ff_not_found', 'Form non trovato.' );
+		}
+
+		try {
+			$this->write_metas( $form_id, $metas );
+
+			return true;
+		} catch ( Throwable $e ) {
+			return new WP_Error( 'edilmetal_ff_update_exception', $e->getMessage() );
+		}
+	}
+
+	/**
+	 * Persiste ogni voce di meta del form (crea o aggiorna, a seconda della
+	 * chiave, tramite l'API nativa di Fluent Forms).
+	 *
+	 * @param int                               $form_id ID del form.
+	 * @param array<string,array<mixed>|string> $metas   Meta da persistere.
+	 */
+	private function write_metas( int $form_id, array $metas ): void {
+		$meta = self::FORM_META_MODEL;
+
+		foreach ( $metas as $key => $value ) {
+			$meta::persist( $form_id, $key, $value );
 		}
 	}
 

@@ -41,24 +41,31 @@ jobs:
           # Browser: stesso valore per il POST /lead del form
           NEXT_PUBLIC_WP_API_URL: ${{ secrets.WP_API_URL }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.SITE_URL }}
+          # Fallisce la build invece di ripiegare sui mock se l'API non risponde:
+          # garantisce che ogni deploy pubblichi solo dati reali da WordPress.
+          WP_API_STRICT: '1'
+          # L'host WP (CloudLinux) risponde 508 con più worker paralleli.
+          BUILD_CPUS: '1'
         run: npm run build
 
-      - name: Deploy su Plesk (SFTP mirror)
+      - name: Deploy su Plesk (FTPS mirror)
         env:
-          SFTP_HOST: ${{ secrets.PLESK_SFTP_HOST }}
-          SFTP_PORT: ${{ secrets.PLESK_SFTP_PORT }}
-          SFTP_USER: ${{ secrets.PLESK_SFTP_USER }}
-          SFTP_PASSWORD: ${{ secrets.PLESK_SFTP_PASSWORD }}
+          FTP_HOST: ${{ secrets.PLESK_SFTP_HOST }}
+          FTP_USER: ${{ secrets.PLESK_SFTP_USER }}
+          FTP_PASSWORD: ${{ secrets.PLESK_SFTP_PASSWORD }}
           REMOTE_PATH: ${{ secrets.PLESK_REMOTE_PATH }}
         run: |
           set -euo pipefail
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-          # Mirror inverso (locale → remoto), elimina i file rimossi, esclude i file WP
-          lftp -u "$SFTP_USER","$SFTP_PASSWORD" -p "${SFTP_PORT:-22}" "sftp://$SFTP_HOST" <<LFTP
-          set sftp:auto-confirm yes
-          set net:max-retries 2
+          # Questo hosting accetta l'autenticazione a password solo su FTPS
+          # (porta 21): l'SSH/SFTP (porta 22) la rifiuta (solo chiave/GSSAPI).
+          # Mirror inverso (locale → remoto), elimina i file rimossi, esclude i file WP.
+          lftp -u "$FTP_USER","$FTP_PASSWORD" -p 21 "$FTP_HOST" <<LFTP
+          set ftp:ssl-force yes
+          set ssl:verify-certificate no
+          set net:max-retries 3
           set net:timeout 20
-          mirror --reverse --delete --verbose --parallel=4 \
+          mirror --reverse --delete --verbose --parallel=3 \
             --exclude-glob wp-content/ --exclude-glob .htpasswd \
             web/out/ "$REMOTE_PATH"
           bye

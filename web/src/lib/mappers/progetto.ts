@@ -39,17 +39,3 @@ export function categorieFrom(summaries: ProgettoSummary[]): Categoria[] {
     (c): c is Categoria => Boolean(c)
   );
 }
-
-/** Settori presenti nel dataset (ordine alfabetico). */
-export function settoriFrom(summaries: ProgettoSummary[]): string[] {
-  const set = new Set<string>();
-  for (const p of summaries) if (p.settore) set.add(p.settore);
-  return [...set].sort((a, b) => a.localeCompare(b, "it"));
-}
-
-/** Anni presenti nel dataset (decrescente). */
-export function anniFrom(summaries: ProgettoSummary[]): number[] {
-  const set = new Set<number>();
-  for (const p of summaries) set.add(p.anno);
-  return [...set].sort((a, b) => b - a);
-}

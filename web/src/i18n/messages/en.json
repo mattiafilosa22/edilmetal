@@ -11,7 +11,11 @@
     "aziendaHeading": "Company",
     "aziendaDescription": "Edilmetal S.r.l.: made-to-order structural steelwork in Noceto (PR) since 1997. History, values, workshop and how to reach us.",
     "contattiHeading": "Contact",
-    "contattiDescription": "Contact Edilmetal: request a quote for your steel structure. Noceto (PR), Italy, phone +39 0521 615023."
+    "contattiDescription": "Contact Edilmetal: request a quote for your steel structure. Noceto (PR), Italy, phone +39 0521 615023.",
+    "privacyPolicyHeading": "Privacy Policy",
+    "privacyPolicyDescription": "Edilmetal S.r.l.'s privacy notice on the processing of personal data, under EU Regulation 2016/679 (GDPR).",
+    "cookiePolicyHeading": "Cookie Policy",
+    "cookiePolicyDescription": "Cookie notice for the Edilmetal website."
   },
   "Common": {
     "skipToContent": "Skip to content"
@@ -28,12 +32,10 @@
     "servizi": "Services",
     "azienda": "Company",
     "contatti": "Contact",
-    "preventivo": "Get a quote",
     "menu": "Menu",
     "menuTitle": "Edilmetal — menu",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "ctaPreventivo": "Request a quote →"
+    "closeMenu": "Close menu"
   },
   "Theme": {
     "toggle": "Light/dark theme",
@@ -53,27 +55,21 @@
     "chiSiamo": "About us",
     "doveSiamo": "Where we are",
     "servizi": "Services",
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "legalNav": "Legal information",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
   },
   "Rail": {
     "prev": "Scroll back",
     "next": "Scroll forward"
   },
   "Home": {
-    "aziendaKick": "The company",
-    "cosaKick": "What we build",
-    "cosaTitle": "Eight families of steel works.",
-    "cosaSub": "From a single made-to-measure staircase to a turnkey industrial building.",
-    "processoKick": "How we work",
-    "processoTitle": "From survey to erection.",
-    "processoSub": "A single partner for every stage of the project.",
+    "categorieKick": "Featured",
+    "categorieCtaLabel": "See the product line",
     "evidenzaKick": "Featured",
     "evidenzaTitle": "Recent projects.",
     "evidenzaSub": "A selection of structural steelwork commissions.",
-    "percheKick": "Why Edilmetal",
-    "referenzeKick": "References",
-    "referenzeTitle": "They chose Edilmetal.",
-    "referenzeSub": "Companies from industry, retail and the tertiary sector.",
     "tutteLeRealizzazioni": "All projects"
   },
   "Realizzazioni": {
@@ -83,23 +79,22 @@
     "filters": "Filters",
     "closeFilters": "Close filters",
     "categoria": "Category",
-    "settore": "Sector",
-    "anno": "Year",
     "tutte": "All",
-    "tutti": "All",
     "countFound": "{count, plural, one {# project found} other {# projects found}}",
-    "sortLabel": "Sort",
-    "sortRecent": "Most recent",
-    "sortOldest": "Oldest",
-    "sortCategoria": "Category (A–Z)",
-    "sortCliente": "Client (A–Z)",
     "apply": "Apply filters",
     "openFilters": "Filters",
     "emptyTitle": "No projects",
     "emptyText": "No project matches the selected filters.",
     "resetFilters": "Clear filters",
-    "ctaTitle": "Can't find a case similar to yours?",
-    "ctaText": "Tell us about the project: we'll design the structure to measure."
+    "pagination": "Pagination",
+    "pagePrev": "Previous page",
+    "pageNext": "Next page",
+    "pageLabel": "Page {current} of {total}",
+    "pageGoTo": "Go to page {page}"
+  },
+  "Legal": {
+    "breadcrumbHome": "Home",
+    "updatedAt": "Last updated: {date}"
   },
   "Scheda": {
     "breadcrumbHome": "Home",
@@ -130,29 +125,14 @@
   "Servizi": {
     "breadcrumbHome": "Home",
     "current": "Services",
-    "processoKick": "How we work",
-    "processoTitle": "From survey to erection.",
-    "processoSub": "Four stages handled in-house, with no hand-offs between suppliers.",
     "tipologieKick": "What we build",
     "tipologieTitle": "Eight types of works.",
-    "tipologieSub": "From a single made-to-measure staircase to a turnkey industrial building.",
-    "vantaggiKick": "Why us",
-    "vantaggiTitle": "The advantages of working with Edilmetal."
+    "tipologieSub": "From a single made-to-measure staircase to a turnkey industrial building."
   },
   "Azienda": {
     "breadcrumbHome": "Home",
     "current": "Company",
-    "storiaKick": "The story",
-    "valoriKick": "Our values",
-    "valoriTitle": "How we work.",
-    "officinaKick": "Workshop & team",
-    "sedeKick": "Where we are",
-    "indirizzo": "Address",
-    "zona": "Area",
-    "telefono": "Phone",
-    "email": "Email",
-    "orari": "Opening hours",
-    "contattaci": "Contact us →"
+    "storiaKick": "The story"
   },
   "Contatti": {
     "breadcrumbHome": "Home",
@@ -174,7 +154,8 @@
     "esigenza": "Your need",
     "messaggioPlaceholder": "Describe the work: approximate size, location, timing…",
     "esigenzaPlaceholder": "E.g. a loading canopy with a span of about 20 m…",
-    "gdpr": "I have read the privacy policy and consent to the processing of my data to answer this request.",
+    "gdpr": "I consent to the processing of my data to answer this request, as described in the ",
+    "gdprLink": "privacy policy",
     "submit": "Send request →",
     "sending": "Sending…",
     "requiredNote": "Fields marked * are required",
@@ -188,5 +169,12 @@
     "aria": "Head office map: {label}",
     "open": "Open in maps",
     "openAria": "Open the location of {label} in a new tab"
+  },
+  "ContactBand": {
+    "contattiTitle": "Contact",
+    "orariTitle": "Office hours",
+    "telefonoTitle": "Phone",
+    "faxLabel": "Fax",
+    "preventiviText": "For information and quotes, get in touch!"
   }
 }

@@ -15,11 +15,14 @@ namespace Edilmetal\Core\Seed;
 use Edilmetal\Core\Module;
 use Edilmetal\Core\Rest\Support\ImageTransformer;
 use Edilmetal\Core\Seed\Support\Placeholders;
+use Edilmetal\Core\Seed\Support\RealPhotos;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Espone il seeder solo in contesto WP-CLI; inerte via web.
+ * Espone il seeder come comando WP-CLI oppure, quando WP-CLI non e
+ * disponibile (es. hosting Plesk senza SSH), come pagina di amministrazione
+ * sotto "Strumenti".
  */
 final class SeedModule implements Module {
 
@@ -27,11 +30,15 @@ final class SeedModule implements Module {
 	 * {@inheritDoc}
 	 */
 	public function register(): void {
-		if ( ! ( defined( 'WP_CLI' ) && \WP_CLI ) ) {
+		if ( defined( 'WP_CLI' ) && \WP_CLI ) {
+			\WP_CLI::add_command( 'edilmetal seed', $this->command() );
+
 			return;
 		}
 
-		\WP_CLI::add_command( 'edilmetal seed', $this->command() );
+		if ( is_admin() ) {
+			( new SeedAdminPage( $this->command() ) )->register();
+		}
 	}
 
 	/**
@@ -43,7 +50,7 @@ final class SeedModule implements Module {
 		return new SeedCommand(
 			$language,
 			new TaxonomySeeder(),
-			new MediaSeeder( new Placeholders(), new ImageTransformer() ),
+			new MediaSeeder( new Placeholders(), new RealPhotos(), new ImageTransformer() ),
 			new ProgettoSeeder( $language ),
 			new PageSeeder( $language )
 		);

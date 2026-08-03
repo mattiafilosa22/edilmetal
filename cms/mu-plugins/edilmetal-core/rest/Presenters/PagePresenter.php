@@ -15,6 +15,7 @@ namespace Edilmetal\Core\Rest\Presenters;
 
 use Edilmetal\Core\Rest\Support\ImageTransformer;
 use Edilmetal\Core\Rest\Support\MetaReader;
+use Edilmetal\Core\Support\Schema;
 use WP_Post;
 
 defined( 'ABSPATH' ) || exit;
@@ -64,25 +65,23 @@ final class PagePresenter {
 
 		switch ( $key ) {
 			case 'home':
-				$dto['hero']  = $this->home_hero();
-				$dto['stats'] = $this->stats( 'edilmetal_home_stats' );
-				$this->maybe_block( $dto, 'intro', $this->intro( 'edilmetal_home_intro' ) );
+				$dto['home'] = array(
+					'hero'       => $this->home_hero(),
+					'inEvidenza' => $this->home_in_evidenza(),
+				);
 				break;
 
 			case 'servizi':
-				$dto['hero'] = $this->page_hero( 'edilmetal_servizi' );
-				$this->maybe_block( $dto, 'intro', $this->intro( 'edilmetal_servizi_intro' ) );
-				$dto['flow']      = $this->cards( 'edilmetal_servizi_flow' );
-				$dto['tipologie'] = $this->cards( 'edilmetal_servizi_tipologie' );
-				$this->maybe_block( $dto, 'callout', $this->callout( 'edilmetal_servizi_callout' ) );
+				$this->maybe( $dto, 'subtitle', $this->meta->string( 'edilmetal_servizi_sottotitolo' ) );
+				$dto['servizi'] = array( 'tipologie' => $this->categoria_terms() );
 				break;
 
 			case 'azienda':
-				$dto['hero']   = $this->page_hero( 'edilmetal_azienda' );
-				$dto['storia'] = $this->html( 'edilmetal_azienda_storia' );
-				$dto['valori'] = $this->cards( 'edilmetal_azienda_valori' );
-				$dto['team']   = $this->pairs( 'edilmetal_azienda_team', 'nome', 'ruolo' );
-				$dto['stats']  = $this->stats( 'edilmetal_azienda_stats' );
+				$this->maybe( $dto, 'subtitle', $this->meta->string( 'edilmetal_azienda_sottotitolo' ) );
+				$dto['azienda'] = array(
+					'storiaTitolo' => $this->fallback( $this->meta->string( 'edilmetal_azienda_storia_titolo' ), 'La società' ),
+					'storia'       => $this->storia_paragraphs( 'edilmetal_azienda_storia' ),
+				);
 				break;
 
 			case 'contatti':
@@ -108,25 +107,104 @@ final class PagePresenter {
 	}
 
 	/**
-	 * Blocco hero della home { eyebrow?, title, titleAccent?, subtitle?, cta? }.
+	 * Blocco hero della home { eyebrow?, title, titleAccent?, subtitle, ctaPrimary, ctaSecondary?, index }.
 	 *
 	 * @return array<string,mixed>
 	 */
 	private function home_hero(): array {
 		$hero = array(
-			'title'    => $this->meta->string( 'edilmetal_home_hero_titolo' ),
-			'subtitle' => $this->meta->string( 'edilmetal_home_hero_sottotitolo' ),
+			'title'      => $this->meta->string( 'edilmetal_home_hero_titolo' ),
+			'subtitle'   => $this->meta->string( 'edilmetal_home_hero_sottotitolo' ),
+			'ctaPrimary' => $this->cta_href( 'edilmetal_home_hero_cta' )
+				?? array(
+					'label' => 'Le realizzazioni',
+					'href'  => '/realizzazioni',
+				),
+			'index'      => $this->pairs( 'edilmetal_home_hero_index', 'valore', 'etichetta' ),
 		);
 
 		$this->maybe( $hero, 'eyebrow', $this->meta->string( 'edilmetal_home_hero_eyebrow' ) );
 		$this->maybe( $hero, 'titleAccent', $this->meta->string( 'edilmetal_home_hero_titolo_accent' ) );
 
-		$cta = $this->cta( 'edilmetal_home_hero_cta' );
-		if ( array() !== $cta ) {
-			$hero['cta'] = $cta;
+		$secondary = $this->cta_href( 'edilmetal_home_hero_cta2' );
+		if ( null !== $secondary ) {
+			$hero['ctaSecondary'] = $secondary;
 		}
 
 		return $hero;
+	}
+
+	/**
+	 * Variante di `cta()` con chiave `href` (contratto frontend) al posto di `url`.
+	 *
+	 * @param string $prefix Prefisso dei meta ("{prefix}_label" / "{prefix}_url").
+	 * @return array{label:string,href:string}|null
+	 */
+	private function cta_href( string $prefix ): ?array {
+		$cta = $this->cta( $prefix );
+
+		if ( array() === $cta ) {
+			return null;
+		}
+
+		return array(
+			'label' => $cta['label'],
+			'href'  => $cta['url'],
+		);
+	}
+
+	/**
+	 * Blocco "in evidenza": fino a 2 categorie con foto reale.
+	 *
+	 * @return array<int,array<string,mixed>>
+	 */
+	private function home_in_evidenza(): array {
+		$items = array();
+
+		foreach ( array( 1, 2 ) as $n ) {
+			$item = $this->evidenza_item( $n );
+
+			if ( null !== $item ) {
+				$items[] = $item;
+			}
+		}
+
+		return $items;
+	}
+
+	/**
+	 * Singola voce "in evidenza": risolve slug categoria + immagine.
+	 *
+	 * @param int $n Indice dello slot (1 o 2).
+	 * @return array<string,mixed>|null
+	 */
+	private function evidenza_item( int $n ): ?array {
+		$slug          = $this->meta->string( "edilmetal_home_evidenza{$n}_categoria" );
+		$attachment_id = $this->meta->int_or_null( "edilmetal_home_evidenza{$n}_img" );
+
+		if ( '' === $slug || null === $attachment_id ) {
+			return null;
+		}
+
+		$term = get_term_by( 'slug', $slug, Schema::TAX_CATEGORIA );
+
+		if ( ! $term instanceof \WP_Term ) {
+			return null;
+		}
+
+		$image = $this->images->to_front( $attachment_id );
+
+		if ( null === $image ) {
+			return null;
+		}
+
+		return array(
+			'categoria' => array(
+				'slug' => $term->slug,
+				'nome' => $term->name,
+			),
+			'immagine'  => $image,
+		);
 	}
 
 	/**
@@ -159,26 +237,6 @@ final class PagePresenter {
 		$this->maybe( $intro, 'text', $this->meta->string( $prefix . '_testo' ) );
 
 		return $intro;
-	}
-
-	/**
-	 * Blocco callout { title, text, cta? }.
-	 *
-	 * @param string $prefix Prefisso dei meta.
-	 * @return array<string,mixed>
-	 */
-	private function callout( string $prefix ): array {
-		$callout = array();
-
-		$this->maybe( $callout, 'title', $this->meta->string( $prefix . '_titolo' ) );
-		$this->maybe( $callout, 'text', $this->meta->string( $prefix . '_testo' ) );
-
-		$cta = $this->cta( $prefix . '_cta' );
-		if ( array() !== $cta ) {
-			$callout['cta'] = $cta;
-		}
-
-		return $callout;
 	}
 
 	/**
@@ -272,26 +330,6 @@ final class PagePresenter {
 	}
 
 	/**
-	 * Lista di card { title, text } da un campo clonabile "titolo|testo".
-	 *
-	 * @param string $key Meta key.
-	 * @return array<int,array<string,string>>
-	 */
-	private function cards( string $key ): array {
-		return $this->pairs( $key, 'title', 'text' );
-	}
-
-	/**
-	 * Statistiche { value, label } da un campo clonabile "valore|etichetta".
-	 *
-	 * @param string $key Meta key.
-	 * @return array<int,array<string,string>>
-	 */
-	private function stats( string $key ): array {
-		return $this->pairs( $key, 'value', 'label' );
-	}
-
-	/**
 	 * Lista di coppie da un campo clonabile "primo|secondo".
 	 *
 	 * @param string $key    Meta key.
@@ -344,5 +382,105 @@ final class PagePresenter {
 		if ( '' !== trim( $value ) ) {
 			$target[ $key ] = $value;
 		}
+	}
+
+	/**
+	 * Termini della tassonomia `categoria_opera`, in ordine canonico, nella
+	 * forma { slug, nome, dettaglio } (dettaglio = descrizione del termine,
+	 * o il nome stesso se non valorizzata).
+	 *
+	 * @return array<int,array<string,string>>
+	 */
+	private function categoria_terms(): array {
+		$order = array(
+			'strutture-acciaio',
+			'strutture-miste',
+			'scale',
+			'pensiline',
+			'pensiline-auto',
+			'coperture-tamponamenti',
+			'rivestimenti-facciata',
+			'opere-speciali',
+		);
+
+		$terms = get_terms(
+			array(
+				'taxonomy'   => Schema::TAX_CATEGORIA,
+				'hide_empty' => false,
+			)
+		);
+
+		if ( ! is_array( $terms ) ) {
+			return array();
+		}
+
+		$by_slug = array();
+		foreach ( $terms as $term ) {
+			if ( $term instanceof \WP_Term ) {
+				$by_slug[ $term->slug ] = $term;
+			}
+		}
+
+		$out = array();
+		foreach ( $order as $slug ) {
+			if ( ! isset( $by_slug[ $slug ] ) ) {
+				continue;
+			}
+
+			$term = $by_slug[ $slug ];
+
+			$out[] = array(
+				'slug'      => $term->slug,
+				'nome'      => $term->name,
+				'dettaglio' => '' !== $term->description ? $term->description : $term->name,
+			);
+		}
+
+		return $out;
+	}
+
+	/**
+	 * Spezza un campo WYSIWYG in un elenco di paragrafi di solo testo.
+	 * Ogni `<p>` diventa una voce; se il contenuto non contiene paragrafi
+	 * HTML, l'intero testo (ripulito) diventa un unico paragrafo.
+	 *
+	 * @param string $key Meta key completa del campo WYSIWYG.
+	 * @return string[]
+	 */
+	private function storia_paragraphs( string $key ): array {
+		$html = $this->meta->string( $key );
+
+		if ( '' === $html ) {
+			return array();
+		}
+
+		if ( false === strpos( $html, '<p' ) ) {
+			$text = trim( wp_strip_all_tags( $html ) );
+
+			return '' !== $text ? array( $text ) : array();
+		}
+
+		preg_match_all( '/<p[^>]*>(.*?)<\/p>/is', $html, $matches );
+
+		$paragraphs = array();
+		foreach ( $matches[1] as $inner ) {
+			$text = trim( wp_strip_all_tags( $inner ) );
+
+			if ( '' !== $text ) {
+				$paragraphs[] = $text;
+			}
+		}
+
+		return $paragraphs;
+	}
+
+	/**
+	 * Restituisce il valore se non vuoto, altrimenti il fallback indicato.
+	 *
+	 * @param string $value    Valore letto.
+	 * @param string $fallback Valore di riserva.
+	 */
+	private function fallback( string $value, string $fallback ): string {
+		return '' !== trim( $value ) ? $value : $fallback;
 	}
 }

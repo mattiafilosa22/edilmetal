@@ -7,7 +7,7 @@
 .sp-head{ display:grid; grid-template-columns:1.2fr .8fr; gap:clamp(24px,4vw,56px); align-items:end; }
 .sp-head__meta{ display:flex; flex-wrap:wrap; gap:10px; margin-top:var(--sp-4); }
 .sp-tag{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.05em; text-transform:uppercase; padding:6px 12px; border-radius:var(--radius); border:1px solid var(--line-2); color:var(--ink-2); background:var(--surface); }
-.sp-tag--accent{ background:var(--deep); border-color:var(--deep); color:#fff; }
+.sp-tag--accent{ background:var(--anthra); border-color:var(--anthra); color:#fff; }
 
 /* Galleria */
 .gallery{ display:grid; grid-template-columns:1fr; gap:var(--sp-4); }

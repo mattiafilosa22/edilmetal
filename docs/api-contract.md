@@ -74,17 +74,47 @@ Parametri: `lang`. `key` ∈ `home|servizi|azienda|contatti`.
 
 Sempre: `key`, `title`, `seo?`. Blocchi tipizzati opzionali (inclusi solo se
 valorizzati):
-- `home`: `hero` (`eyebrow?`, `title`, `titleAccent?`, `subtitle?`, cta), `stats` (`valore|etichetta`), `intro`.
-- `servizi`: `intro`, `flow` (step processo), `tipologie` (lista opere), `callout`.
-- `azienda`: `storia` (rich), `valori`, `team`, `sede` (indirizzo + `map`), `orari`.
+- `home`: `hero` (blocco storico), `inEvidenza` (max 2 categorie con foto reale).
+- `servizi`: `tipologie` (lista famiglie di opere, con dettaglio).
+- `azienda`: `storiaTitolo`, `storia` (paragrafi).
 - `contatti`: `intro`, riferimenti (da `/settings`).
+
+`home.hero` (blocco storico, `HomeHero`):
+
+| Campo | Tipo | Note |
+|---|---|---|
+| `eyebrow` | string (opzionale) | occhiello sopra il titolo |
+| `title` | string | titolo principale |
+| `titleAccent` | string (opzionale) | porzione del titolo con enfasi grafica |
+| `subtitle` | string | sottotitolo |
+| `ctaPrimary` | `{ label, href }` | CTA primaria (fallback: "Le realizzazioni" → `/realizzazioni`) |
+| `ctaSecondary` | `{ label, href }` (opzionale) | CTA secondaria |
+| `index` | `{ valore, etichetta }[]` (max 3) | barra-indice mono sotto l'hero |
+
+`home.inEvidenza` (`HomeFeatured[]`, max 2, blocco storico): per ogni voce
+`categoria` (`{ slug, nome }`, termine reale di `categoria_opera`) e `immagine`
+(`Image`, foto reale caricata in WP). Assente/omesso se lo slot non è
+valorizzato (categoria o immagine mancante).
+
+`servizi.tipologie` (`ServiziContent`, `CategoriaRef[]`): una voce per
+famiglia di `categoria_opera` valorizzata, con `slug` (`CategoriaSlug`),
+`nome` (termine reale) e `dettaglio` (descrizione del termine tassonomia,
+fallback al `nome` se la descrizione non è compilata).
+
+`azienda` (`AziendaContent`): `storiaTitolo` (string) e `storia` (`string[]`,
+un paragrafo per elemento, derivato spezzando il campo WYSIWYG editoriale
+sui tag `<p>`).
 
 ## GET `/settings` → `SiteSettings`
 
 `nomeAzienda`, `ragioneSociale`, `partitaIva`, `indirizzo`, `telefono`, `email`
-(stringhe non vuote), `coordinate` (`{lat, lng}` per Leaflet), `orari`
-(`{giorni, apertura}[]`, parsati da `Giorni: Apertura` una fascia per riga),
-`social` (`facebook`/`instagram`/`linkedin`, inclusi solo se valorizzati).
+(stringhe non vuote), `fax` (opzionale, dato storico), `coordinate`
+(`{lat, lng}` per Leaflet), `mapsUrl` (opzionale; assente ⇒ fallback
+OpenStreetMap), `orari` (`{giorni, apertura}[]`, parsati da `Giorni: Apertura`
+una fascia per riga), `social` (`facebook`/`instagram`/`linkedin`, inclusi solo
+se valorizzati), `heroImage` (`Image`, opzionale, foto hero della home
+editabile globalmente in WP → Impostazioni), `fotoCredit` (string, opzionale,
+credito fotografico mostrato accanto all'hero/footer).
 
 > Nessun prezzo/carrello: dominio B2B su commessa, non retail.
 

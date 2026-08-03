@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
+import { progettoDisplayName } from "@/domain";
 import { getProgetti, getProgetto, getSettings } from "@/lib/api";
 import {
   JsonLd,
@@ -17,6 +18,7 @@ import {
 import { ProjectGallery } from "@/components/ui/ProjectGallery";
 import { ProjectTabs } from "@/components/ui/ProjectTabs";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { sanitizeContentHtml } from "@/lib/sanitizeHtml";
 import { RequestForm } from "@/components/ui/RequestForm";
 import { Rail } from "@/components/ui/Rail";
 import { Reveal } from "@/components/ui/Reveal";
@@ -51,7 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: tSeo("realizzazioniDescription"),
     });
   }
-  const heading = progetto.seo?.title ?? `${progetto.titolo} — ${progetto.cliente}`;
+  const heading = progetto.seo?.title ?? progettoDisplayName(progetto);
   const description =
     progetto.seo?.description ?? progetto.descrizione.slice(0, 160);
   const cover = progetto.galleria[0];
@@ -62,12 +64,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     heading,
     description,
     ogType: "article",
-    image: {
-      url: absoluteUrl(progetto.seo?.ogImage ?? cover.src),
-      width: cover.width,
-      height: cover.height,
-      alt: cover.alt,
-    },
+    image: cover
+      ? {
+          url: absoluteUrl(progetto.seo?.ogImage ?? cover.src),
+          width: cover.width,
+          height: cover.height,
+          alt: cover.alt,
+        }
+      : undefined,
   });
 }
 
@@ -89,7 +93,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
 
   const projectJsonLd = buildProjectJsonLd({
     progetto,
-    name: `${progetto.titolo} — ${progetto.cliente}`,
+    name: progettoDisplayName(progetto),
     url: absoluteUrl(progettoPath(locale, slug)),
     images: progetto.galleria.map((img) => absoluteUrl(img.src)),
     creatorName: settings.nomeAzienda,
@@ -120,11 +124,11 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
             <span className="sep">/</span>
             <Link href={`/${locale}/realizzazioni`}>{t("breadcrumbRealizzazioni")}</Link>
             <span className="sep">/</span>
-            <span aria-current="page">{`${progetto.titolo} — ${progetto.cliente}`}</span>
+            <span aria-current="page">{progettoDisplayName(progetto)}</span>
           </nav>
           <div className="sp-head mt-4">
             <div>
-              <h1>{`${progetto.titolo} — ${progetto.cliente}`}</h1>
+              <h1>{progettoDisplayName(progetto)}</h1>
               <div className="sp-head__meta">
                 <span className="sp-tag sp-tag--accent">{progetto.categoria.nome}</span>
                 {progetto.settore ? (
@@ -134,7 +138,10 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
                 <span className="sp-tag">{progetto.anno}</span>
               </div>
             </div>
-            <p style={{ color: "var(--ink-2)" }}>{progetto.descrizione}</p>
+            <div
+              style={{ color: "var(--ink-2)" }}
+              dangerouslySetInnerHTML={{ __html: sanitizeContentHtml(progetto.descrizione) }}
+            />
           </div>
         </div>
       </section>
@@ -143,7 +150,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
         <div className="container">
           <div className="sp-layout">
             <div>
-              <ProjectGallery images={progetto.galleria} />
+              <ProjectGallery images={progetto.galleria} fallbackAlt={progettoDisplayName(progetto)} />
               <ProjectTabs
                 descrizione={progetto.descrizione}
                 datiTecnici={progetto.datiTecnici}
@@ -182,6 +189,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
               <RequestForm
                 compact
                 categorie={[progetto.categoria]}
+                locale={locale}
                 defaultTipoOpera={progetto.categoria.slug}
                 progettoSlug={progetto.slug}
               />

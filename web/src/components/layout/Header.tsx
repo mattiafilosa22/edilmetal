@@ -12,7 +12,7 @@ type HeaderProps = {
 
 /**
  * Header slim sticky identico su tutte le pagine: brand (logo + sottotitolo),
- * nav principale, toggle tema, switch lingua, CTA preventivo e overlay menù.
+ * nav principale, toggle tema, switch lingua e overlay menù.
  * I recapiti dell'overlay provengono da `settings` (WordPress), non hardcoded.
  */
 export async function Header({ locale, settings }: HeaderProps) {
@@ -27,7 +27,7 @@ export async function Header({ locale, settings }: HeaderProps) {
             className="brand__img"
             src="/logo-edilmetal.png"
             alt={settings.nomeAzienda}
-            width={150}
+            width={121}
             height={38}
             priority
           />

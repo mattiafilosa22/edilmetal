@@ -1,0 +1,52 @@
+/*
+ * Stile della schermata di login WordPress per Edilmetal S.r.l.
+ * Palette: --deep #0F2740, --accent #D96B2B, --anthra #1F2328, sfondo #F4F7FA.
+ */
+
+body.login {
+	background: #F4F7FA;
+}
+
+.login h1 a {
+	background-image: url('logo-edilmetal.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 260px;
+	height: 82px;
+}
+
+.login form {
+	border-top: 3px solid #D96B2B;
+	box-shadow: 0 1px 3px rgba(15, 39, 64, 0.1);
+}
+
+.login .button-primary {
+	background: #0F2740;
+	border-color: #0F2740;
+	color: #FFFFFF;
+	text-shadow: none;
+	box-shadow: none;
+}
+
+.login .button-primary:hover,
+.login .button-primary:focus {
+	background: #D96B2B;
+	border-color: #D96B2B;
+	color: #FFFFFF;
+}
+
+.login #nav a,
+.login #backtoblog a {
+	color: #1F2328;
+}
+
+.login #nav a:hover,
+.login #backtoblog a:hover {
+	color: #D96B2B;
+}
+
+.login .message,
+.login #login_error {
+	border-left-color: #D96B2B;
+}

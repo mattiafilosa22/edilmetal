@@ -3,6 +3,7 @@
 import { useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import type { DatoTecnico } from "@/domain";
+import { sanitizeContentHtml } from "@/lib/sanitizeHtml";
 
 type ProjectTabsProps = {
   descrizione: string;
@@ -26,7 +27,7 @@ export function ProjectTabs({ descrizione, datiTecnici, lavorazioni, materiali }
   tabs.push({
     id: "desc",
     label: t("tabDescrizione"),
-    panel: descrizione.split("\n\n").map((p, i) => <p key={i}>{p}</p>),
+    panel: <div dangerouslySetInnerHTML={{ __html: sanitizeContentHtml(descrizione) }} />,
   });
   if (datiTecnici.length > 0) {
     tabs.push({

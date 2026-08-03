@@ -9,6 +9,7 @@ import { getSettings } from "@/lib/api";
 import { SITE_URL } from "@/lib/seo";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ContactInfoBand } from "@/components/layout/ContactInfoBand";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 
 const display = Space_Grotesk({
@@ -91,6 +92,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           </a>
           <Header locale={locale} settings={settings} />
           <main id="main">{children}</main>
+          <ContactInfoBand settings={settings} />
           <Footer locale={locale} settings={settings} />
         </NextIntlClientProvider>
       </body>
