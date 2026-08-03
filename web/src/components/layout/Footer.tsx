@@ -90,6 +90,10 @@ export async function Footer({ locale, settings }: FooterProps) {
         <span>
           © {year} {settings.ragioneSociale} · P.IVA {settings.partitaIva}
         </span>
+        <nav className="footer-legal" aria-label={t("legalNav")}>
+          <Link href={`${base}/privacy-policy`}>{t("privacyPolicy")}</Link>
+          <Link href={`${base}/cookie-policy`}>{t("cookiePolicy")}</Link>
+        </nav>
         <span>{t("rights")}</span>
       </div>
     </footer>

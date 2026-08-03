@@ -95,11 +95,31 @@ const contatti: PageContent = {
   contatti: {},
 };
 
+const privacyPolicy: PageContent = {
+  key: "privacy-policy",
+  title: "Privacy Policy",
+  legal: {
+    body: "<p>La presente informativa descrive le modalità di trattamento dei dati personali degli utenti che consultano il sito e utilizzano i moduli di contatto, ai sensi del Regolamento UE 2016/679 (GDPR).</p>",
+    updatedAt: "2026-01-01",
+  },
+};
+
+const cookiePolicy: PageContent = {
+  key: "cookie-policy",
+  title: "Cookie Policy",
+  legal: {
+    body: "<p>Questo sito utilizza solo cookie tecnici necessari al funzionamento.</p>",
+    updatedAt: "2026-01-01",
+  },
+};
+
 const itPages: Record<string, PageContent> = {
   home,
   servizi,
   azienda,
   contatti,
+  "privacy-policy": privacyPolicy,
+  "cookie-policy": cookiePolicy,
 };
 
 export const mockPages: Record<Locale, Record<string, PageContent>> = {

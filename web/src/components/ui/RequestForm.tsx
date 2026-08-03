@@ -1,14 +1,17 @@
 "use client";
 
 import { useId, useState, type FormEvent } from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import type { CategoriaSlug } from "@/domain";
+import type { Locale } from "@/i18n/routing";
 import { submitLead, type LeadRequest } from "@/lib/forms";
 
 export type CategoriaOption = { slug: CategoriaSlug; nome: string };
 
 type RequestFormProps = {
   categorie: CategoriaOption[];
+  locale: Locale;
   /** Variante compatta ("progetto simile" nella scheda): meno campi. */
   compact?: boolean;
   /** Slug del progetto sorgente (scheda), inviato come metadato. */
@@ -30,6 +33,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  */
 export function RequestForm({
   categorie,
+  locale,
   compact = false,
   progettoSlug,
   defaultTipoOpera,
@@ -203,7 +207,7 @@ export function RequestForm({
           aria-describedby={errors.gdpr ? `${id("gdpr")}-err` : undefined}
         />
         <label htmlFor={id("gdpr")}>
-          {t("gdpr")} {req}
+          {t("gdpr")}<Link href={`/${locale}/privacy-policy`}>{t("gdprLink")}</Link> {req}
           {errors.gdpr ? <span className="field-error" id={`${id("gdpr")}-err`} role="alert"> {errors.gdpr}</span> : null}
         </label>
       </div>

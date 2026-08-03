@@ -96,6 +96,17 @@ export const contattiContentSchema = z.object({
 export type ContattiContent = z.infer<typeof contattiContentSchema>;
 
 /* -------------------------------------------------------------------------- */
+/* PRIVACY-POLICY / COOKIE-POLICY                                              */
+/* -------------------------------------------------------------------------- */
+
+/** Testo legale editoriale (HTML formattato in WP: titoli, paragrafi). */
+export const legalContentSchema = z.object({
+  body: z.string().min(1),
+  updatedAt: z.string().optional(),
+});
+export type LegalContent = z.infer<typeof legalContentSchema>;
+
+/* -------------------------------------------------------------------------- */
 /* PageContent                                                                 */
 /* -------------------------------------------------------------------------- */
 
@@ -108,5 +119,6 @@ export const pageContentSchema = z.object({
   servizi: serviziContentSchema.optional(),
   azienda: aziendaContentSchema.optional(),
   contatti: contattiContentSchema.optional(),
+  legal: legalContentSchema.optional(),
 });
 export type PageContent = z.infer<typeof pageContentSchema>;

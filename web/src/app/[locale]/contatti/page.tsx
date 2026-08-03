@@ -105,7 +105,7 @@ export default async function ContattiPage({ params }: PageProps) {
         <div className="container">
           <div className="ct-layout">
             <Reveal>
-              <RequestForm categorie={categorie} />
+              <RequestForm categorie={categorie} locale={locale} />
             </Reveal>
 
             <aside className="ct-info">
