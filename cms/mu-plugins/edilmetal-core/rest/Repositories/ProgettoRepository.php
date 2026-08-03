@@ -24,8 +24,8 @@ final class ProgettoRepository {
 	/**
 	 * Restituisce le realizzazioni pubblicate, filtrate per i criteri indicati.
 	 *
-	 * @param string               $lang    Codice lingua normalizzato.
-	 * @param array<string,mixed>  $filters Filtri (categoria|settore|anno|inEvidenza).
+	 * @param string              $lang    Codice lingua normalizzato.
+	 * @param array<string,mixed> $filters Filtri (categoria|settore|anno|inEvidenza).
 	 * @return WP_Post[]
 	 */
 	public function find_all( string $lang, array $filters = array() ): array {

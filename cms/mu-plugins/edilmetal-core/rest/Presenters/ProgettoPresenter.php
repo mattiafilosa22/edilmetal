@@ -195,8 +195,8 @@ final class ProgettoPresenter {
 	/**
 	 * Meta SEO editoriali con fallback da titolo/descrizione/copertina.
 	 *
-	 * @param WP_Post                       $post     Post progetto.
-	 * @param MetaReader                    $meta     Lettore meta.
+	 * @param WP_Post                        $post     Post progetto.
+	 * @param MetaReader                     $meta     Lettore meta.
 	 * @param array<int,array<string,mixed>> $galleria Galleria gia risolta.
 	 * @return array<string,string>
 	 */
