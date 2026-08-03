@@ -35,7 +35,7 @@ export type SeoInput = {
 
 /** Immagine OG di default servita da `public/`. */
 export const DEFAULT_OG_IMAGE = {
-  path: "/og-default.png",
+  path: "/og-cover.png",
   width: 1200,
   height: 630,
 } as const;
