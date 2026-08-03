@@ -176,7 +176,7 @@ final class SettingsPresenter {
 	 * @return array<string,string>
 	 */
 	private function social( MetaReader $meta ): array {
-		$social  = array();
+		$social   = array();
 		$channels = array(
 			'facebook'  => 'edilmetal_set_facebook',
 			'instagram' => 'edilmetal_set_instagram',

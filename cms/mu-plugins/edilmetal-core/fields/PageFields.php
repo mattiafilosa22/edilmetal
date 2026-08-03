@@ -3,9 +3,11 @@
  * Schema dei campi Meta Box per le pagine editoriali (home, servizi, azienda,
  * contatti, legali).
  *
- * Ogni pagina "chiave" (slug) ha un proprio meta box. I box restano registrati
- * su tutte le pagine per garantire il salvataggio; il front-end legge solo il
- * box pertinente alla pagina richiesta via /pages/{key}.
+ * Ogni pagina "chiave" (slug) ha un proprio meta box, mostrato SOLO quando si
+ * modifica quella pagina: aprendo "Azienda" si vede solo il box "Azienda",
+ * non anche quelli di Home/Servizi/Contatti/legali vuoti e non pertinenti.
+ * Fuori da uno schermo di modifica di una singola pagina (nuova pagina,
+ * azioni di massa, ...) restano tutti registrati per non rompere il salvataggio.
  *
  * @package Edilmetal\Core
  */
@@ -22,19 +24,50 @@ defined( 'ABSPATH' ) || exit;
 final class PageFields {
 
 	/**
-	 * Restituisce i meta box delle pagine editoriali.
+	 * Restituisce solo il meta box della pagina in modifica (per slug), o
+	 * tutti quando lo slug non e determinabile (nuova pagina, bulk, REST).
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
 	public function meta_boxes(): array {
-		return array(
-			$this->home_box(),
-			$this->servizi_box(),
-			$this->azienda_box(),
-			$this->contatti_box(),
-			$this->privacy_box(),
-			$this->cookie_box(),
+		$builders = array(
+			'home'           => fn() => $this->home_box(),
+			'servizi'        => fn() => $this->servizi_box(),
+			'azienda'        => fn() => $this->azienda_box(),
+			'contatti'       => fn() => $this->contatti_box(),
+			'privacy-policy' => fn() => $this->privacy_box(),
+			'cookie-policy'  => fn() => $this->cookie_box(),
 		);
+
+		$slug = $this->editing_page_slug();
+
+		if ( null === $slug ) {
+			return array_map( static fn( callable $build ) => $build(), array_values( $builders ) );
+		}
+
+		return isset( $builders[ $slug ] ) ? array( $builders[ $slug ]() ) : array();
+	}
+
+	/**
+	 * Slug della pagina attualmente in modifica in wp-admin, o null se non
+	 * si e in uno schermo di modifica di una singola pagina esistente.
+	 */
+	private function editing_page_slug(): ?string {
+		$post_id = 0;
+
+		if ( isset( $_GET['post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- sola lettura, determina solo quali campi mostrare.
+			$post_id = (int) $_GET['post']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} elseif ( isset( $_POST['post_ID'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- sola lettura, il salvataggio vero e gestito da Meta Box/WP core con la propria nonce.
+			$post_id = (int) $_POST['post_ID']; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		}
+
+		if ( $post_id <= 0 ) {
+			return null;
+		}
+
+		$post = get_post( $post_id );
+
+		return $post instanceof \WP_Post && 'page' === $post->post_type ? $post->post_name : null;
 	}
 
 	/**
