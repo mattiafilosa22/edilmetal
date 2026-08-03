@@ -42,3 +42,8 @@ scripts/.edilmetal-ftp.env
 # Materiale sorgente cliente (vecchio sito 2018): 253MB di foto/asset grezzi,
 # usati solo come sorgente per il seeder — NON parte del repo.
 sito web edilmetal 2018/
+
+# Tool caches (not part of the project)
+.wrangler/
+.playwright-mcp/
+.codex/
