@@ -118,15 +118,21 @@ final class ImageTransformer {
 	/**
 	 * Converte il DTO interno { id, alt, sizes } nella forma Image.
 	 *
-	 * Sceglie come sorgente principale la size piu adatta (large > medium >
-	 * full > thumbnail) e costruisce lo srcset da tutte le size disponibili.
+	 * Sceglie come sorgente principale la size piu adatta (full > large >
+	 * medium > thumbnail) e costruisce lo srcset da tutte le size disponibili.
+	 *
+	 * "full" e la base preferita (non il file grezzo: WordPress la ridimensiona
+	 * gia a `big_image_size_threshold`, 2560px di default) perche width/height
+	 * diventano le dimensioni intrinseche passate a next/image: usare "large"
+	 * (1024px) le limitava anche per l'hero a piena larghezza, che su schermi
+	 * grandi veniva quindi ingrandito via CSS e appariva sgranato.
 	 *
 	 * @param array<string,mixed> $image DTO interno prodotto da transform().
 	 * @return array<string,mixed>
 	 */
 	private function front_shape( array $image ): array {
 		$sizes   = is_array( $image['sizes'] ) ? $image['sizes'] : array();
-		$primary = $sizes['large'] ?? $sizes['medium'] ?? $sizes['full'] ?? $sizes['thumbnail'] ?? null;
+		$primary = $sizes['full'] ?? $sizes['large'] ?? $sizes['medium'] ?? $sizes['thumbnail'] ?? null;
 
 		if ( null === $primary ) {
 			$primary = array(
