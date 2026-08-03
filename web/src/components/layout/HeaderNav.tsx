@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
 import { ThemeToggle } from "./ThemeToggle";
@@ -100,34 +101,38 @@ export function HeaderNav({ locale, phone, email, indirizzo }: HeaderNavProps) {
         </button>
       </div>
 
-      <div className="overlay-nav" aria-label={t("menu")}>
-        <div className="overlay-nav__top">
-          <span className="mono" style={{ color: "rgba(255,255,255,.7)" }}>
-            {t("menuTitle")}
-          </span>
-          <button
-            type="button"
-            className="icon-btn"
-            aria-label={t("closeMenu")}
-            onClick={close}
-            style={{ color: "#fff", borderColor: "rgba(255,255,255,.3)", background: "transparent" }}
-          >
-            {closeIcon}
-          </button>
-        </div>
-        <nav className="overlay-nav__list" aria-label={t("pagesAriaLabel")}>
-          {items.map((item, index) => (
-            <Link key={item.key} href={hrefFor(item.segment)} onClick={close}>
-              <span className="idx">{String(index).padStart(2, "0")}</span> {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="overlay-nav__foot">
-          <span>{phone}</span>
-          <span>{email}</span>
-          <span>{indirizzo}</span>
-        </div>
-      </div>
+      {open &&
+        createPortal(
+          <div className="overlay-nav" aria-label={t("menu")}>
+            <div className="overlay-nav__top">
+              <span className="mono" style={{ color: "rgba(255,255,255,.7)" }}>
+                {t("menuTitle")}
+              </span>
+              <button
+                type="button"
+                className="icon-btn"
+                aria-label={t("closeMenu")}
+                onClick={close}
+                style={{ color: "#fff", borderColor: "rgba(255,255,255,.3)", background: "transparent" }}
+              >
+                {closeIcon}
+              </button>
+            </div>
+            <nav className="overlay-nav__list" aria-label={t("pagesAriaLabel")}>
+              {items.map((item, index) => (
+                <Link key={item.key} href={hrefFor(item.segment)} onClick={close}>
+                  <span className="idx">{String(index).padStart(2, "0")}</span> {item.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="overlay-nav__foot">
+              <span>{phone}</span>
+              <span>{email}</span>
+              <span>{indirizzo}</span>
+            </div>
+          </div>,
+          document.body
+        )}
     </>
   );
 }

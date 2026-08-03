@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import type { Categoria, CategoriaSlug, ProgettoSummary } from "@/domain";
+import { hasRealPhoto, type Categoria, type CategoriaSlug, type ProgettoSummary } from "@/domain";
 import type { Locale } from "@/i18n/routing";
 import { ProjectCard } from "./ProjectCard";
 
@@ -24,12 +24,25 @@ const closeIcon = (
     <path d="M18 6 6 18M6 6l12 12" />
   </svg>
 );
+const prevIcon = (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6" />
+  </svg>
+);
+const nextIcon = (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+    <path d="M9 6l6 6-6 6" />
+  </svg>
+);
+
+/** Elementi mostrati per pagina nella griglia portfolio. */
+const PAGE_SIZE = 9;
 
 /**
  * Portfolio realizzazioni filtrabile per sola categoria (fedele all'IA del
  * sito storico: una vista per categoria). Nessun filtro settore/anno, nessun
- * ordinamento, nessuna paginazione — griglia unica con tutti i risultati
- * della categoria scelta (o tutte le realizzazioni se nessuna è selezionata).
+ * ordinamento — griglia paginata (9 per pagina) con i risultati della
+ * categoria scelta (o tutte le realizzazioni se nessuna è selezionata).
  */
 export function RealizzazioniView({
   summaries,
@@ -40,6 +53,7 @@ export function RealizzazioniView({
   const t = useTranslations("Realizzazioni");
   const [cat, setCat] = useState<CategoriaSlug | null>(initialCategoria ?? null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     document.body.classList.toggle("filters-open", drawerOpen);
@@ -55,14 +69,36 @@ export function RealizzazioniView({
     return () => document.removeEventListener("keydown", onKey);
   }, [drawerOpen]);
 
-  const pickCat = (value: CategoriaSlug | null) => setCat(value);
+  const pickCat = (value: CategoriaSlug | null) => {
+    setCat(value);
+    setPage(1);
+  };
 
   const filtered = useMemo(() => {
     const out = cat ? summaries.filter((p) => p.categoria.slug === cat) : summaries.slice();
-    return out.sort((a, b) => b.anno - a.anno || a.titolo.localeCompare(b.titolo, "it"));
+    // Le realizzazioni senza foto reale (appena create in WP, non ancora
+    // fotografate) vanno in fondo, nelle ultime pagine, invece di rompere
+    // l'ordinamento cronologico di quelle complete.
+    return out.sort(
+      (a, b) =>
+        Number(hasRealPhoto(b)) - Number(hasRealPhoto(a)) ||
+        b.anno - a.anno ||
+        a.titolo.localeCompare(b.titolo, "it")
+    );
   }, [summaries, cat]);
 
-  const reset = () => setCat(null);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const paged = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+  const goToPage = (value: number) => {
+    setPage(Math.min(Math.max(value, 1), totalPages));
+  };
+
+  const reset = () => {
+    setCat(null);
+    setPage(1);
+  };
 
   return (
     <>
@@ -107,11 +143,52 @@ export function RealizzazioniView({
       </div>
 
       {filtered.length > 0 ? (
-        <div className="proj-grid" style={{ marginTop: "var(--sp-6)" }}>
-          {filtered.map((p) => (
-            <ProjectCard key={p.id} progetto={p} locale={locale} />
-          ))}
-        </div>
+        <>
+          <div className="proj-grid" style={{ marginTop: "var(--sp-6)" }}>
+            {paged.map((p) => (
+              <ProjectCard key={p.id} progetto={p} locale={locale} />
+            ))}
+          </div>
+          {totalPages > 1 ? (
+            <nav className="rz-pagination" aria-label={t("pagination")}>
+              <button
+                type="button"
+                className="icon-btn"
+                aria-label={t("pagePrev")}
+                disabled={currentPage === 1}
+                onClick={() => goToPage(currentPage - 1)}
+              >
+                {prevIcon}
+              </button>
+              <span className="rz-pagination__label" aria-live="polite">
+                {t("pageLabel", { current: currentPage, total: totalPages })}
+              </span>
+              <div className="rz-pagination__pages">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    className="rz-pagination__page"
+                    aria-current={n === currentPage ? "page" : undefined}
+                    aria-label={t("pageGoTo", { page: n })}
+                    onClick={() => goToPage(n)}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                className="icon-btn"
+                aria-label={t("pageNext")}
+                disabled={currentPage === totalPages}
+                onClick={() => goToPage(currentPage + 1)}
+              >
+                {nextIcon}
+              </button>
+            </nav>
+          ) : null}
+        </>
       ) : (
         <div className="rz-empty">
           <h3>{t("emptyTitle")}</h3>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ProgettoSummary } from "@/domain";
+import { hasRealPhoto, type ProgettoSummary } from "@/domain";
 import type { Locale } from "@/i18n/routing";
 import { ProjectCard } from "./ProjectCard";
 import { Rail } from "./Rail";
@@ -37,7 +37,9 @@ export function RealizzazioniBand({
   ctaHref,
   num = "02",
 }: RealizzazioniBandProps) {
-  if (progetti.length === 0) {
+  const withPhoto = progetti.filter(hasRealPhoto);
+
+  if (withPhoto.length === 0) {
     return null;
   }
 
@@ -59,7 +61,7 @@ export function RealizzazioniBand({
         </Reveal>
         <Reveal>
           <Rail>
-            {progetti.map((p) => (
+            {withPhoto.map((p) => (
               <ProjectCard key={p.id} progetto={p} locale={locale} />
             ))}
           </Rail>

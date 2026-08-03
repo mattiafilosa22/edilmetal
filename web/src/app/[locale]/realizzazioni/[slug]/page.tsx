@@ -63,12 +63,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     heading,
     description,
     ogType: "article",
-    image: {
-      url: absoluteUrl(progetto.seo?.ogImage ?? cover.src),
-      width: cover.width,
-      height: cover.height,
-      alt: cover.alt,
-    },
+    image: cover
+      ? {
+          url: absoluteUrl(progetto.seo?.ogImage ?? cover.src),
+          width: cover.width,
+          height: cover.height,
+          alt: cover.alt,
+        }
+      : undefined,
   });
 }
 
@@ -144,7 +146,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
         <div className="container">
           <div className="sp-layout">
             <div>
-              <ProjectGallery images={progetto.galleria} />
+              <ProjectGallery images={progetto.galleria} fallbackAlt={progettoDisplayName(progetto)} />
               <ProjectTabs
                 descrizione={progetto.descrizione}
                 datiTecnici={progetto.datiTecnici}
@@ -183,6 +185,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
               <RequestForm
                 compact
                 categorie={[progetto.categoria]}
+                locale={locale}
                 defaultTipoOpera={progetto.categoria.slug}
                 progettoSlug={progetto.slug}
               />

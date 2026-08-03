@@ -11,7 +11,11 @@
     "aziendaHeading": "Company",
     "aziendaDescription": "Edilmetal S.r.l.: made-to-order structural steelwork in Noceto (PR) since 1997. History, values, workshop and how to reach us.",
     "contattiHeading": "Contact",
-    "contattiDescription": "Contact Edilmetal: request a quote for your steel structure. Noceto (PR), Italy, phone +39 0521 615023."
+    "contattiDescription": "Contact Edilmetal: request a quote for your steel structure. Noceto (PR), Italy, phone +39 0521 615023.",
+    "privacyPolicyHeading": "Privacy Policy",
+    "privacyPolicyDescription": "Edilmetal S.r.l.'s privacy notice on the processing of personal data, under EU Regulation 2016/679 (GDPR).",
+    "cookiePolicyHeading": "Cookie Policy",
+    "cookiePolicyDescription": "Cookie notice for the Edilmetal website."
   },
   "Common": {
     "skipToContent": "Skip to content"
@@ -51,7 +55,10 @@
     "chiSiamo": "About us",
     "doveSiamo": "Where we are",
     "servizi": "Services",
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "legalNav": "Legal information",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
   },
   "Rail": {
     "prev": "Scroll back",
@@ -78,7 +85,16 @@
     "openFilters": "Filters",
     "emptyTitle": "No projects",
     "emptyText": "No project matches the selected filters.",
-    "resetFilters": "Clear filters"
+    "resetFilters": "Clear filters",
+    "pagination": "Pagination",
+    "pagePrev": "Previous page",
+    "pageNext": "Next page",
+    "pageLabel": "Page {current} of {total}",
+    "pageGoTo": "Go to page {page}"
+  },
+  "Legal": {
+    "breadcrumbHome": "Home",
+    "updatedAt": "Last updated: {date}"
   },
   "Scheda": {
     "breadcrumbHome": "Home",
@@ -138,7 +154,8 @@
     "esigenza": "Your need",
     "messaggioPlaceholder": "Describe the work: approximate size, location, timing…",
     "esigenzaPlaceholder": "E.g. a loading canopy with a span of about 20 m…",
-    "gdpr": "I have read the privacy policy and consent to the processing of my data to answer this request.",
+    "gdpr": "I consent to the processing of my data to answer this request, as described in the ",
+    "gdprLink": "privacy policy",
     "submit": "Send request →",
     "sending": "Sending…",
     "requiredNote": "Fields marked * are required",

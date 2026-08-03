@@ -14,7 +14,6 @@ import {
   localePathsFor,
 } from "@/lib/seo";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionLabel } from "@/components/ui/blocks";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
@@ -78,18 +77,15 @@ export default async function AziendaPage({ params }: PageProps) {
 
       {/* Storia (come il vecchio "LA SOCIETA'") */}
       <section className="section">
-        <div className="container sec-grid">
-          <SectionLabel num="01" kick={t("storiaKick")} />
-          <div>
-            <Reveal className="sec-head">
-              <h2>{azienda.storiaTitolo}</h2>
+        <div className="container">
+          <Reveal className="sec-head">
+            <h2>{azienda.storiaTitolo}</h2>
+          </Reveal>
+          {azienda.storia.map((par, i) => (
+            <Reveal key={i} className="mt-4">
+              <p style={{ color: "var(--ink-2)" }}>{par}</p>
             </Reveal>
-            {azienda.storia.map((par, i) => (
-              <Reveal key={i} className="mt-4">
-                <p style={{ color: "var(--ink-2)" }}>{par}</p>
-              </Reveal>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
     </>

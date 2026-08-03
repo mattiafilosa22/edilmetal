@@ -66,16 +66,20 @@ const progettoBaseSchema = z.object({
   inEvidenza: z.boolean().default(false),
 });
 
-/** Riepilogo usato nelle griglie/rail: immagine di copertina singola. */
+/**
+ * Riepilogo usato nelle griglie/rail: immagine di copertina singola.
+ * Assente per una realizzazione appena creata in WP senza ancora foto
+ * caricate — la card mostra un segnaposto invece di rompere la build.
+ */
 export const progettoSummarySchema = progettoBaseSchema.extend({
-  copertina: imageSchema,
+  copertina: imageSchema.optional(),
 });
 export type ProgettoSummary = z.infer<typeof progettoSummarySchema>;
 
 /** Scheda completa: galleria, dati tecnici, lavorazioni, materiali, SEO. */
 export const progettoSchema = progettoBaseSchema.extend({
   descrizione: z.string().min(1),
-  galleria: z.array(imageSchema).min(1),
+  galleria: z.array(imageSchema).default([]),
   datiTecnici: z.array(datoTecnicoSchema).default([]),
   lavorazioni: z.array(z.string().min(1)).default([]),
   materiali: z.array(z.string().min(1)).default([]),
@@ -95,6 +99,16 @@ export function progettoDisplayName(progetto: { titolo: string; cliente: string 
   return progetto.titolo === progetto.cliente
     ? progetto.titolo
     : `${progetto.titolo} — ${progetto.cliente}`;
+}
+
+/**
+ * Una realizzazione ha una foto reale quando la copertina esiste ed è
+ * diversa dai segnaposto di demo (es. "placeholder-insieme.jpg"). Usata per
+ * escludere le realizzazioni senza foto dal rail "in evidenza" e per
+ * spingerle in fondo alla griglia portfolio.
+ */
+export function hasRealPhoto(progetto: { copertina?: Image }): boolean {
+  return progetto.copertina !== undefined && !progetto.copertina.src.includes("/placeholder-");
 }
 
 /** Filtri applicabili alla lista realizzazioni (REST + client-side). */
