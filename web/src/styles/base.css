@@ -92,6 +92,12 @@ h1,h2,h3,h4{ font-family:var(--f-display); font-weight:600; line-height:1.05; le
 .skip-link{ position:absolute; left:var(--sp-4); top:-100px; background:var(--anthra); color:#fff; padding:12px 20px; z-index:999; font-weight:600; border-radius:var(--radius); transition:top .15s ease; }
 .skip-link:focus{ top:var(--sp-4); }
 .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* Dati presenti nel CMS ma non pubblici (nomi dei committenti e anni delle
+   commesse): restano nel markup — quindi nell'albero di accessibilità, nei
+   nomi accessibili dei link e per i motori di ricerca — ma non a schermo.
+   Per ripubblicarli basta eliminare questa singola regola. */
+.is-hidden-data{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 @media (prefers-reduced-motion: reduce){ *,*::before,*::after{ animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
 
 /* ---------- Layout ---------- */

@@ -17,12 +17,13 @@ per tutte le fasi dell'opera.
 Sede: Piazza Alpini d'Italia 10/A, 43015 Noceto (PR), zona Ponte Taro.
 Telefono: 0521 615023.
 Area servita: Italia (base in provincia di Parma).
-Clienti di riferimento: Parmalat, Italbox, Bervini, Iris, Aiassa, Meta e altri.
+Committenti: industrie alimentari e meccaniche, grande distribuzione, studi di
+progettazione e imprese di costruzioni (nomi non divulgati).
 
 ## Struttura del sito
 Il sito è una vetrina editoriale organizzata in quattro aree: realizzazioni,
 servizi, azienda e contatti. Le schede delle singole realizzazioni vivono sotto
-`/{lingua}/realizzazioni/{slug}/` e riportano cliente, luogo, anno, categoria,
+`/{lingua}/realizzazioni/{slug}/` e riportano luogo, categoria,
 settore, descrizione, dati tecnici (superficie, tonnellaggio acciaio, luce,
 altezza…), lavorazioni, materiali e galleria fotografica.
 

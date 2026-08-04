@@ -25,6 +25,46 @@
 .hero__full-photo img{ width:100%; height:100%; object-fit:cover; }
 @media (max-width:720px){ .hero__full-photo{ aspect-ratio:4/3; } }
 
+/* ---------- Hero slider (home): crossfade a piena larghezza ---------- */
+.hero-slider{ position:relative; width:100%; }
+.hero-slider__stage{ position:relative; width:100%; aspect-ratio:16/7; overflow:hidden; background:var(--anthra); }
+.hero-slider__slide{ position:absolute; inset:0; opacity:0; transition:opacity .9s ease; }
+.hero-slider__slide[data-active]{ opacity:1; }
+.hero-slider__slide img{ width:100%; height:100%; object-fit:cover; transform:scale(1.001); }
+/* Ken Burns lentissimo sulla sola foto attiva: dà "respiro" senza distrarre. */
+.hero-slider__slide[data-active] img{ animation:hero-kenburns calc(var(--hero-slider-duration,6000ms) * 2.2) ease-out forwards; }
+@keyframes hero-kenburns{ from{ transform:scale(1.001); } to{ transform:scale(1.07); } }
+/* Velo scuro in basso: tiene i comandi leggibili su qualsiasi foto. */
+.hero-slider__scrim{ position:absolute; inset:auto 0 0 0; height:45%; background:linear-gradient(to top, rgba(15,39,64,.62), transparent); pointer-events:none; }
+
+.hero-slider__arrow{ position:absolute; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:46px; height:46px; border:1px solid rgba(255,255,255,.4); background:rgba(15,39,64,.32); color:#fff; border-radius:var(--radius); cursor:pointer; transition:background .2s, border-color .2s; backdrop-filter:blur(4px); }
+.hero-slider__arrow:hover{ background:var(--accent); border-color:var(--accent); }
+.hero-slider__arrow--prev{ left:clamp(12px,2.5vw,28px); }
+.hero-slider__arrow--prev svg{ transform:rotate(180deg); }
+.hero-slider__arrow--next{ right:clamp(12px,2.5vw,28px); }
+
+.hero-slider__hud{ position:absolute; left:clamp(20px,4vw,56px); right:clamp(20px,4vw,56px); bottom:clamp(16px,2.5vw,28px); display:flex; align-items:center; gap:var(--sp-4); }
+.hero-slider__counter{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.12em; color:#fff; }
+.hero-slider__counter i{ font-style:normal; color:var(--accent); margin-inline:2px; }
+.hero-slider__dots{ display:flex; gap:10px; flex:1; max-width:260px; }
+.hero-slider__dot{ flex:1; height:18px; padding:0; border:0; background:none; cursor:pointer; display:flex; align-items:center; }
+.hero-slider__dot-fill{ display:block; width:100%; height:2px; background:rgba(255,255,255,.42); position:relative; overflow:hidden; }
+.hero-slider__dot[aria-current] .hero-slider__dot-fill{ background:rgba(255,255,255,.42); }
+.hero-slider__dot[aria-current] .hero-slider__dot-fill::after{ content:""; position:absolute; inset:0; background:var(--accent); transform-origin:left; transform:scaleX(1); }
+/* La barra della slide attiva si riempie in sincrono con l'autoplay. */
+.hero-slider__dot-fill[data-running]::after{ animation:hero-progress var(--hero-slider-duration,6000ms) linear forwards; }
+@keyframes hero-progress{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
+
+@media (max-width:720px){
+  .hero-slider__stage{ aspect-ratio:4/3; }
+  .hero-slider__arrow{ width:38px; height:38px; }
+  .hero-slider__hud{ left:20px; right:20px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-slider__slide{ transition:none; }
+  .hero-slider__slide[data-active] img{ animation:none; }
+}
+
 .blueprint{ width:100%; height:100%; }
 .blueprint .draw{ stroke:var(--deep); stroke-width:2; fill:none; stroke-linecap:round; stroke-linejoin:round;
   stroke-dasharray:1400; stroke-dashoffset:1400; animation:draw 2.6s var(--ease) .3s forwards; }
@@ -100,7 +140,6 @@
 .proj{ scroll-snap-align:start; flex:0 0 clamp(280px,32vw,380px); background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; display:flex; flex-direction:column; transition:border-color .2s, transform .2s, box-shadow .2s; }
 .proj:hover{ border-color:var(--accent-ui); transform:translateY(-4px); box-shadow:var(--shadow); }
 .proj__media{ aspect-ratio:4/3; position:relative; }
-.proj__tag{ position:absolute; top:12px; left:12px; font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.05em; text-transform:uppercase; background:var(--anthra); color:#fff; padding:4px 10px; border-radius:2px; z-index:1; }
 .proj__body{ padding:var(--sp-5); }
 .proj__body .cli{ font-family:var(--f-mono); font-size:var(--fs-xs); color:var(--accent-ui); letter-spacing:.05em; text-transform:uppercase; }
 .proj__body h3{ font-size:var(--fs-h4); color:var(--ink); margin-top:6px; }

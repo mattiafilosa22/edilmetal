@@ -20,6 +20,20 @@
   "Common": {
     "skipToContent": "Skip to content"
   },
+  "SiteNotice": {
+    "kicker": "Notice",
+    "title": "We are working for you.",
+    "text": "Site under update.",
+    "cta": "Got it",
+    "close": "Close the notice"
+  },
+  "HeroSlider": {
+    "label": "Edilmetal projects",
+    "prev": "Previous photo",
+    "next": "Next photo",
+    "goTo": "Go to photo {n}",
+    "status": "Photo {current} of {total}"
+  },
   "Header": {
     "brandAria": "Edilmetal — Home",
     "brandSubtitle": "Structural steelwork\nsince 1997"

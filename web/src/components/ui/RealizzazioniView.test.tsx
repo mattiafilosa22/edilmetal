@@ -11,7 +11,7 @@ const summaries = [
     id: "1",
     slug: "aiassa",
     titolo: "Aiassa",
-    cliente: "Aiassa Costruzioni",
+    cliente: "Aiassa",
     luogo: "Piacenza (PC)",
     anno: 2018,
     categoria: { slug: "strutture-miste" as const, nome: "Strutture miste" },
@@ -78,6 +78,7 @@ describe("RealizzazioniView", () => {
       id: String(i + 1),
       slug: `progetto-${i + 1}`,
       titolo: `Progetto ${String(i + 1).padStart(2, "0")}`,
+      cliente: `Progetto ${String(i + 1).padStart(2, "0")}`,
     }));
 
     render(
@@ -104,6 +105,7 @@ describe("RealizzazioniView", () => {
       id: String(i + 1),
       slug: `progetto-${i + 1}`,
       titolo: `Progetto ${String(i + 1).padStart(2, "0")}`,
+      cliente: `Progetto ${String(i + 1).padStart(2, "0")}`,
       categoria: i === 0 ? summaries[1].categoria : summaries[0].categoria,
     }));
 

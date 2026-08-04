@@ -8,7 +8,7 @@ const progetto = {
   id: "1",
   slug: "aiassa",
   titolo: "Aiassa",
-  cliente: "Aiassa Costruzioni",
+  cliente: "Aiassa",
   luogo: "Piacenza (PC)",
   anno: 2018,
   categoria: { slug: "strutture-miste" as const, nome: "Strutture miste" },
