@@ -3,12 +3,17 @@ import Link from "next/link";
 import type { HomeHero, Image as ImageDto } from "@/domain";
 import type { Locale } from "@/i18n/routing";
 import { Blueprint } from "./Blueprint";
+import { HeroSlider } from "./HeroSlider";
 
 type HeroProps = {
   hero: HomeHero;
   locale: Locale;
-  /** Foto reale dell'hero (da `settings.heroImage`); assente ⇒ fallback al disegno blueprint. */
-  heroImage?: ImageDto;
+  /**
+   * Foto reali dell'hero, in ordine: la prima è la copertina (`settings.heroImage`).
+   * Elenco vuoto ⇒ fallback al disegno blueprint. In modalità `photoOnly` con più
+   * di una foto diventano uno slider; nella modalità editoriale si usa la prima.
+   */
+  heroImages?: ImageDto[];
   /** Credito fotografico opzionale, mostrato sotto la foto (ignorato in modalità `photoOnly`). */
   fotoCredit?: string;
   /**
@@ -29,21 +34,20 @@ function withLocale(locale: Locale, href: string): string {
  * - `photoOnly` (fedele al sito storico): solo foto a piena larghezza, nessun testo sopra.
  * Un solo `h1` per pagina (WCAG) — assente del tutto in modalità `photoOnly`.
  */
-export function Hero({ hero, locale, heroImage, fotoCredit, photoOnly = false }: HeroProps) {
+export function Hero({
+  hero,
+  locale,
+  heroImages = [],
+  fotoCredit,
+  photoOnly = false,
+}: HeroProps) {
+  const heroImage = heroImages[0];
+
   if (photoOnly) {
     return (
       <section className="hero hero--photo-only">
         {heroImage ? (
-          <div className="hero__full-photo">
-            <Image
-              src={heroImage.src}
-              alt={heroImage.alt}
-              width={heroImage.width}
-              height={heroImage.height}
-              sizes="100vw"
-              priority
-            />
-          </div>
+          <HeroSlider slides={heroImages} />
         ) : (
           <div className="container">
             <div className="hero__draw tick">

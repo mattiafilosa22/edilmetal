@@ -13,7 +13,7 @@ export const mockSettings: SiteSettings = {
   indirizzo: "Piazza Alpini d'Italia 10/A, 43015 Noceto (PR)",
   telefono: "0521 615023",
   fax: "0521 615207",
-  email: "info@edilmetal.it",
+  email: "edilmetal@edilmetal.it",
   // Coordinate indicative di Noceto (PR), zona Ponte Taro.
   coordinate: { lat: 44.8103, lng: 10.1747 },
   mapsUrl:

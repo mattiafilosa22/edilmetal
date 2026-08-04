@@ -11,6 +11,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ContactInfoBand } from "@/components/layout/ContactInfoBand";
 import { ThemeScript } from "@/components/layout/ThemeScript";
+import { SiteNotice } from "@/components/ui/SiteNotice";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -90,6 +91,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           <a className="skip-link" href="#main">
             {t("skipToContent")}
           </a>
+          <SiteNotice />
           <Header locale={locale} settings={settings} />
           <main id="main">{children}</main>
           <ContactInfoBand settings={settings} />

@@ -14,24 +14,35 @@ const baseProgetto = {
 };
 
 describe("ProjectCard", () => {
-  it("does not repeat the client name when titolo and cliente coincide", () => {
+  it("shows the family of works as the visible title", () => {
     render(
       <ProjectCard
         progetto={{ ...baseProgetto, titolo: "Bervini", cliente: "Bervini" }}
         locale="it"
       />
     );
-    expect(screen.getAllByText("Bervini")).toHaveLength(1);
+    expect(screen.getByRole("heading", { name: "Scale" })).toBeInTheDocument();
+    expect(screen.getByText("Noceto (PR)")).toBeInTheDocument();
   });
 
-  it("shows both titolo and cliente kicker when they differ", () => {
+  it("keeps client name and year in the markup, but visually hidden", () => {
     render(
       <ProjectCard
         progetto={{ ...baseProgetto, titolo: "Pensilina industriale", cliente: "Parmalat" }}
         locale="it"
       />
     );
-    expect(screen.getByText("Pensilina industriale")).toBeInTheDocument();
-    expect(screen.getByText("Parmalat")).toBeInTheDocument();
+    expect(screen.getByText("Pensilina industriale — Parmalat")).toHaveClass("is-hidden-data");
+    expect(screen.getByText("2015")).toHaveClass("is-hidden-data");
+  });
+
+  it("links to the project page", () => {
+    render(
+      <ProjectCard
+        progetto={{ ...baseProgetto, titolo: "Bervini", cliente: "Bervini" }}
+        locale="it"
+      />
+    );
+    expect(screen.getByRole("link")).toHaveAttribute("href", "/it/realizzazioni/bervini");
   });
 });

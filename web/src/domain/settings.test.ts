@@ -7,7 +7,7 @@ const base = {
   partitaIva: "01234567890",
   indirizzo: "Piazza Alpini d'Italia 10/A, 43015 Noceto (PR)",
   telefono: "0521 615023",
-  email: "info@edilmetal.it",
+  email: "edilmetal@edilmetal.it",
   coordinate: { lat: 44.8103, lng: 10.1747 },
   orari: [],
   social: {},

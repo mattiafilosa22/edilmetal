@@ -20,6 +20,20 @@
   "Common": {
     "skipToContent": "Salta al contenuto"
   },
+  "SiteNotice": {
+    "kicker": "Avviso",
+    "title": "Stiamo lavorando per voi.",
+    "text": "Sito in aggiornamento.",
+    "cta": "Ho capito",
+    "close": "Chiudi l'avviso"
+  },
+  "HeroSlider": {
+    "label": "Realizzazioni Edilmetal",
+    "prev": "Foto precedente",
+    "next": "Foto successiva",
+    "goTo": "Vai alla foto {n}",
+    "status": "Foto {current} di {total}"
+  },
   "Header": {
     "brandAria": "Edilmetal — Home",
     "brandSubtitle": "Carpenteria metallica\ndal 1997"

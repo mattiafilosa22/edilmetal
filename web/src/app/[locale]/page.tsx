@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
+import type { Image as ImageDto, ProgettoSummary } from "@/domain";
 import { getPage, getProgetti, getSettings } from "@/lib/api";
 import {
   JsonLd,
@@ -15,6 +16,29 @@ import { FeaturedCategories } from "@/components/ui/FeaturedCategories";
 import { RealizzazioniBand } from "@/components/ui/RealizzazioniBand";
 
 type PageProps = { params: Promise<{ locale: string }> };
+
+/**
+ * Realizzazioni che alimentano lo slider dell'hero, dopo la foto di copertina
+ * di `settings.heroImage`: si usa la prima foto della loro galleria. Gli slug
+ * sono radici — Polylang aggiunge il suffisso della traduzione (`-2`).
+ */
+const HERO_SLIDER_PROGETTI = ["strutture-acciaio-bervini", "strutture-acciaio-acetum"];
+
+/** Copertina + prime foto delle realizzazioni scelte, senza duplicati né buchi. */
+function buildHeroImages(
+  copertina: ImageDto | undefined,
+  progetti: ProgettoSummary[]
+): ImageDto[] {
+  const dalleRealizzazioni = HERO_SLIDER_PROGETTI.map(
+    (slug) => progetti.find((p) => p.slug.startsWith(slug))?.copertina
+  );
+  const immagini = [copertina, ...dalleRealizzazioni].filter(
+    (img): img is ImageDto => img !== undefined
+  );
+  return immagini.filter(
+    (img, i) => immagini.findIndex((other) => other.src === img.src) === i
+  );
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -37,15 +61,18 @@ export default async function HomePage({ params }: PageProps) {
   const locale = rawLocale as Locale;
   setRequestLocale(locale);
 
-  const [page, evidenza, settings] = await Promise.all([
+  const [page, evidenza, settings, tutti] = await Promise.all([
     getPage({ locale, key: "home" }),
     getProgetti({ locale, filters: { inEvidenza: true } }),
     getSettings({ locale }),
+    getProgetti({ locale }),
   ]);
 
   const t = await getTranslations("Home");
   const tSeo = await getTranslations("SEO");
   const home = page?.home;
+
+  const heroImages = buildHeroImages(settings.heroImage, tutti);
 
   const organizationJsonLd = buildOrganizationJsonLd({
     settings,
@@ -69,7 +96,7 @@ export default async function HomePage({ params }: PageProps) {
       <Hero
         hero={home.hero}
         locale={locale}
-        heroImage={settings.heroImage}
+        heroImages={heroImages}
         photoOnly
       />
 

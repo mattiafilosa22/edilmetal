@@ -1,4 +1,5 @@
 import {
+  isProgettoNascosto,
   progettoSchema,
   progettoSummaryListSchema,
   pageContentSchema,
@@ -11,6 +12,7 @@ import {
 } from "@/domain";
 import { routing, type Locale } from "@/i18n/routing";
 import { progettoToSummary } from "@/lib/mappers/progetto";
+import { anonimizzaProgetto, anonimizzaSummary } from "@/lib/anonimizza";
 import { ApiError, fetchValidated, isApiConfigured, isStrict } from "./client";
 import { mockProgetti } from "./mock/progetti";
 import { mockSettings } from "./mock/settings";
@@ -91,7 +93,7 @@ export async function getProgetti(args: {
   filters?: ProgettoFilters;
 }): Promise<ProgettoSummary[]> {
   const { locale, filters = {} } = args;
-  return withFallback(
+  const summaries = await withFallback(
     () =>
       fetchValidated("progetti", progettoSummaryListSchema, {
         lang: locale,
@@ -101,10 +103,13 @@ export async function getProgetti(args: {
         inEvidenza: filters.inEvidenza ? "1" : undefined,
       }),
     () => {
-      const summaries = mockProgetti.map(progettoToSummary);
-      return progettoSummaryListSchema.parse(filterMock(summaries, filters));
+      const all = mockProgetti.map(progettoToSummary);
+      return progettoSummaryListSchema.parse(filterMock(all, filters));
     }
   );
+  return summaries
+    .filter((p) => !isProgettoNascosto(p.slug))
+    .map(anonimizzaSummary);
 }
 
 export async function getProgetto(args: {
@@ -112,10 +117,12 @@ export async function getProgetto(args: {
   slug: string;
 }): Promise<Progetto | null> {
   const { locale, slug } = args;
-  return withNullableFallback(
+  if (isProgettoNascosto(slug)) return null;
+  const progetto = await withNullableFallback(
     () => fetchValidated(`progetti/${slug}`, progettoSchema, { lang: locale }),
     () => mockProgetti.find((p) => p.slug === slug) ?? null
   );
+  return progetto === null ? null : anonimizzaProgetto(progetto);
 }
 
 export async function getPage(args: {

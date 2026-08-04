@@ -55,7 +55,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
   const heading = progetto.seo?.title ?? progettoDisplayName(progetto);
   const description =
-    progetto.seo?.description ?? progetto.descrizione.slice(0, 160);
+    progetto.seo?.description ??
+    progetto.descrizione.slice(0, 160);
   const cover = progetto.galleria[0];
   return buildMetadata({
     locale: l,
@@ -105,12 +106,13 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
     { name: progetto.titolo, url: absoluteUrl(progettoPath(locale, slug)) },
   ]);
 
-  const databox: Array<{ label: string; value: string }> = [
+  // `hidden`: dato presente nella scheda ma non pubblico (committente e anno).
+  const databox: Array<{ label: string; value: string; hidden?: boolean }> = [
     { label: t("categoria"), value: progetto.categoria.nome },
-    { label: t("cliente"), value: progetto.cliente },
+    { label: t("cliente"), value: progetto.cliente, hidden: true },
     ...(progetto.settore ? [{ label: t("settore"), value: progetto.settore }] : []),
     { label: t("luogo"), value: progetto.luogo },
-    { label: t("anno"), value: String(progetto.anno) },
+    { label: t("anno"), value: String(progetto.anno), hidden: true },
   ];
 
   return (
@@ -124,18 +126,23 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
             <span className="sep">/</span>
             <Link href={`/${locale}/realizzazioni`}>{t("breadcrumbRealizzazioni")}</Link>
             <span className="sep">/</span>
-            <span aria-current="page">{progettoDisplayName(progetto)}</span>
+            <span aria-current="page">
+              {progetto.categoria.nome}
+              <span className="is-hidden-data"> — {progettoDisplayName(progetto)}</span>
+            </span>
           </nav>
           <div className="sp-head mt-4">
             <div>
-              <h1>{progettoDisplayName(progetto)}</h1>
+              <h1>
+                {progetto.categoria.nome}
+                <span className="is-hidden-data"> — {progettoDisplayName(progetto)}</span>
+              </h1>
               <div className="sp-head__meta">
-                <span className="sp-tag sp-tag--accent">{progetto.categoria.nome}</span>
                 {progetto.settore ? (
                   <span className="sp-tag">{t("settorePrefix")} {progetto.settore.toLowerCase()}</span>
                 ) : null}
                 <span className="sp-tag">{progetto.luogo}</span>
-                <span className="sp-tag">{progetto.anno}</span>
+                <span className="sp-tag is-hidden-data">{progetto.anno}</span>
               </div>
             </div>
             <div
@@ -163,7 +170,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
               <h2>{t("schedaTitle")}</h2>
               <dl className="datalist">
                 {databox.map((row) => (
-                  <div key={row.label}>
+                  <div key={row.label} className={row.hidden ? "is-hidden-data" : undefined}>
                     <dt>{row.label}</dt>
                     <dd>{row.value}</dd>
                   </div>

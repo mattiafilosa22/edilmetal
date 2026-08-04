@@ -31,6 +31,24 @@
 .tabs__panel ul.spec li{ position:relative; padding-left:22px; font-family:var(--f-mono); font-size:var(--fs-sm); color:var(--ink-2); }
 .tabs__panel ul.spec li::before{ content:""; position:absolute; left:0; top:.55em; width:10px; height:2px; background:var(--accent-ui); }
 
+/* ---------- Avviso modale "sito in aggiornamento" ---------- */
+.notice{ position:fixed; inset:0; margin:auto; width:min(520px, calc(100vw - 40px)); max-height:calc(100vh - 40px); padding:clamp(28px,4vw,44px); border:1px solid var(--line-2); border-top:3px solid var(--accent); border-radius:var(--radius-lg); background:var(--surface); color:var(--ink); box-shadow:var(--shadow); overflow:visible; }
+.notice::backdrop{ background:rgba(15,39,64,.62); backdrop-filter:blur(3px); }
+/* Reticolo blueprint appena accennato, coerente col resto del sito. */
+.notice__grid{ position:absolute; inset:0; pointer-events:none; border-radius:inherit; opacity:.5;
+  background:linear-gradient(var(--grid) 1px,transparent 1px), linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:26px 26px,26px 26px; -webkit-mask-image:linear-gradient(to bottom, #000, transparent 70%); mask-image:linear-gradient(to bottom, #000, transparent 70%); }
+/* Il reticolo è posizionato: senza questo i contenuti statici gli finirebbero sotto. */
+.notice > :not(.notice__grid):not(.notice__close){ position:relative; }
+.notice__close{ position:absolute; top:12px; right:12px; display:grid; place-items:center; width:38px; height:38px; border:1px solid var(--line); background:transparent; color:var(--ink-2); border-radius:var(--radius); cursor:pointer; transition:color .2s, border-color .2s; }
+.notice__close:hover{ color:var(--accent-ui); border-color:var(--accent-ui); }
+.notice__kick{ display:inline-flex; align-items:center; gap:10px; font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ui); }
+.notice__kick .num{ color:var(--ink-faint); }
+.notice__title{ font-size:var(--fs-h3); color:var(--ink); margin-top:var(--sp-3); }
+.notice__text{ color:var(--ink-2); margin-top:var(--sp-3); }
+.notice .btn{ margin-top:var(--sp-5); }
+@media (max-width:520px){ .notice__title{ font-size:var(--fs-h4); } }
+
 /* ---------- Form: consenso + note ---------- */
 .form-status{ font-family:var(--f-mono); font-size:var(--fs-sm); margin-top:var(--sp-4); }
 .form-status--success{ color:#2f7d4f; }
