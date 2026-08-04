@@ -78,6 +78,7 @@ export default async function AziendaPage({ params }: PageProps) {
       {/* Storia */}
       <section className="section">
         <div className="container">
+          <h2 className="sr-only">{t("storiaKick")}</h2>
           {azienda.storia.map((par, i) => (
             <Reveal key={i} className="mt-4">
               <p style={{ color: "var(--ink-2)" }}>{par}</p>

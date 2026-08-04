@@ -36,7 +36,9 @@ vi.mock("@/lib/api", () => ({
 }));
 
 vi.mock("next-intl/server", () => ({
-  getTranslations: vi.fn().mockResolvedValue((key: string) => key),
+  getTranslations: vi.fn().mockResolvedValue((key: string) =>
+    key === "storiaKick" ? "La storia" : key
+  ),
   setRequestLocale: vi.fn(),
 }));
 
@@ -47,6 +49,13 @@ describe("AziendaPage", () => {
     for (const paragraph of aziendaPage.azienda.storia) {
       expect(screen.getByText(paragraph)).toBeInTheDocument();
     }
+    expect(screen.queryByText("La società")).not.toBeInTheDocument();
+  });
+
+  it("gives the story section a visually hidden i18n level-two heading", async () => {
+    render(await AziendaPage({ params: Promise.resolve({ locale: "it" }) }));
+
+    expect(screen.getByRole("heading", { level: 2, name: "La storia" })).toHaveClass("sr-only");
     expect(screen.queryByText("La società")).not.toBeInTheDocument();
   });
 });
