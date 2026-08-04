@@ -63,11 +63,40 @@ export function anonimizzaSummary(summary: ProgettoSummary): ProgettoSummary {
   };
 }
 
-/** Come `anonimizzaSummary`, estesa a descrizione e galleria della scheda. */
+/**
+ * Come `anonimizzaSummary`, estesa a tutti i testi liberi della scheda:
+ * descrizione, galleria, dati tecnici, lavorazioni, materiali e meta SEO
+ * (title/description finiscono nella scheda social e nei risultati di ricerca).
+ *
+ * `title` e `description` ripuliti possono restare monchi — "— Edilmetal", una
+ * frase che inizia con la punteggiatura: in quel caso si scartano e la pagina
+ * ricade sui titoli di default costruiti dalla famiglia di opere.
+ */
 export function anonimizzaProgetto(progetto: Progetto): Progetto {
   return {
     ...progetto,
     descrizione: anonimizzaTesto(progetto.descrizione, progetto),
     galleria: progetto.galleria.map((img) => anonimizzaImmagine(img, progetto)),
+    datiTecnici: progetto.datiTecnici.map((dato) => ({
+      label: anonimizzaTesto(dato.label, progetto),
+      valore: anonimizzaTesto(dato.valore, progetto),
+    })),
+    lavorazioni: progetto.lavorazioni.map((v) => anonimizzaTesto(v, progetto)),
+    materiali: progetto.materiali.map((v) => anonimizzaTesto(v, progetto)),
+    seo: progetto.seo
+      ? {
+          ...progetto.seo,
+          title: testoSensato(anonimizzaTesto(progetto.seo.title ?? "", progetto)),
+          description: testoSensato(
+            anonimizzaTesto(progetto.seo.description ?? "", progetto)
+          ),
+        }
+      : undefined,
   };
+}
+
+/** Scarta i testi rimasti privi di sostanza dopo la ripulitura. */
+function testoSensato(testo: string): string | undefined {
+  const pulito = testo.replace(/^[\s—–\-–:,.;]+/, "").trim();
+  return pulito.length >= 15 ? pulito : undefined;
 }

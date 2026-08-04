@@ -28,6 +28,18 @@ type PageProps = { params: Promise<{ locale: string; slug: string }> };
 
 const RELATED_MAX = 6;
 
+/**
+ * Come si chiama pubblicamente una realizzazione: famiglia di opere e luogo.
+ * Il nome del committente non è divulgabile, quindi non compare né nel titolo
+ * della pagina né nei dati strutturati.
+ */
+function etichettaPubblica(progetto: {
+  categoria: { nome: string };
+  luogo: string;
+}): string {
+  return `${progetto.categoria.nome} — ${progetto.luogo}`;
+}
+
 export async function generateStaticParams() {
   const params: Array<{ locale: Locale; slug: string }> = [];
   for (const locale of routing.locales) {
@@ -53,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: tSeo("realizzazioniDescription"),
     });
   }
-  const heading = progetto.seo?.title ?? progettoDisplayName(progetto);
+  const heading = progetto.seo?.title ?? etichettaPubblica(progetto);
   const description =
     progetto.seo?.description ??
     progetto.descrizione.slice(0, 160);
@@ -94,7 +106,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
 
   const projectJsonLd = buildProjectJsonLd({
     progetto,
-    name: progettoDisplayName(progetto),
+    name: etichettaPubblica(progetto),
     url: absoluteUrl(progettoPath(locale, slug)),
     images: progetto.galleria.map((img) => absoluteUrl(img.src)),
     creatorName: settings.nomeAzienda,
@@ -103,7 +115,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
   const breadcrumbJsonLd = buildBreadcrumbJsonLd([
     { name: t("breadcrumbHome"), url: absoluteUrl(localePath(locale)) },
     { name: t("breadcrumbRealizzazioni"), url: absoluteUrl(localePath(locale, "realizzazioni")) },
-    { name: progetto.titolo, url: absoluteUrl(progettoPath(locale, slug)) },
+    { name: progetto.categoria.nome, url: absoluteUrl(progettoPath(locale, slug)) },
   ]);
 
   // `hidden`: dato presente nella scheda ma non pubblico (committente e anno).
@@ -157,7 +169,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
         <div className="container">
           <div className="sp-layout">
             <div>
-              <ProjectGallery images={progetto.galleria} fallbackAlt={progettoDisplayName(progetto)} />
+              <ProjectGallery images={progetto.galleria} fallbackAlt={etichettaPubblica(progetto)} />
               <ProjectTabs
                 descrizione={progetto.descrizione}
                 datiTecnici={progetto.datiTecnici}
