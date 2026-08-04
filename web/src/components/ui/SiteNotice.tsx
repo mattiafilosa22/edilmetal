@@ -78,10 +78,6 @@ export function SiteNotice() {
       <button type="button" className="notice__close" onClick={dismiss} aria-label={t("close")}>
         {close}
       </button>
-      <span className="notice__kick">
-        <span className="num">00</span>
-        <span className="txt">{t("kicker")}</span>
-      </span>
       <h2 id="site-notice-title" className="notice__title">
         {t("title")}
       </h2>

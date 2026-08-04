@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { ProjectCard } from "./ProjectCard";
 
@@ -36,13 +36,19 @@ describe("ProjectCard", () => {
     expect(screen.getByText("2015")).toHaveClass("is-hidden-data");
   });
 
-  it("links to the project page", () => {
+  it("uses one link for the image, heading and location", () => {
     render(
       <ProjectCard
         progetto={{ ...baseProgetto, titolo: "Bervini", cliente: "Bervini" }}
         locale="it"
       />
     );
-    expect(screen.getByRole("link")).toHaveAttribute("href", "/it/realizzazioni/bervini");
+    const links = screen.getAllByRole("link");
+
+    expect(links).toHaveLength(1);
+    expect(links[0]).toHaveAttribute("href", "/it/realizzazioni/bervini");
+    expect(within(links[0]).getByRole("img", { name: "Bervini" })).toBeInTheDocument();
+    expect(within(links[0]).getByRole("heading", { name: "Scale" })).toBeInTheDocument();
+    expect(within(links[0]).getByText("Noceto (PR)")).toBeInTheDocument();
   });
 });

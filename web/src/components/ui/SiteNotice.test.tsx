@@ -6,8 +6,7 @@ import { SiteNotice } from "./SiteNotice";
 
 const messages = {
   SiteNotice: {
-    kicker: "Avviso",
-    title: "Stiamo lavorando per voi.",
+    title: "Stiamo lavorando per rendere il sito ancora più fruibile.",
     text: "Sito in aggiornamento.",
     cta: "Ho capito",
     close: "Chiudi l'avviso",
@@ -29,23 +28,25 @@ describe("SiteNotice", () => {
 
   it("shows the notice on the first visit of the session", () => {
     renderNotice();
-    expect(screen.getByText("Stiamo lavorando per voi.")).toBeInTheDocument();
+    expect(screen.getByText("Stiamo lavorando per rendere il sito ancora più fruibile.")).toBeInTheDocument();
     expect(screen.getByText("Sito in aggiornamento.")).toBeInTheDocument();
+    expect(screen.queryByText("00")).not.toBeInTheDocument();
+    expect(screen.queryByText("Avviso")).not.toBeInTheDocument();
   });
 
   it("can be dismissed and does not come back within the same session", () => {
     const { unmount } = renderNotice();
     fireEvent.click(screen.getByRole("button", { name: "Ho capito" }));
-    expect(screen.queryByText("Stiamo lavorando per voi.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Stiamo lavorando per rendere il sito ancora più fruibile.")).not.toBeInTheDocument();
 
     unmount();
     renderNotice();
-    expect(screen.queryByText("Stiamo lavorando per voi.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Stiamo lavorando per rendere il sito ancora più fruibile.")).not.toBeInTheDocument();
   });
 
   it("can also be dismissed with the close button", () => {
     renderNotice();
     fireEvent.click(screen.getByRole("button", { name: "Chiudi l'avviso" }));
-    expect(screen.queryByText("Stiamo lavorando per voi.")).not.toBeInTheDocument();
+    expect(screen.queryByText("Stiamo lavorando per rendere il sito ancora più fruibile.")).not.toBeInTheDocument();
   });
 });

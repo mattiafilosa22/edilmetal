@@ -18,7 +18,6 @@ import {
 import { ProjectGallery } from "@/components/ui/ProjectGallery";
 import { ProjectTabs } from "@/components/ui/ProjectTabs";
 import { ProjectCard } from "@/components/ui/ProjectCard";
-import { sanitizeContentHtml } from "@/lib/sanitizeHtml";
 import { RequestForm } from "@/components/ui/RequestForm";
 import { Rail } from "@/components/ui/Rail";
 import { Reveal } from "@/components/ui/Reveal";
@@ -157,10 +156,6 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
                 <span className="sp-tag is-hidden-data">{progetto.anno}</span>
               </div>
             </div>
-            <div
-              style={{ color: "var(--ink-2)" }}
-              dangerouslySetInnerHTML={{ __html: sanitizeContentHtml(progetto.descrizione) }}
-            />
           </div>
         </div>
       </section>

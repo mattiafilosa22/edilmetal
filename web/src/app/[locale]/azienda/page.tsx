@@ -75,12 +75,9 @@ export default async function AziendaPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Storia (come il vecchio "LA SOCIETA'") */}
+      {/* Storia */}
       <section className="section">
         <div className="container">
-          <Reveal className="sec-head">
-            <h2>{azienda.storiaTitolo}</h2>
-          </Reveal>
           {azienda.storia.map((par, i) => (
             <Reveal key={i} className="mt-4">
               <p style={{ color: "var(--ink-2)" }}>{par}</p>
