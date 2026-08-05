@@ -118,12 +118,12 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
     { name: progetto.categoria.nome, url: absoluteUrl(progettoPath(locale, slug)) },
   ]);
 
-  // `hidden`: dato presente nella scheda ma non pubblico (committente e anno).
+  // `hidden`: dato presente nella scheda ma non pubblico (committente, luogo e anno).
   const databox: Array<{ label: string; value: string; hidden?: boolean }> = [
     { label: t("categoria"), value: progetto.categoria.nome },
     { label: t("cliente"), value: progetto.cliente, hidden: true },
     ...(progetto.settore ? [{ label: t("settore"), value: progetto.settore }] : []),
-    { label: t("luogo"), value: progetto.luogo },
+    { label: t("luogo"), value: progetto.luogo, hidden: true },
     { label: t("anno"), value: String(progetto.anno), hidden: true },
   ];
 
@@ -153,7 +153,7 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
                 {progetto.settore ? (
                   <span className="sp-tag">{t("settorePrefix")} {progetto.settore.toLowerCase()}</span>
                 ) : null}
-                <span className="sp-tag">{progetto.luogo}</span>
+                <span className="sp-tag is-hidden-data">{progetto.luogo}</span>
                 <span className="sp-tag is-hidden-data">{progetto.anno}</span>
               </div>
             </div>
