@@ -60,7 +60,6 @@ export function Rail({ children }: RailProps) {
     const rail = railRef.current;
     if (!rail) return;
     drag.current = { down: true, startX: e.clientX, startScroll: rail.scrollLeft, moved: false };
-    rail.classList.add("is-grabbing");
   }, []);
 
   useEffect(() => {
@@ -68,7 +67,13 @@ export function Rail({ children }: RailProps) {
       const rail = railRef.current;
       if (!rail || !drag.current.down) return;
       const dx = e.clientX - drag.current.startX;
-      if (Math.abs(dx) > 10) drag.current.moved = true;
+      // Solo a trascinamento confermato attivo `is-grabbing` (e quindi
+      // `pointer-events:none` sulle card): se scatta già al pointerdown, un
+      // semplice click perde il target al mouseup e il link non naviga mai.
+      if (!drag.current.moved && Math.abs(dx) > 10) {
+        drag.current.moved = true;
+        rail.classList.add("is-grabbing");
+      }
       rail.scrollLeft = drag.current.startScroll - dx;
     }
     function onUp() {
