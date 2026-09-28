@@ -46,6 +46,7 @@ sito web edilmetal 2018/
 # Tool caches (not part of the project)
 .wrangler/
 .playwright-mcp/
-.codex/
+.codex/*
+!.codex/agents/
 .claude/.headroom_wrap_marker.json
 .serena/
