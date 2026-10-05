@@ -22,12 +22,12 @@ const CATEGORIE: CategoriaRef[] = [
 
 const home: PageContent = {
   key: "home",
-  title: "Edilmetal · Carpenteria metallica su commessa",
+  title: "Edilmetal · Costruzioni in metallo su commessa",
   subtitle:
     "Progettazione, costruzione e montaggio di strutture in acciaio dal 1997.",
   home: {
     hero: {
-      eyebrow: "Carpenteria metallica · su commessa · dal 1997",
+      eyebrow: "Costruzioni in metallo · su commessa · dal 1997",
       title: "Progettiamo strutture in acciaio,",
       titleAccent: "su misura.",
       subtitle:
@@ -67,7 +67,7 @@ const servizi: PageContent = {
   key: "servizi",
   title: "Prodotti",
   subtitle:
-    "Progettazione, costruzione e montaggio di strutture in carpenteria metallica per l'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.",
+    "Progettazione, costruzione e montaggio di strutture in metallo per l'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.",
   servizi: {
     tipologie: CATEGORIE,
   },

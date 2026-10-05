@@ -46,6 +46,7 @@ const summaries = [
 const categorie = [
   { slug: "strutture-miste" as const, nome: "Strutture miste" },
   { slug: "strutture-acciaio" as const, nome: "Strutture in acciaio" },
+  { slug: "scale" as const, nome: "Scale" },
 ];
 
 function renderFromQuery() {
@@ -68,6 +69,20 @@ describe("RealizzazioniViewFromQuery", () => {
 
     expect(screen.getByText("Aiassa")).toBeInTheDocument();
     expect(screen.queryByText("Acetum")).not.toBeInTheDocument();
+    // Il filtro attivo è annunciato dal chip premuto.
+    expect(screen.getByRole("button", { name: "Strutture miste" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "Tutte" })).toHaveAttribute("aria-pressed", "false");
+  });
+
+  it("mostra lo stato vuoto per una categoria valida senza realizzazioni", () => {
+    useSearchParams.mockReturnValue(new URLSearchParams("categoria=scale"));
+
+    renderFromQuery();
+
+    expect(screen.getByRole("heading", { name: "Nessuna realizzazione" })).toBeInTheDocument();
+    expect(screen.getByText("0 progetti trovati")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Scale" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "Rimuovi i filtri" })).toBeInTheDocument();
   });
 
   it("ignora una categoria non valida in query string (fallback sicuro, nessun filtro)", () => {

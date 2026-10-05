@@ -2,14 +2,14 @@
   "SEO": {
     "siteName": "Edilmetal S.r.l.",
     "defaultDescription": "Edilmetal: design, fabrication and erection of structural steelwork for industrial, commercial and tertiary buildings. Noceto (PR), Italy, since 1997.",
-    "homeHeading": "Structural steelwork to order · since 1997",
+    "homeHeading": "Metal constructions to order · since 1997",
     "homeDescription": "Design, fabrication and erection of made-to-order steel structures. A single partner for industry, retail and offices. Noceto (PR), Italy.",
     "realizzazioniHeading": "Projects",
     "realizzazioniDescription": "Edilmetal project portfolio: steel structures, canopies, stairs, roofing, façades and special works, all made to order.",
     "serviziHeading": "Products",
-    "serviziDescription": "Edilmetal services: survey and design, signed structural calculations, in-house fabrication and on-site erection. Eight types of works.",
+    "serviziDescription": "Edilmetal products: survey and design, signed structural calculations, in-house fabrication and on-site erection. Eight types of works.",
     "aziendaHeading": "About us",
-    "aziendaDescription": "Edilmetal S.r.l.: made-to-order structural steelwork in Noceto (PR) since 1997. History, values, workshop and how to reach us.",
+    "aziendaDescription": "Edilmetal S.r.l.: made-to-order metal constructions in Noceto (PR) since 1997. History, values, workshop and how to reach us.",
     "contattiHeading": "Contact",
     "contattiDescription": "Contact Edilmetal: request a quote for your steel structure. Noceto (PR), Italy, phone +39 0521 615023.",
     "privacyPolicyHeading": "Privacy Policy",
@@ -62,7 +62,7 @@
     "en": "EN"
   },
   "Footer": {
-    "tagline": "Made-to-order structural steelwork for industrial, commercial and tertiary buildings. Since 1997.",
+    "tagline": "Made-to-order metal constructions for industrial, commercial and tertiary buildings. Since 1997.",
     "realizzazioni": "Projects",
     "azienda": "Company",
     "contatti": "Contact",
@@ -117,7 +117,6 @@
     "galleryLabel": "Project gallery",
     "thumbsLabel": "Gallery thumbnails",
     "tablistLabel": "Project details",
-    "tabDescrizione": "Description",
     "tabDati": "Technical data",
     "tabLavorazioni": "Processes",
     "tabMateriali": "Materials",
@@ -125,7 +124,6 @@
     "categoria": "Category",
     "cliente": "Client",
     "settore": "Sector",
-    "luogo": "Location",
     "anno": "Year",
     "ctaSimile": "Similar project →",
     "richiestaKick": "Request",
@@ -188,7 +186,6 @@
     "contattiTitle": "Contact",
     "orariTitle": "Office hours",
     "telefonoTitle": "Phone",
-    "faxLabel": "Fax",
     "preventiviText": "For information and quotes, get in touch!"
   }
 }

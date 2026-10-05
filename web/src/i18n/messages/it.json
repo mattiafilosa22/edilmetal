@@ -2,16 +2,16 @@
   "SEO": {
     "siteName": "Edilmetal S.r.l.",
     "defaultDescription": "Edilmetal: progettazione, costruzione e montaggio di strutture in carpenteria metallica per l'edilizia industriale, commerciale e terziaria. Noceto (PR), dal 1997.",
-    "homeHeading": "Carpenteria metallica su commessa · dal 1997",
+    "homeHeading": "Costruzioni in metallo su commessa · dal 1997",
     "homeDescription": "Progettazione, costruzione e montaggio di strutture in acciaio su commessa. Un unico interlocutore per industria, commercio e terziario. Noceto (PR).",
     "realizzazioniHeading": "Realizzazioni",
     "realizzazioniDescription": "Portfolio delle realizzazioni Edilmetal: strutture in acciaio, pensiline, scale, coperture, facciate e opere speciali su commessa.",
     "serviziHeading": "Prodotti",
-    "serviziDescription": "I servizi Edilmetal: sopralluogo e progetto, calcolo strutturale firmato, produzione in officina e montaggio in cantiere. Otto tipologie di opere.",
+    "serviziDescription": "I prodotti Edilmetal: sopralluogo e progetto, calcolo strutturale firmato, produzione in officina e montaggio in cantiere. Otto tipologie di opere.",
     "aziendaHeading": "Chi siamo",
-    "aziendaDescription": "Edilmetal S.r.l.: dal 1997 carpenteria metallica su commessa a Noceto (PR). Storia, valori, officina e come raggiungerci.",
+    "aziendaDescription": "Edilmetal S.r.l.: dal 1997 costruzioni in metallo su commessa a Noceto (PR). Storia, valori, officina e come raggiungerci.",
     "contattiHeading": "Contatti",
-    "contattiDescription": "Contatta Edilmetal: richiedi un preventivo per la tua struttura in carpenteria metallica. Noceto (PR), tel 0521 615023.",
+    "contattiDescription": "Contatta Edilmetal: richiedi un preventivo per la tua struttura in metallo. Noceto (PR), tel 0521 615023.",
     "privacyPolicyHeading": "Privacy Policy",
     "privacyPolicyDescription": "Informativa sul trattamento dei dati personali di Edilmetal S.r.l., ai sensi del Regolamento UE 2016/679 (GDPR).",
     "cookiePolicyHeading": "Cookie Policy",
@@ -62,7 +62,7 @@
     "en": "EN"
   },
   "Footer": {
-    "tagline": "Carpenteria metallica su commessa per l'edilizia industriale, commerciale e terziaria. Dal 1997.",
+    "tagline": "Costruzioni in metallo su commessa per l'edilizia industriale, commerciale e terziaria. Dal 1997.",
     "realizzazioni": "Realizzazioni",
     "azienda": "Azienda",
     "contatti": "Contatti",
@@ -117,7 +117,6 @@
     "galleryLabel": "Galleria del progetto",
     "thumbsLabel": "Miniature della galleria",
     "tablistLabel": "Dettagli del progetto",
-    "tabDescrizione": "Descrizione",
     "tabDati": "Dati tecnici",
     "tabLavorazioni": "Lavorazioni",
     "tabMateriali": "Materiali",
@@ -125,7 +124,6 @@
     "categoria": "Categoria",
     "cliente": "Cliente",
     "settore": "Settore",
-    "luogo": "Luogo",
     "anno": "Anno",
     "ctaSimile": "Progetto simile →",
     "richiestaKick": "Richiesta",
@@ -188,7 +186,6 @@
     "contattiTitle": "Contatti",
     "orariTitle": "Orari ufficio",
     "telefonoTitle": "Telefono",
-    "faxLabel": "Fax",
     "preventiviText": "Per informazioni e preventivi contattateci!"
   }
 }

@@ -15,8 +15,8 @@ type Tab = { id: string; label: string; panel: ReactNode };
 /**
  * Tab tecniche ARIA della scheda progetto (Dati tecnici / Lavorazioni /
  * Materiali). Navigazione da tastiera (frecce, Home, End) con roving
- * tabindex, come da pattern WAI-ARIA. I tab vuoti sono omessi; senza dati
- * il componente non rende nulla.
+ * tabindex, come da pattern WAI-ARIA. I tab vuoti sono omessi; con un solo
+ * contenuto si rende titolo + pannello (niente tablist), senza dati nulla.
  */
 export function ProjectTabs({ datiTecnici, lavorazioni, materiali }: ProjectTabsProps) {
   const t = useTranslations("Scheda");
@@ -81,6 +81,17 @@ export function ProjectTabs({ datiTecnici, lavorazioni, materiali }: ProjectTabs
   }
 
   if (tabs.length === 0) return null;
+
+  // Un solo contenuto: un tablist con un unico tab non serve, basta titolo + pannello.
+  if (tabs.length === 1) {
+    const [only] = tabs;
+    return (
+      <div className="section" style={{ paddingBlock: "var(--sp-7) 0" }}>
+        <h2 className="tabs__title">{only.label}</h2>
+        <div className="tabs__panel">{only.panel}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="section" style={{ paddingBlock: "var(--sp-7) 0" }}>

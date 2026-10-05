@@ -33,7 +33,10 @@ export const siteSettingsSchema = z.object({
   partitaIva: z.string().min(1),
   indirizzo: z.string().min(1),
   telefono: z.string().min(1),
-  /** Fax (opzionale, dato storico del sito precedente). */
+  /**
+   * Fax (opzionale, dato storico del sito precedente). Resta nel contratto
+   * API del CMS ma non è pubblicato: nessun componente lo mostra.
+   */
   fax: z.string().optional(),
   email: z.email(),
   /** Coordinate della sede per la mappa Leaflet (OSM cookieless). */

@@ -36,11 +36,12 @@ export function anonimizzaTesto(testo: string, dati: DatiNonPubblici): string {
 
   const luogo = dati.luogo?.trim();
   if (luogo && luogo.length > 1) {
+    // Solo nella forma "a/in/presso <luogo>": il nome isolato può essere un
+    // termine legittimo (un materiale, un marchio) e non va toccato.
     // `\b` finale solo se il luogo termina con una lettera: può chiudersi con una
     // parentesi ("Noceto (PR)"), e "Parma" non deve intaccare "Parmalat".
     const escaped = escapeRegExp(luogo) + (/\w$/.test(luogo) ? "\\b" : "");
-    out = out.replace(new RegExp(`\\s*\\b(a|ad|in|di|presso)\\s+${escaped}`, "g"), "");
-    out = out.replace(new RegExp(`\\s*\\b${escaped}`, "g"), "");
+    out = out.replace(new RegExp(`\\s*\\b(a|ad|in|presso)\\s+${escaped}`, "g"), "");
   }
 
   out = out

@@ -43,6 +43,23 @@ describe("anonimizzaTesto", () => {
     ).toBe("Capannone Parmalat.");
   });
 
+  it("keeps the location name when it is not introduced by a preposition", () => {
+    const luogo = { cliente: "X", titolo: "X", anno: 2018, luogo: "Parma" };
+    expect(anonimizzaTesto("Pietra Parma levigata", luogo)).toBe("Pietra Parma levigata");
+    expect(anonimizzaTesto("Prosciuttificio di Parma", luogo)).toBe("Prosciuttificio di Parma");
+  });
+
+  it("removes the location after 'in' and 'presso' as well", () => {
+    const luogo = { cliente: "X", titolo: "X", anno: 2018, luogo: "Fidenza (PR)" };
+    expect(anonimizzaTesto("Montaggio in Fidenza (PR)", luogo)).toBe("Montaggio");
+    expect(anonimizzaTesto("Posa presso Fidenza (PR); collaudo.", luogo)).toBe("Posa; collaudo.");
+  });
+
+  it("leaves the text untouched when the location is missing or empty", () => {
+    expect(anonimizzaTesto("Scala a Noceto.", { ...dati, luogo: "" })).toBe("Scala a Noceto.");
+    expect(anonimizzaTesto("Scala a Noceto.", dati)).toBe("Scala a Noceto.");
+  });
+
   it("removes the name when it appears without a preposition", () => {
     expect(anonimizzaTesto("Commessa Bervini, Noceto.", dati)).toBe("Commessa, Noceto.");
   });
@@ -77,8 +94,8 @@ const progetto: Progetto = {
   descrizione: "<p>Realizzazione Edilmetal per Plan (2018).</p>",
   galleria: [{ src: "/1.jpg", width: 100, height: 80, alt: "Edilmetal — Scale Plan (foto)" }],
   datiTecnici: [{ label: "Tipologia", valore: "Realizzazione in carpenteria metallica per Plan" }],
-  lavorazioni: ["Montaggio per Plan"],
-  materiali: ["Acciaio S275"],
+  lavorazioni: ["Montaggio per Plan a Provincia di Parma"],
+  materiali: ["Acciaio S275", "Lamiera Provincia di Parma"],
   seo: {
     title: "Plan — Edilmetal",
     description: "Case study Edilmetal: realizzazione in carpenteria metallica per Plan a Provincia di Parma (2018).",
@@ -93,7 +110,8 @@ describe("anonimizzaProgetto", () => {
     expect(pulito.galleria[0].alt).toBe("Edilmetal — Scale (foto)");
     expect(pulito.datiTecnici[0].valore).toBe("Realizzazione in carpenteria metallica");
     expect(pulito.lavorazioni).toEqual(["Montaggio"]);
-    expect(pulito.materiali).toEqual(["Acciaio S275"]);
+    // Il luogo senza preposizione è trattato come termine legittimo e resta.
+    expect(pulito.materiali).toEqual(["Acciaio S275", "Lamiera Provincia di Parma"]);
     expect(pulito.seo?.description).toBe(
       "Case study Edilmetal: realizzazione in carpenteria metallica."
     );
