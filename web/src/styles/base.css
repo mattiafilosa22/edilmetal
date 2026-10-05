@@ -151,7 +151,7 @@ h1,h2,h3,h4{ font-family:var(--f-display); font-weight:600; line-height:1.05; le
 .brand{ display:inline-flex; align-items:center; gap:var(--sp-3); }
 .brand__img{ height:38px; width:auto; }
 :root[data-theme="dark"] .brand__img{ filter:invert(1) brightness(1.6); }
-.brand__sub{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.04em; color:var(--ink-faint); border-left:1px solid var(--line-2); padding-left:var(--sp-3); }
+.brand__sub{ font-family:var(--f-mono); font-size:var(--fs-xs); letter-spacing:.04em; color:var(--ink-faint); border-left:1px solid var(--line-2); padding-left:var(--sp-3); white-space:nowrap; }
 .hdr-nav{ display:flex; align-items:center; gap:var(--sp-2); }
 .hdr-nav a{ font-family:var(--f-mono); font-size:var(--fs-sm); letter-spacing:.03em; padding:10px 12px; min-height:var(--touch); display:inline-flex; align-items:center; color:var(--ink); border-radius:var(--radius); }
 .hdr-nav a[aria-current="page"]{ color:var(--accent-ui); }
@@ -214,6 +214,8 @@ body.menu-open .overlay-nav{ display:flex; }
 @media (max-width:1080px){
   :root{ --fs-hero:3.5rem; --fs-h1:3rem; --fs-h2:2.25rem; }
   .footer-top{ grid-template-columns:1fr 1fr; gap:var(--sp-6); }
+  /* "Costruzioni in metallo" + nav piena non stanno sotto i 1080px. */
+  .brand__sub{ display:none; }
 }
 @media (max-width:960px){
   .hdr-nav{ display:none; }
@@ -223,9 +225,6 @@ body.menu-open .overlay-nav{ display:flex; }
   .sec-grid{ grid-template-columns:1fr; gap:var(--sp-5); }
   .sec-label{ position:static; display:flex; align-items:center; gap:var(--sp-4); }
   .sec-label .bar{ display:none; }
-}
-@media (max-width:680px){
-  .brand__sub{ display:none; }
 }
 @media (max-width:560px){
   :root{ --fs-hero:2.75rem; --fs-h1:2.4rem; --fs-h2:2rem; }

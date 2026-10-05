@@ -380,6 +380,6 @@ export const mockProgetti: Progetto[] = real.map((p) => ({
   materiali: p.materiali,
   seo: {
     title: `${p.titolo} — ${p.cliente}`,
-    description: `${p.titolo} in carpenteria metallica per ${p.cliente} a ${p.luogo} (${p.anno}). ${CATEGORIA_NOME[p.categoria]} su commessa.`,
+    description: `${p.titolo} in carpenteria metallica per ${p.cliente} (${p.anno}). ${CATEGORIA_NOME[p.categoria]} su commessa.`,
   },
 }));

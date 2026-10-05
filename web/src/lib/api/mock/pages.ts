@@ -11,7 +11,7 @@ import type { Locale } from "@/i18n/routing";
 /** Le 8 famiglie di opere (indice condiviso home/servizi). */
 const CATEGORIE: CategoriaRef[] = [
   { slug: "strutture-acciaio", nome: "Strutture in acciaio", dettaglio: "Capannoni · soppalchi · edifici industriali" },
-  { slug: "strutture-miste", nome: "Strutture miste", dettaglio: "Acciaio-calcestruzzo · ampliamenti" },
+  { slug: "strutture-miste", nome: "Strutture miste", dettaglio: "Acciaio - legno" },
   { slug: "scale", nome: "Scale", dettaglio: "Interne · esterne · di sicurezza" },
   { slug: "pensiline", nome: "Pensiline", dettaglio: "Industriali · di ingresso · di carico" },
   { slug: "pensiline-auto", nome: "Pensiline auto / carport", dettaglio: "Aree di sosta · fotovoltaico" },
@@ -22,12 +22,12 @@ const CATEGORIE: CategoriaRef[] = [
 
 const home: PageContent = {
   key: "home",
-  title: "Edilmetal · Carpenteria metallica su commessa",
+  title: "Edilmetal · Costruzioni in metallo su commessa",
   subtitle:
     "Progettazione, costruzione e montaggio di strutture in acciaio dal 1997.",
   home: {
     hero: {
-      eyebrow: "Carpenteria metallica · su commessa · dal 1997",
+      eyebrow: "Costruzioni in metallo · su commessa · dal 1997",
       title: "Progettiamo strutture in acciaio,",
       titleAccent: "su misura.",
       subtitle:
@@ -65,9 +65,9 @@ const home: PageContent = {
 
 const servizi: PageContent = {
   key: "servizi",
-  title: "Cosa facciamo",
+  title: "Prodotti",
   subtitle:
-    "Progettazione, costruzione e montaggio di strutture in carpenteria metallica per l'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.",
+    "Progettazione, costruzione e montaggio di strutture in metallo per l'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.",
   servizi: {
     tipologie: CATEGORIE,
   },
@@ -75,7 +75,7 @@ const servizi: PageContent = {
 
 const azienda: PageContent = {
   key: "azienda",
-  title: "Carpenteria metallica dal 1997",
+  title: "Chi siamo",
   subtitle:
     "Nata dall'incontro di due mestieri, Edilmetal costruisce e monta strutture in acciaio su commessa per l'industria, il commercio e il terziario.",
   azienda: {

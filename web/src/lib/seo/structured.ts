@@ -150,7 +150,6 @@ export type ProjectJsonLdInput = {
 /** Nodo `CreativeWork` per una realizzazione (case study). */
 export function buildProjectJsonLd(input: ProjectJsonLdInput): JsonObject {
   const { progetto, name, url, images, creatorName, creatorUrl } = input;
-  const parsed = parseAddress(progetto.luogo);
   return schemaNode("CreativeWork", {
     name,
     url,
@@ -163,16 +162,6 @@ export function buildProjectJsonLd(input: ProjectJsonLdInput): JsonObject {
       "@type": "Organization",
       name: creatorName,
       url: creatorUrl,
-    },
-    contentLocation: {
-      "@type": "Place",
-      name: progetto.luogo,
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: parsed.addressLocality ?? progetto.luogo,
-        addressRegion: parsed.addressRegion,
-        addressCountry: "IT",
-      },
     },
   });
 }

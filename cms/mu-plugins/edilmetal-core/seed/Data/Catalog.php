@@ -51,7 +51,7 @@ final class Catalog {
 				array(
 					'slug'        => 'strutture-miste',
 					'name'        => 'Strutture miste',
-					'description' => 'Acciaio-calcestruzzo · ampliamenti',
+					'description' => 'Acciaio - legno',
 				),
 				array(
 					'slug'        => 'scale',
@@ -412,18 +412,18 @@ final class Catalog {
 				'edilmetal_set_ragione_sociale' => 'Edilmetal S.r.l.',
 				'edilmetal_set_indirizzo'       => 'Piazza Alpini d\'Italia, 10/A — 43015 Noceto (PR)',
 				'edilmetal_set_telefono'        => '0521 615023',
-				'edilmetal_set_fax'             => '0521 615207',
+				'edilmetal_set_fax'             => '',
 				'edilmetal_set_email'           => 'edilmetal@edilmetal.it',
 				'edilmetal_set_piva'            => '01234567890',
 				'edilmetal_set_rea'             => 'PR-000000',
 				'edilmetal_set_maps_url'        => 'https://www.google.com/maps/search/?api=1&query=Edilmetal+Noceto',
 				'edilmetal_set_map_lat'         => self::LAT,
 				'edilmetal_set_map_lng'         => self::LNG,
-				'edilmetal_set_orari'           => "Lunedì–Venerdì: 08:00–12:00 / 14:00–18:00\nSabato–Domenica: chiuso",
+				'edilmetal_set_orari'           => "Lunedì–Venerdì: 08:30–13:00 / 14:30–18:00\nSabato–Domenica: chiuso",
 				'edilmetal_set_facebook'        => 'https://www.facebook.com/edilmetal',
 				'edilmetal_set_instagram'       => 'https://www.instagram.com/edilmetal',
 				'edilmetal_set_linkedin'        => 'https://www.linkedin.com/company/edilmetal',
-				'edilmetal_set_slogan'          => 'Carpenteria metallica su commessa dal 1997',
+				'edilmetal_set_slogan'          => 'Costruzioni in metallo su commessa dal 1997',
 				'edilmetal_set_copyright'       => '© Edilmetal S.r.l. — Tutti i diritti riservati',
 				'edilmetal_set_privacy_url'     => '/privacy-policy',
 				'edilmetal_set_cookie_url'      => '/cookie-policy',
@@ -431,8 +431,8 @@ final class Catalog {
 				'edilmetal_set_foto_credit'     => 'Immagini dimostrative delle realizzazioni Edilmetal.',
 			),
 			'meta_en'  => array(
-				'edilmetal_set_orari'       => "Monday–Friday: 8:00–12:00 am / 2:00–6:00 pm\nSaturday–Sunday: closed",
-				'edilmetal_set_slogan'      => 'Made-to-order structural steelwork since 1997',
+				'edilmetal_set_orari'       => "Monday–Friday: 08:30–13:00 / 14:30–18:00\nSaturday–Sunday: closed",
+				'edilmetal_set_slogan'      => 'Made-to-order metal constructions since 1997',
 				'edilmetal_set_copyright'   => '© Edilmetal S.r.l. — All rights reserved',
 				'edilmetal_set_foto_credit' => 'Demonstrative images of Edilmetal projects.',
 			),
@@ -498,9 +498,8 @@ final class Catalog {
 			'ref'             => $ref,
 			'title'           => $title,
 			'content'         => sprintf(
-				'<p>Realizzazione Edilmetal per %s a %s (%d): %s. L\'intervento è stato gestito come unico interlocutore, dal sopralluogo alla progettazione dedicata, con relazioni di calcolo firmate, produzione in officina e montaggio in cantiere.</p>',
+				'<p>Realizzazione Edilmetal per %s (%d): %s. L\'intervento è stato gestito come unico interlocutore, dal sopralluogo alla progettazione dedicata, con relazioni di calcolo firmate, produzione in officina e montaggio in cantiere.</p>',
 				esc_html( $cliente ),
-				esc_html( $luogo ),
 				$anno,
 				esc_html( lcfirst( $tipologia ) )
 			),
@@ -519,12 +518,11 @@ final class Catalog {
 			'materiali'       => $materiali,
 			'media'           => $media,
 			'seo_title'       => $title . ' — Edilmetal',
-			'seo_description' => sprintf( 'Case study Edilmetal: %s per %s a %s (%d).', lcfirst( $tipologia ), $cliente, $luogo, $anno ),
+			'seo_description' => sprintf( 'Case study Edilmetal: %s per %s (%d).', lcfirst( $tipologia ), $cliente, $anno ),
 			'en'              => array(
 				'content' => sprintf(
-					'<p>Edilmetal project for %s in %s (%d): %s. Managed as the single point of contact, from survey to dedicated design, with signed structural calculations, in-house fabrication and on-site assembly.</p>',
+					'<p>Edilmetal project for %s (%d): %s. Managed as the single point of contact, from survey to dedicated design, with signed structural calculations, in-house fabrication and on-site assembly.</p>',
 					esc_html( $cliente ),
-					esc_html( $luogo ),
 					$anno,
 					esc_html( lcfirst( $tipologia ) )
 				),
@@ -540,10 +538,10 @@ final class Catalog {
 	private static function page_home(): array {
 		return array(
 			'key'      => 'home',
-			'title'    => 'Edilmetal · Carpenteria metallica su commessa',
-			'title_en' => 'Edilmetal · Made-to-order structural steelwork',
+			'title'    => 'Edilmetal · Costruzioni in metallo su commessa',
+			'title_en' => 'Edilmetal · Made-to-order metal constructions',
 			'meta'     => array(
-				'edilmetal_home_hero_eyebrow'        => 'Carpenteria metallica su commessa · dal 1997',
+				'edilmetal_home_hero_eyebrow'        => 'Costruzioni in metallo su commessa · dal 1997',
 				'edilmetal_home_hero_titolo'         => 'Strutture in acciaio',
 				'edilmetal_home_hero_titolo_accent'  => 'progettate, prodotte e montate.',
 				'edilmetal_home_hero_sottotitolo'    => 'Progettazione dedicata, relazioni di calcolo firmate, produzione in officina e montaggio in cantiere per l\'edilizia industriale, commerciale e terziaria.',
@@ -562,7 +560,7 @@ final class Catalog {
 				'edilmetal_home_evidenza2_img'       => new MediaRef( 'real:pensiline/pensiline-ferrari/01' ),
 			),
 			'meta_en'  => array(
-				'edilmetal_home_hero_eyebrow'       => 'Made-to-order structural steelwork · since 1997',
+				'edilmetal_home_hero_eyebrow'       => 'Made-to-order metal constructions · since 1997',
 				'edilmetal_home_hero_titolo'        => 'Steel structures',
 				'edilmetal_home_hero_titolo_accent' => 'designed, fabricated and assembled.',
 				'edilmetal_home_hero_sottotitolo'   => 'Dedicated design, signed structural calculations, in-house fabrication and on-site assembly for industrial, commercial and tertiary construction.',
@@ -586,13 +584,13 @@ final class Catalog {
 	private static function page_servizi(): array {
 		return array(
 			'key'      => 'servizi',
-			'title'    => 'Servizi',
-			'title_en' => 'Services',
+			'title'    => 'Prodotti',
+			'title_en' => 'Products',
 			'meta'     => array(
-				'edilmetal_servizi_sottotitolo' => 'Progettazione, costruzione e montaggio di strutture in carpenteria metallica per l\'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.',
+				'edilmetal_servizi_sottotitolo' => 'Progettazione, costruzione e montaggio di strutture in metallo per l\'edilizia industriale, commerciale e terziaria. Un unico interlocutore, dal sopralluogo al post-vendita.',
 			),
 			'meta_en'  => array(
-				'edilmetal_servizi_sottotitolo' => 'Design, fabrication and assembly of structural steelwork for industrial, commercial and tertiary construction. A single point of contact, from survey to after-sales.',
+				'edilmetal_servizi_sottotitolo' => 'Design, fabrication and assembly of metal structures for industrial, commercial and tertiary construction. A single point of contact, from survey to after-sales.',
 			),
 		);
 	}
@@ -606,8 +604,8 @@ final class Catalog {
 	private static function page_azienda(): array {
 		return array(
 			'key'      => 'azienda',
-			'title'    => 'Azienda',
-			'title_en' => 'Company',
+			'title'    => 'Chi siamo',
+			'title_en' => 'About us',
 			'meta'     => array(
 				'edilmetal_azienda_sottotitolo'   => 'Fondata a Noceto (PR) da Alessio Ricci e Aldo Medioli, Edilmetal realizza strutture in acciaio su commessa per clienti industriali e prestigiosi.',
 				'edilmetal_azienda_storia_titolo' => 'La società',

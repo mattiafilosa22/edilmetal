@@ -30,6 +30,8 @@
 .tabs__tab:hover{ color:var(--accent-ui); }
 .tabs__tab[aria-selected="true"]{ color:var(--ink); background:var(--surface); border-color:var(--line); }
 .tabs__tab[aria-selected="true"]::after{ content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:var(--accent-ui); }
+/* Titolo al posto del tablist quando c'è un solo contenuto. */
+.tabs__title{ font-family:var(--f-mono); font-size:var(--fs-sm); font-weight:500; letter-spacing:.03em; color:var(--ink); padding:12px 0; border-bottom:1px solid var(--line); }
 .tabs__panel{ padding-top:var(--sp-5); }
 .tabs__panel p{ color:var(--ink-2); max-width:66ch; }
 .tabs__panel p + p{ margin-top:var(--sp-4); }

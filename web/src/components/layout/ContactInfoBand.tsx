@@ -60,12 +60,6 @@ export function ContactInfoBand({ settings }: ContactInfoBandProps) {
           <p>{t("preventiviText")}</p>
           <p>
             <a href={phoneHref}>{settings.telefono}</a>
-            {settings.fax ? (
-              <>
-                {" · "}
-                {t("faxLabel")}: {settings.fax}
-              </>
-            ) : null}
           </p>
         </div>
       </div>
