@@ -1,7 +1,7 @@
-# Edilmetal S.r.l. — Carpenteria metallica
+# Edilmetal S.r.l. — Costruzioni in metallo
 
 > Edilmetal S.r.l. (Noceto, PR): progettazione, costruzione e montaggio di
-> strutture in carpenteria metallica su commessa per l'edilizia industriale,
+> costruzioni in metallo su commessa per l'edilizia industriale,
 > commerciale e terziaria. Dal 1997. Vetrina editoriale di realizzazioni
 > (case study), non un e-commerce.
 
@@ -12,11 +12,11 @@ Le pagine esistono nelle versioni italiana (`/it/...`) e inglese (`/en/...`).
 - [Tutte le realizzazioni](https://www.edilmetal.it/it/realizzazioni/): portfolio filtrabile per categoria, settore e anno.
 - Otto famiglie di opere: strutture in acciaio, strutture miste, scale, pensiline, pensiline auto/carport, coperture e tamponamenti, rivestimenti di facciata, opere speciali.
 
-## Servizi
-- [Servizi](https://www.edilmetal.it/it/servizi/): processo (sopralluogo, calcolo strutturale, produzione, montaggio), tipologie di opere, relazioni di calcolo firmate.
+## Prodotti
+- [Prodotti](https://www.edilmetal.it/it/servizi/): processo (sopralluogo, calcolo strutturale, produzione, montaggio), tipologie di opere, relazioni di calcolo firmate.
 
-## Azienda
-- [Azienda](https://www.edilmetal.it/it/azienda/): storia dal 1997, valori, officina, sede e mappa a Noceto (PR).
+## Chi siamo
+- [Chi siamo](https://www.edilmetal.it/it/azienda/): storia dal 1997, valori, officina, sede e mappa a Noceto (PR).
 - [Contatti](https://www.edilmetal.it/it/contatti/): richiesta preventivo, recapiti e mappa.
 
 ## Riferimenti
