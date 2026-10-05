@@ -16,14 +16,14 @@ per tutte le fasi dell'opera.
 
 Sede: Piazza Alpini d'Italia 10/A, 43015 Noceto (PR), zona Ponte Taro.
 Telefono: 0521 615023.
-Area servita: Italia (base in provincia di Parma).
+Area servita: Italia (base a Noceto, PR).
 Committenti: industrie alimentari e meccaniche, grande distribuzione, studi di
 progettazione e imprese di costruzioni (nomi non divulgati).
 
 ## Struttura del sito
 Il sito è una vetrina editoriale organizzata in quattro aree: realizzazioni,
 servizi, azienda e contatti. Le schede delle singole realizzazioni vivono sotto
-`/{lingua}/realizzazioni/{slug}/` e riportano luogo, categoria,
+`/{lingua}/realizzazioni/{slug}/` e riportano categoria,
 settore, descrizione, dati tecnici (superficie, tonnellaggio acciaio, luce,
 altezza…), lavorazioni, materiali e galleria fotografica.
 
@@ -31,7 +31,7 @@ altezza…), lavorazioni, materiali e galleria fotografica.
 - Portfolio: https://www.edilmetal.it/it/realizzazioni/
 Filtrabile per categoria (le 8 famiglie di opere), settore (industriale,
 commerciale, terziario) e anno. Le schede includono dati strutturati schema.org
-di tipo `CreativeWork` con autore `Organization` Edilmetal e luogo dell'opera.
+di tipo `CreativeWork` con autore `Organization` Edilmetal.
 
 Le 8 famiglie di opere: strutture in acciaio, strutture miste, scale, pensiline,
 pensiline auto / carport, coperture e tamponamenti, rivestimenti di facciata,

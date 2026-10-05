@@ -14,7 +14,7 @@ const baseProgetto = {
 };
 
 describe("ProjectCard", () => {
-  it("shows the family of works as the visible title", () => {
+  it("shows the family of works as title, without location", () => {
     render(
       <ProjectCard
         progetto={{ ...baseProgetto, titolo: "Bervini", cliente: "Bervini" }}
@@ -22,7 +22,7 @@ describe("ProjectCard", () => {
       />
     );
     expect(screen.getByRole("heading", { name: "Scale" })).toBeInTheDocument();
-    expect(screen.getByText("Noceto (PR)")).toBeInTheDocument();
+    expect(screen.queryByText("Noceto (PR)")).not.toBeInTheDocument();
   });
 
   it("keeps client name and year in the markup, but visually hidden", () => {

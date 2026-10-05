@@ -51,7 +51,7 @@ export function CategoryIndex({
   return (
     <div className="index-list">
       {categorie.map((c, i) => (
-        <Link className="index-row" key={c.slug} href={`/${locale}/realizzazioni`}>
+        <Link className="index-row" key={c.slug} href={`/${locale}/realizzazioni?categoria=${c.slug}`}>
           <span className="num">{String(i + 1).padStart(2, "0")}</span>
           <div>
             <h3>{c.nome}</h3>

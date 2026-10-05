@@ -3,10 +3,8 @@
 import { useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import type { DatoTecnico } from "@/domain";
-import { sanitizeContentHtml } from "@/lib/sanitizeHtml";
 
 type ProjectTabsProps = {
-  descrizione: string;
   datiTecnici: DatoTecnico[];
   lavorazioni: string[];
   materiali: string[];
@@ -15,20 +13,16 @@ type ProjectTabsProps = {
 type Tab = { id: string; label: string; panel: ReactNode };
 
 /**
- * Tab tecniche ARIA della scheda progetto (Descrizione / Dati tecnici /
- * Lavorazioni / Materiali). Navigazione da tastiera (frecce, Home, End) con
- * roving tabindex, come da pattern WAI-ARIA. I tab vuoti sono omessi.
+ * Tab tecniche ARIA della scheda progetto (Dati tecnici / Lavorazioni /
+ * Materiali). Navigazione da tastiera (frecce, Home, End) con roving
+ * tabindex, come da pattern WAI-ARIA. I tab vuoti sono omessi; senza dati
+ * il componente non rende nulla.
  */
-export function ProjectTabs({ descrizione, datiTecnici, lavorazioni, materiali }: ProjectTabsProps) {
+export function ProjectTabs({ datiTecnici, lavorazioni, materiali }: ProjectTabsProps) {
   const t = useTranslations("Scheda");
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   const tabs: Tab[] = [];
-  tabs.push({
-    id: "desc",
-    label: t("tabDescrizione"),
-    panel: <div dangerouslySetInnerHTML={{ __html: sanitizeContentHtml(descrizione) }} />,
-  });
   if (datiTecnici.length > 0) {
     tabs.push({
       id: "dati",
@@ -85,6 +79,8 @@ export function ProjectTabs({ descrizione, datiTecnici, lavorazioni, materiali }
     setActive(next);
     tabRefs.current[next]?.focus();
   }
+
+  if (tabs.length === 0) return null;
 
   return (
     <div className="section" style={{ paddingBlock: "var(--sp-7) 0" }}>

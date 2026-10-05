@@ -18,7 +18,6 @@ import {
 import { ProjectGallery } from "@/components/ui/ProjectGallery";
 import { ProjectTabs } from "@/components/ui/ProjectTabs";
 import { ProjectCard } from "@/components/ui/ProjectCard";
-import { sanitizeContentHtml } from "@/lib/sanitizeHtml";
 import { RequestForm } from "@/components/ui/RequestForm";
 import { Rail } from "@/components/ui/Rail";
 import { Reveal } from "@/components/ui/Reveal";
@@ -29,15 +28,12 @@ type PageProps = { params: Promise<{ locale: string; slug: string }> };
 const RELATED_MAX = 6;
 
 /**
- * Come si chiama pubblicamente una realizzazione: famiglia di opere e luogo.
- * Il nome del committente non è divulgabile, quindi non compare né nel titolo
- * della pagina né nei dati strutturati.
+ * Come si chiama pubblicamente una realizzazione: la famiglia di opere.
+ * Il nome del committente e il luogo non sono divulgabili, quindi non
+ * compaiono né nel titolo della pagina né nei dati strutturati.
  */
-function etichettaPubblica(progetto: {
-  categoria: { nome: string };
-  luogo: string;
-}): string {
-  return `${progetto.categoria.nome} — ${progetto.luogo}`;
+function etichettaPubblica(progetto: { categoria: { nome: string } }): string {
+  return progetto.categoria.nome;
 }
 
 export async function generateStaticParams() {
@@ -118,12 +114,12 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
     { name: progetto.categoria.nome, url: absoluteUrl(progettoPath(locale, slug)) },
   ]);
 
-  // `hidden`: dato presente nella scheda ma non pubblico (committente, luogo e anno).
+  // `hidden`: dato presente nella scheda ma non pubblico (committente e anno).
+  // Il luogo non è pubblicato.
   const databox: Array<{ label: string; value: string; hidden?: boolean }> = [
     { label: t("categoria"), value: progetto.categoria.nome },
     { label: t("cliente"), value: progetto.cliente, hidden: true },
     ...(progetto.settore ? [{ label: t("settore"), value: progetto.settore }] : []),
-    { label: t("luogo"), value: progetto.luogo, hidden: true },
     { label: t("anno"), value: String(progetto.anno), hidden: true },
   ];
 
@@ -153,14 +149,9 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
                 {progetto.settore ? (
                   <span className="sp-tag">{t("settorePrefix")} {progetto.settore.toLowerCase()}</span>
                 ) : null}
-                <span className="sp-tag is-hidden-data">{progetto.luogo}</span>
                 <span className="sp-tag is-hidden-data">{progetto.anno}</span>
               </div>
             </div>
-            <div
-              style={{ color: "var(--ink-2)" }}
-              dangerouslySetInnerHTML={{ __html: sanitizeContentHtml(progetto.descrizione) }}
-            />
           </div>
         </div>
       </section>
@@ -171,7 +162,6 @@ export default async function SchedaProgettoPage({ params }: PageProps) {
             <div>
               <ProjectGallery images={progetto.galleria} fallbackAlt={etichettaPubblica(progetto)} />
               <ProjectTabs
-                descrizione={progetto.descrizione}
                 datiTecnici={progetto.datiTecnici}
                 lavorazioni={progetto.lavorazioni}
                 materiali={progetto.materiali}

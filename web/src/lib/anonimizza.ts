@@ -1,6 +1,6 @@
 /**
  * Ripulitura in fase di presentazione dei testi editoriali delle realizzazioni:
- * nome del committente e anno della commessa non sono pubblici.
+ * nome del committente, luogo e anno della commessa non sono pubblici.
  *
  * Il testo nel CMS resta intatto — la rimozione avviene solo al rendering, come
  * per i campi nascosti via CSS (`.is-hidden-data`). Il confronto è
@@ -18,9 +18,10 @@ type DatiNonPubblici = {
   cliente: string;
   titolo: string;
   anno: number;
+  luogo?: string;
 };
 
-/** Rimuove nomi e anno da un testo (HTML o semplice), ricucendo la punteggiatura. */
+/** Rimuove nomi, luogo e anno da un testo (HTML o semplice), ricucendo la punteggiatura. */
 export function anonimizzaTesto(testo: string, dati: DatiNonPubblici): string {
   const nomi = [...new Set([dati.cliente, dati.titolo])].filter((n) => n.trim().length > 1);
 
@@ -31,6 +32,15 @@ export function anonimizzaTesto(testo: string, dati: DatiNonPubblici): string {
     // così la frase resta leggibile invece di lasciare una preposizione orfana.
     out = out.replace(new RegExp(`\\s*\\b(per|di|presso)\\s+${escaped}\\b`, "g"), "");
     out = out.replace(new RegExp(`\\s*\\b${escaped}\\b`, "g"), "");
+  }
+
+  const luogo = dati.luogo?.trim();
+  if (luogo && luogo.length > 1) {
+    // `\b` finale solo se il luogo termina con una lettera: può chiudersi con una
+    // parentesi ("Noceto (PR)"), e "Parma" non deve intaccare "Parmalat".
+    const escaped = escapeRegExp(luogo) + (/\w$/.test(luogo) ? "\\b" : "");
+    out = out.replace(new RegExp(`\\s*\\b(a|ad|in|di|presso)\\s+${escaped}`, "g"), "");
+    out = out.replace(new RegExp(`\\s*\\b${escaped}`, "g"), "");
   }
 
   out = out

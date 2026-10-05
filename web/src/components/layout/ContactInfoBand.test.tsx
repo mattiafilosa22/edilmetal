@@ -14,12 +14,12 @@ const settings = {
   fax: "0521 615207",
   email: "edilmetal@edilmetal.it",
   coordinate: { lat: 44.8103, lng: 10.1747 },
-  orari: [{ giorni: "Lun–Ven", apertura: "08:00–12:00 / 14:00–18:00" }],
+  orari: [{ giorni: "Lun–Ven", apertura: "08:30–13:00 / 14:30–18:00" }],
   social: {},
 };
 
 describe("ContactInfoBand", () => {
-  it("shows address, hours and phone/fax", () => {
+  it("shows address, hours and phone", () => {
     render(
       <NextIntlClientProvider locale="it" messages={messages}>
         <ContactInfoBand settings={settings} />
@@ -27,17 +27,17 @@ describe("ContactInfoBand", () => {
     );
     expect(screen.getByText(settings.indirizzo)).toBeInTheDocument();
     expect(screen.getByText("Lun–Ven")).toBeInTheDocument();
-    expect(screen.getByText("08:00–12:00 / 14:00–18:00")).toBeInTheDocument();
+    expect(screen.getByText("08:30–13:00 / 14:30–18:00")).toBeInTheDocument();
     expect(screen.getByText(/0521 615023/)).toBeInTheDocument();
-    expect(screen.getByText(/0521 615207/)).toBeInTheDocument();
   });
 
-  it("omits the fax line when settings.fax is absent", () => {
+  it("never shows the fax, even when settings.fax is set", () => {
     render(
       <NextIntlClientProvider locale="it" messages={messages}>
-        <ContactInfoBand settings={{ ...settings, fax: undefined }} />
+        <ContactInfoBand settings={settings} />
       </NextIntlClientProvider>
     );
+    expect(screen.queryByText(/0521 615207/)).not.toBeInTheDocument();
     expect(screen.queryByText(/Fax/)).not.toBeInTheDocument();
   });
 });

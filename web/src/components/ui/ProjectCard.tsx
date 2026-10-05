@@ -32,7 +32,6 @@ export function ProjectCard({ progetto, locale }: ProjectCardProps) {
         <span className="is-hidden-data cli">{progettoDisplayName(progetto)}</span>
         <h3>{progetto.categoria.nome}</h3>
         <div className="meta">
-          <span>{progetto.luogo}</span>
           <span className="is-hidden-data">{progetto.anno}</span>
         </div>
       </div>

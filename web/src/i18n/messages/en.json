@@ -6,9 +6,9 @@
     "homeDescription": "Design, fabrication and erection of made-to-order steel structures. A single partner for industry, retail and offices. Noceto (PR), Italy.",
     "realizzazioniHeading": "Projects",
     "realizzazioniDescription": "Edilmetal project portfolio: steel structures, canopies, stairs, roofing, façades and special works, all made to order.",
-    "serviziHeading": "Services",
+    "serviziHeading": "Products",
     "serviziDescription": "Edilmetal services: survey and design, signed structural calculations, in-house fabrication and on-site erection. Eight types of works.",
-    "aziendaHeading": "Company",
+    "aziendaHeading": "About us",
     "aziendaDescription": "Edilmetal S.r.l.: made-to-order structural steelwork in Noceto (PR) since 1997. History, values, workshop and how to reach us.",
     "contattiHeading": "Contact",
     "contattiDescription": "Contact Edilmetal: request a quote for your steel structure. Noceto (PR), Italy, phone +39 0521 615023.",
@@ -36,15 +36,15 @@
   },
   "Header": {
     "brandAria": "Edilmetal — Home",
-    "brandSubtitle": "Structural steelwork\nsince 1997"
+    "brandSubtitle": "Metal constructions\nsince 1997"
   },
   "Nav": {
     "ariaLabel": "Main navigation",
     "pagesAriaLabel": "Pages",
     "home": "Home",
     "realizzazioni": "Projects",
-    "servizi": "Services",
-    "azienda": "Company",
+    "servizi": "Products",
+    "azienda": "About us",
     "contatti": "Contact",
     "menu": "Menu",
     "menuTitle": "Edilmetal — menu",
@@ -68,7 +68,7 @@
     "contatti": "Contact",
     "chiSiamo": "About us",
     "doveSiamo": "Where we are",
-    "servizi": "Services",
+    "servizi": "Products",
     "rights": "All rights reserved",
     "legalNav": "Legal information",
     "privacyPolicy": "Privacy Policy",
@@ -82,8 +82,8 @@
     "categorieKick": "Featured",
     "categorieCtaLabel": "See the product line",
     "evidenzaKick": "Featured",
-    "evidenzaTitle": "Recent projects.",
-    "evidenzaSub": "A selection of structural steelwork commissions.",
+    "evidenzaTitle": "Projects.",
+    "evidenzaSub": "Our completed commissions.",
     "tutteLeRealizzazioni": "All projects"
   },
   "Realizzazioni": {
@@ -138,14 +138,14 @@
   },
   "Servizi": {
     "breadcrumbHome": "Home",
-    "current": "Services",
+    "current": "Products",
     "tipologieKick": "What we build",
     "tipologieTitle": "Eight types of works.",
     "tipologieSub": "From a single made-to-measure staircase to a turnkey industrial building."
   },
   "Azienda": {
     "breadcrumbHome": "Home",
-    "current": "Company",
+    "current": "About us",
     "storiaKick": "The story"
   },
   "Contatti": {

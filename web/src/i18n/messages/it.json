@@ -6,9 +6,9 @@
     "homeDescription": "Progettazione, costruzione e montaggio di strutture in acciaio su commessa. Un unico interlocutore per industria, commercio e terziario. Noceto (PR).",
     "realizzazioniHeading": "Realizzazioni",
     "realizzazioniDescription": "Portfolio delle realizzazioni Edilmetal: strutture in acciaio, pensiline, scale, coperture, facciate e opere speciali su commessa.",
-    "serviziHeading": "Servizi",
+    "serviziHeading": "Prodotti",
     "serviziDescription": "I servizi Edilmetal: sopralluogo e progetto, calcolo strutturale firmato, produzione in officina e montaggio in cantiere. Otto tipologie di opere.",
-    "aziendaHeading": "Azienda",
+    "aziendaHeading": "Chi siamo",
     "aziendaDescription": "Edilmetal S.r.l.: dal 1997 carpenteria metallica su commessa a Noceto (PR). Storia, valori, officina e come raggiungerci.",
     "contattiHeading": "Contatti",
     "contattiDescription": "Contatta Edilmetal: richiedi un preventivo per la tua struttura in carpenteria metallica. Noceto (PR), tel 0521 615023.",
@@ -36,15 +36,15 @@
   },
   "Header": {
     "brandAria": "Edilmetal — Home",
-    "brandSubtitle": "Carpenteria metallica\ndal 1997"
+    "brandSubtitle": "Costruzioni in metallo\ndal 1997"
   },
   "Nav": {
     "ariaLabel": "Navigazione principale",
     "pagesAriaLabel": "Pagine",
     "home": "Home",
     "realizzazioni": "Realizzazioni",
-    "servizi": "Servizi",
-    "azienda": "Azienda",
+    "servizi": "Prodotti",
+    "azienda": "Chi siamo",
     "contatti": "Contatti",
     "menu": "Menù",
     "menuTitle": "Edilmetal — menù",
@@ -68,7 +68,7 @@
     "contatti": "Contatti",
     "chiSiamo": "Chi siamo",
     "doveSiamo": "Dove siamo",
-    "servizi": "Servizi",
+    "servizi": "Prodotti",
     "rights": "Tutti i diritti riservati",
     "legalNav": "Informazioni legali",
     "privacyPolicy": "Privacy Policy",
@@ -82,8 +82,8 @@
     "categorieKick": "In evidenza",
     "categorieCtaLabel": "Vai alla sezione prodotti",
     "evidenzaKick": "In evidenza",
-    "evidenzaTitle": "Realizzazioni recenti.",
-    "evidenzaSub": "Una selezione di commesse in carpenteria metallica.",
+    "evidenzaTitle": "Realizzazioni.",
+    "evidenzaSub": "Le nostre commesse terminate.",
     "tutteLeRealizzazioni": "Tutte le realizzazioni"
   },
   "Realizzazioni": {
@@ -138,14 +138,14 @@
   },
   "Servizi": {
     "breadcrumbHome": "Home",
-    "current": "Servizi",
+    "current": "Prodotti",
     "tipologieKick": "Cosa realizziamo",
     "tipologieTitle": "Otto tipologie di opere.",
     "tipologieSub": "Dalla singola scala su misura al capannone industriale chiavi in mano."
   },
   "Azienda": {
     "breadcrumbHome": "Home",
-    "current": "Azienda",
+    "current": "Chi siamo",
     "storiaKick": "La storia"
   },
   "Contatti": {

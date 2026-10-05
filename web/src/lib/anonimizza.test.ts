@@ -13,6 +13,36 @@ describe("anonimizzaTesto", () => {
     );
   });
 
+  it("removes the location together with its preposition", () => {
+    const testo =
+      "<p>Realizzazione Edilmetal per Bervini a Provincia di Parma (2018): realizzazione in carpenteria metallica.</p>";
+    expect(anonimizzaTesto(testo, { ...dati, luogo: "Provincia di Parma" })).toBe(
+      "<p>Realizzazione Edilmetal: realizzazione in carpenteria metallica.</p>"
+    );
+  });
+
+  it("removes a location ending with a parenthesis", () => {
+    expect(
+      anonimizzaTesto("Scala a Noceto (PR), su misura.", {
+        cliente: "X",
+        titolo: "X",
+        anno: 2018,
+        luogo: "Noceto (PR)",
+      })
+    ).toBe("Scala, su misura.");
+  });
+
+  it("does not cut a location out of a longer word", () => {
+    expect(
+      anonimizzaTesto("Capannone Parmalat a Parma.", {
+        cliente: "X",
+        titolo: "X",
+        anno: 2018,
+        luogo: "Parma",
+      })
+    ).toBe("Capannone Parmalat.");
+  });
+
   it("removes the name when it appears without a preposition", () => {
     expect(anonimizzaTesto("Commessa Bervini, Noceto.", dati)).toBe("Commessa, Noceto.");
   });
@@ -65,7 +95,7 @@ describe("anonimizzaProgetto", () => {
     expect(pulito.lavorazioni).toEqual(["Montaggio"]);
     expect(pulito.materiali).toEqual(["Acciaio S275"]);
     expect(pulito.seo?.description).toBe(
-      "Case study Edilmetal: realizzazione in carpenteria metallica a Provincia di Parma."
+      "Case study Edilmetal: realizzazione in carpenteria metallica."
     );
   });
 
