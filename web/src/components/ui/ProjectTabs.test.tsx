@@ -30,6 +30,7 @@ describe("ProjectTabs", () => {
     );
     expect(screen.getByRole("heading", { level: 2, name: "Dati tecnici" })).toBeInTheDocument();
     expect(screen.getByText("600 m²")).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Dati tecnici" })).toBeInTheDocument();
     expect(screen.queryByRole("tablist")).not.toBeInTheDocument();
     expect(screen.queryByRole("tab")).not.toBeInTheDocument();
   });

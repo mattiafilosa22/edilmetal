@@ -214,6 +214,8 @@ body.menu-open .overlay-nav{ display:flex; }
 @media (max-width:1080px){
   :root{ --fs-hero:3.5rem; --fs-h1:3rem; --fs-h2:2.25rem; }
   .footer-top{ grid-template-columns:1fr 1fr; gap:var(--sp-6); }
+  /* "Costruzioni in metallo" + nav piena non stanno sotto i 1080px. */
+  .brand__sub{ display:none; }
 }
 @media (max-width:960px){
   .hdr-nav{ display:none; }
@@ -223,9 +225,6 @@ body.menu-open .overlay-nav{ display:flex; }
   .sec-grid{ grid-template-columns:1fr; gap:var(--sp-5); }
   .sec-label{ position:static; display:flex; align-items:center; gap:var(--sp-4); }
   .sec-label .bar{ display:none; }
-}
-@media (max-width:680px){
-  .brand__sub{ display:none; }
 }
 @media (max-width:560px){
   :root{ --fs-hero:2.75rem; --fs-h1:2.4rem; --fs-h2:2rem; }

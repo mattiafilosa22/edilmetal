@@ -85,11 +85,18 @@ export function ProjectTabs({ datiTecnici, lavorazioni, materiali }: ProjectTabs
   // Un solo contenuto: un tablist con un unico tab non serve, basta titolo + pannello.
   if (tabs.length === 1) {
     const [only] = tabs;
+    const titleId = `tab-${only.id}`;
     return (
-      <div className="section" style={{ paddingBlock: "var(--sp-7) 0" }}>
-        <h2 className="tabs__title">{only.label}</h2>
+      <section
+        className="section"
+        style={{ paddingBlock: "var(--sp-7) 0" }}
+        aria-labelledby={titleId}
+      >
+        <h2 className="tabs__title" id={titleId}>
+          {only.label}
+        </h2>
         <div className="tabs__panel">{only.panel}</div>
-      </div>
+      </section>
     );
   }
 
