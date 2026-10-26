@@ -4,10 +4,10 @@
     "titolo": "Acetum",
     "categoria": "strutture-acciaio",
     "media": [
-      "real:strutture-acciaio/strutture-acciaio-acetum/01",
-      "real:strutture-acciaio/strutture-acciaio-acetum/02",
+      "real:strutture-acciaio/strutture-acciaio-acetum/04",
       "real:strutture-acciaio/strutture-acciaio-acetum/03",
-      "real:strutture-acciaio/strutture-acciaio-acetum/04"
+      "real:strutture-acciaio/strutture-acciaio-acetum/02",
+      "real:strutture-acciaio/strutture-acciaio-acetum/01"
     ]
   },
   {
@@ -23,12 +23,12 @@
     "titolo": "Bervini",
     "categoria": "strutture-acciaio",
     "media": [
-      "real:strutture-acciaio/strutture-acciaio-bervini/01",
-      "real:strutture-acciaio/strutture-acciaio-bervini/02",
-      "real:strutture-acciaio/strutture-acciaio-bervini/03",
-      "real:strutture-acciaio/strutture-acciaio-bervini/04",
+      "real:strutture-acciaio/strutture-acciaio-bervini/06",
       "real:strutture-acciaio/strutture-acciaio-bervini/05",
-      "real:strutture-acciaio/strutture-acciaio-bervini/06"
+      "real:strutture-acciaio/strutture-acciaio-bervini/04",
+      "real:strutture-acciaio/strutture-acciaio-bervini/03",
+      "real:strutture-acciaio/strutture-acciaio-bervini/02",
+      "real:strutture-acciaio/strutture-acciaio-bervini/01"
     ]
   },
   {
@@ -44,8 +44,8 @@
     "titolo": "Fiordilatte",
     "categoria": "strutture-acciaio",
     "media": [
-      "real:strutture-acciaio/strutture-acciaio-fiordilatte/01",
-      "real:strutture-acciaio/strutture-acciaio-fiordilatte/02"
+      "real:strutture-acciaio/strutture-acciaio-fiordilatte/02",
+      "real:strutture-acciaio/strutture-acciaio-fiordilatte/01"
     ]
   },
   {
@@ -61,11 +61,11 @@
     "titolo": "Parmalat Collecchio",
     "categoria": "strutture-acciaio",
     "media": [
-      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/01",
-      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/02",
-      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/03",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/05",
       "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/04",
-      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/05"
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/03",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/02",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-collecchio/01"
     ]
   },
   {
@@ -81,9 +81,9 @@
     "titolo": "Parmalat Udine",
     "categoria": "strutture-acciaio",
     "media": [
-      "real:strutture-acciaio/strutture-acciaio-parmalat-udine/01",
+      "real:strutture-acciaio/strutture-acciaio-parmalat-udine/03",
       "real:strutture-acciaio/strutture-acciaio-parmalat-udine/02",
-      "real:strutture-acciaio/strutture-acciaio-parmalat-udine/03"
+      "real:strutture-acciaio/strutture-acciaio-parmalat-udine/01"
     ]
   },
   {
@@ -99,9 +99,9 @@
     "titolo": "Speedy Block",
     "categoria": "strutture-acciaio",
     "media": [
-      "real:strutture-acciaio/strutture-acciaio-speedy-block/01",
+      "real:strutture-acciaio/strutture-acciaio-speedy-block/03",
       "real:strutture-acciaio/strutture-acciaio-speedy-block/02",
-      "real:strutture-acciaio/strutture-acciaio-speedy-block/03"
+      "real:strutture-acciaio/strutture-acciaio-speedy-block/01"
     ]
   },
   {
@@ -109,8 +109,8 @@
     "titolo": "Toscanini",
     "categoria": "strutture-acciaio",
     "media": [
-      "real:strutture-acciaio/strutture-acciaio-toscanini/01",
-      "real:strutture-acciaio/strutture-acciaio-toscanini/02"
+      "real:strutture-acciaio/strutture-acciaio-toscanini/02",
+      "real:strutture-acciaio/strutture-acciaio-toscanini/01"
     ]
   },
   {
@@ -118,9 +118,9 @@
     "titolo": "Aiassa",
     "categoria": "strutture-miste",
     "media": [
-      "real:strutture-miste/strutture-miste-aiassa/01",
+      "real:strutture-miste/strutture-miste-aiassa/03",
       "real:strutture-miste/strutture-miste-aiassa/02",
-      "real:strutture-miste/strutture-miste-aiassa/03"
+      "real:strutture-miste/strutture-miste-aiassa/01"
     ]
   },
   {
@@ -128,11 +128,11 @@
     "titolo": "Castellazzo Maneggio",
     "categoria": "strutture-miste",
     "media": [
-      "real:strutture-miste/strutture-miste-castellazzo-maneggio/01",
-      "real:strutture-miste/strutture-miste-castellazzo-maneggio/02",
-      "real:strutture-miste/strutture-miste-castellazzo-maneggio/03",
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/05",
       "real:strutture-miste/strutture-miste-castellazzo-maneggio/04",
-      "real:strutture-miste/strutture-miste-castellazzo-maneggio/05"
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/03",
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/02",
+      "real:strutture-miste/strutture-miste-castellazzo-maneggio/01"
     ]
   },
   {
@@ -140,9 +140,9 @@
     "titolo": "CLS Palazzina",
     "categoria": "strutture-miste",
     "media": [
-      "real:strutture-miste/strutture-miste-cls-palazzina/01",
+      "real:strutture-miste/strutture-miste-cls-palazzina/03",
       "real:strutture-miste/strutture-miste-cls-palazzina/02",
-      "real:strutture-miste/strutture-miste-cls-palazzina/03"
+      "real:strutture-miste/strutture-miste-cls-palazzina/01"
     ]
   },
   {
@@ -150,11 +150,11 @@
     "titolo": "Iris",
     "categoria": "strutture-miste",
     "media": [
-      "real:strutture-miste/strutture-miste-iris/01",
-      "real:strutture-miste/strutture-miste-iris/02",
-      "real:strutture-miste/strutture-miste-iris/03",
+      "real:strutture-miste/strutture-miste-iris/05",
       "real:strutture-miste/strutture-miste-iris/04",
-      "real:strutture-miste/strutture-miste-iris/05"
+      "real:strutture-miste/strutture-miste-iris/03",
+      "real:strutture-miste/strutture-miste-iris/02",
+      "real:strutture-miste/strutture-miste-iris/01"
     ]
   },
   {
@@ -162,9 +162,9 @@
     "titolo": "Noceto",
     "categoria": "strutture-miste",
     "media": [
-      "real:strutture-miste/strutture-miste-noceto/01",
+      "real:strutture-miste/strutture-miste-noceto/03",
       "real:strutture-miste/strutture-miste-noceto/02",
-      "real:strutture-miste/strutture-miste-noceto/03"
+      "real:strutture-miste/strutture-miste-noceto/01"
     ]
   },
   {
@@ -188,8 +188,8 @@
     "titolo": "Immergas Passerella",
     "categoria": "scale",
     "media": [
-      "real:scale/scale-immergas-passerella/01",
-      "real:scale/scale-immergas-passerella/02"
+      "real:scale/scale-immergas-passerella/02",
+      "real:scale/scale-immergas-passerella/01"
     ]
   },
   {
@@ -213,8 +213,8 @@
     "titolo": "Meta Scala",
     "categoria": "scale",
     "media": [
-      "real:scale/scale-meta-scala/01",
-      "real:scale/scale-meta-scala/02"
+      "real:scale/scale-meta-scala/02",
+      "real:scale/scale-meta-scala/01"
     ]
   },
   {
@@ -222,8 +222,8 @@
     "titolo": "Pinko",
     "categoria": "scale",
     "media": [
-      "real:scale/scale-pinko/01",
-      "real:scale/scale-pinko/02"
+      "real:scale/scale-pinko/02",
+      "real:scale/scale-pinko/01"
     ]
   },
   {
@@ -231,9 +231,9 @@
     "titolo": "Plan",
     "categoria": "scale",
     "media": [
-      "real:scale/scale-plan/01",
+      "real:scale/scale-plan/03",
       "real:scale/scale-plan/02",
-      "real:scale/scale-plan/03"
+      "real:scale/scale-plan/01"
     ]
   },
   {
@@ -241,9 +241,9 @@
     "titolo": "Ricci Casa-apr07",
     "categoria": "scale",
     "media": [
-      "real:scale/scale-ricci-casa-apr07/01",
+      "real:scale/scale-ricci-casa-apr07/03",
       "real:scale/scale-ricci-casa-apr07/02",
-      "real:scale/scale-ricci-casa-apr07/03"
+      "real:scale/scale-ricci-casa-apr07/01"
     ]
   },
   {
@@ -275,9 +275,9 @@
     "titolo": "ZRH",
     "categoria": "scale",
     "media": [
-      "real:scale/scale-zrh/01",
+      "real:scale/scale-zrh/03",
       "real:scale/scale-zrh/02",
-      "real:scale/scale-zrh/03"
+      "real:scale/scale-zrh/01"
     ]
   },
   {

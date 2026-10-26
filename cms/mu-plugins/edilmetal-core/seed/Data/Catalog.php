@@ -364,6 +364,9 @@ final class Catalog {
 				continue;
 			}
 
+			$media = is_array( $entry['media'] ?? null ) ? $entry['media'] : array();
+			rsort( $media, SORT_STRING );
+
 			$records[] = self::progetto(
 				$ref,
 				$titolo,
@@ -380,7 +383,7 @@ final class Catalog {
 				null,
 				array(),
 				array(),
-				is_array( $entry['media'] ?? null ) ? $entry['media'] : array()
+				$media
 			);
 		}
 

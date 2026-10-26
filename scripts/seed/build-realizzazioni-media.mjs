@@ -100,7 +100,8 @@ for (const [folderName, categoriaSlug] of Object.entries(CATEGORY_FOLDERS)) {
       ref,
       titolo: titleCase(title),
       categoria: categoriaSlug,
-      media,
+      // Keep the generated filenames stable: only the manifest order changes.
+      media: media.reverse(),
     });
   }
 }
