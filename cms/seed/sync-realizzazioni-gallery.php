@@ -65,24 +65,35 @@ foreach ( $records as $record ) {
 	}
 
 	foreach ( $projects as $project_id ) {
-		$current = array_map( 'intval', get_post_meta( (int) $project_id, 'edilmetal_galleria', false ) );
-		if ( $current === $expected ) {
-			WP_CLI::log( $ref . ': gia allineato.' );
-			continue;
-		}
+		$project_id = (int) $project_id;
+		$current    = array_map( 'intval', get_post_meta( $project_id, 'edilmetal_galleria', false ) );
 		if ( count( $current ) !== count( $expected ) || array_diff( $current, $expected ) !== array() ) {
 			WP_CLI::warning( $ref . ': galleria modificata editorialmente, saltata.' );
 			continue;
 		}
-		WP_CLI::log( $ref . ': ' . ( $apply ? 'aggiornamento.' : 'da aggiornare.' ) );
-		if ( ! $apply ) {
+
+		$gallery_needs_update = $current !== $expected;
+		$thumbnail_needs_update = get_post_thumbnail_id( $project_id ) !== $expected[0];
+		$og_needs_update = (int) get_post_meta( $project_id, 'edilmetal_seo_og', true ) !== $expected[0];
+		if ( ! $gallery_needs_update && ! $thumbnail_needs_update && ! $og_needs_update ) {
+			WP_CLI::log( $ref . ': gia allineato.' );
 			continue;
 		}
-		delete_post_meta( (int) $project_id, 'edilmetal_galleria' );
-		foreach ( $expected as $attachment_id ) {
-			add_post_meta( (int) $project_id, 'edilmetal_galleria', $attachment_id );
+
+		WP_CLI::log( $ref . ': ' . ( $apply ? 'aggiornamento.' : 'da aggiornare.' ) );
+		if ( $apply ) {
+			if ( $gallery_needs_update ) {
+				delete_post_meta( $project_id, 'edilmetal_galleria' );
+				foreach ( $expected as $attachment_id ) {
+					add_post_meta( $project_id, 'edilmetal_galleria', $attachment_id );
+				}
+			}
+			if ( $thumbnail_needs_update ) {
+				set_post_thumbnail( $project_id, $expected[0] );
+			}
+			if ( $og_needs_update ) {
+				update_post_meta( $project_id, 'edilmetal_seo_og', $expected[0] );
+			}
 		}
-		set_post_thumbnail( (int) $project_id, $expected[0] );
-		update_post_meta( (int) $project_id, 'edilmetal_seo_og', $expected[0] );
 	}
 }

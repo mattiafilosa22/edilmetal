@@ -14,7 +14,8 @@ Poi applicare l'aggiornamento e ripetere la verifica:
 `wp eval-file cms/seed/sync-realizzazioni-gallery.php apply`
 
 Lo script salta le gallery con allegati diversi dal manifest e riporta allegati
-o progetti mancanti. Aggiorna solo ordine gallery, thumbnail e Open Graph.
+o progetti mancanti. Per le gallery con gli stessi allegati, aggiorna
+indipendentemente ordine, thumbnail e Open Graph.
 
 ## Realizzazioni con una sola foto
 
@@ -34,6 +35,7 @@ Queste 31 gallery restano invariate:
 
 ## Verifiche fotografiche
 
-Non sono state individuate anomalie dall'ordine dei file. La conferma visiva
-manuale delle foto finali resta da completare nell'ambiente con il patrimonio
-fotografico disponibile.
+Il test degli asset locali conferma che tutti i 183 riferimenti del manifest
+esistono e che le 51 gallery multiple sono in ordine decrescente. La conferma
+visiva manuale delle foto finali resta da eseguire nella gallery seedata; le 31
+gallery a foto singola sopra elencate non consentono un confronto dell'ordine.
