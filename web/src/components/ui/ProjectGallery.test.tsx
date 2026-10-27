@@ -32,6 +32,12 @@ describe("ProjectGallery", () => {
     expect(screen.getByRole("group", { name: "Miniature della galleria" })).toBeInTheDocument();
   });
 
+  it("keeps a single photo selected without rendering thumbnails", () => {
+    renderGallery([{ src: "/finale.jpg", width: 1200, height: 800, alt: "Risultato finale" }]);
+    expect(screen.getByRole("img", { name: "Risultato finale" })).toHaveAttribute("src", expect.stringContaining("finale.jpg"));
+    expect(screen.queryByRole("group", { name: "Miniature della galleria" })).not.toBeInTheDocument();
+  });
+
   it("uses the first image initially and follows thumbnail order", () => {
     renderGallery([
       { src: "/finale.jpg", width: 1200, height: 800, alt: "Risultato finale" },
