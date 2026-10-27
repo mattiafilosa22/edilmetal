@@ -1,8 +1,9 @@
 # Ordine gallery realizzazioni
 
-Il manifest `realizzazioni-storiche.json` conserva tutti i riferimenti; il
-catalogo e lo script di sincronizzazione ordinano le chiavi in modo decrescente,
-così la prima immagine è il risultato finale. I file restano invariati.
+Il manifest `realizzazioni-storiche.json` conserva tutti i riferimenti nel loro
+ordine canonico: per le gallery multiple la prima immagine è il risultato
+finale. Catalogo e script di sincronizzazione rispettano quell'ordine senza
+riordinarlo. I file restano invariati.
 
 Per le installazioni già seedate eseguire prima la verifica:
 

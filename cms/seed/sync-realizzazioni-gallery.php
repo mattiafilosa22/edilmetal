@@ -23,8 +23,9 @@ foreach ( $records as $record ) {
 		continue;
 	}
 
+	// The manifest is the canonical gallery order. Do not reverse it here: doing
+	// so would make a second run undo the order seeded into new installations.
 	$media_keys = $record['media'];
-	rsort( $media_keys, SORT_STRING );
 	$expected = array();
 	foreach ( $media_keys as $media_key ) {
 		$attachments = get_posts(
