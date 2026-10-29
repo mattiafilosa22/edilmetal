@@ -2,7 +2,9 @@
 
 Il manifest `realizzazioni-storiche.json` conserva tutti i riferimenti nel loro
 ordine canonico: per le gallery multiple la prima immagine è il risultato
-finale. Catalogo e script di sincronizzazione rispettano quell'ordine senza
+finale e le foto di cantiere chiudono la sequenza. Di norma è l'ordine inverso
+dei file; 5 gallery hanno un ordine curato a mano dopo la verifica visiva
+(vedi sotto). Catalogo e script di sincronizzazione rispettano quell'ordine senza
 riordinarlo. I file restano invariati.
 
 Per le installazioni già seedate eseguire prima la verifica:
@@ -36,6 +38,23 @@ Queste 31 gallery restano invariate:
 ## Verifiche fotografiche
 
 Il test degli asset locali conferma che tutti i 183 riferimenti del manifest
-esistono e che le 51 gallery multiple sono in ordine decrescente. La conferma
-visiva manuale delle foto finali resta da eseguire nella gallery seedata; le 31
-gallery a foto singola sopra elencate non consentono un confronto dell'ordine.
+esistono e che le 51 gallery multiple sono in ordine decrescente, salvo le
+gallery curate sotto.
+
+La verifica visiva delle 51 gallery multiple è stata eseguita. In 5 casi l'ultimo
+file era ancora una foto di cantiere mentre l'opera finita compariva prima;
+l'ordine è definito in `CURATED_MEDIA_ORDER`
+(`scripts/seed/build-realizzazioni-media.mjs`) e verificato dal test:
+
+| Realizzazione | Ordine file |
+| --- | --- |
+| `strutture-acciaio-speedy-block` | 01, 03, 02 |
+| `pensiline-furia` | 01, 02 |
+| `pensiline-italbox-pensilina` | 01, 02 |
+| `coperture-tamponamenti-mercantile` | 02, 03, 05, 04, 01 |
+| `rivestimenti-facciata-meta` | 04, 02, 01, 05, 03 |
+
+Non hanno una foto dell'opera finita, quindi apre la foto di cantiere più
+avanzata: `strutture-acciaio-parmalat-collecchio`, `strutture-acciaio-toscanini`,
+`strutture-miste-aiassa`, `pensiline-ferrari`,
+`coperture-tamponamenti-copertura-collecchio`, `rivestimenti-facciata-fbp-piacenza`.

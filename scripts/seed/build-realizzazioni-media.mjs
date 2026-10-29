@@ -29,6 +29,19 @@ const BASENAME_OVERRIDES = new Map([
   ["ricci casa-apr07 002-", "ricci casa-apr07"],
 ]);
 
+/**
+ * Ordine foto curato a mano (verifica visiva): ref => numeri file, dal risultato
+ * finale al cantiere. Serve dove l'ordine inverso dei file non mette per prima
+ * la foto dell'opera finita. Gli altri progetti usano l'ordine inverso dei file.
+ */
+const CURATED_MEDIA_ORDER = new Map([
+  ["strutture-acciaio-speedy-block", ["01", "03", "02"]],
+  ["pensiline-furia", ["01", "02"]],
+  ["pensiline-italbox-pensilina", ["01", "02"]],
+  ["coperture-tamponamenti-mercantile", ["02", "03", "05", "04", "01"]],
+  ["rivestimenti-facciata-meta", ["04", "02", "01", "05", "03"]],
+]);
+
 /** Acronimi da mantenere maiuscoli nel titolo (dopo Title Case). */
 const ACRONYMS = new Map([
   ["Cna", "CNA"],
@@ -101,7 +114,9 @@ for (const [folderName, categoriaSlug] of Object.entries(CATEGORY_FOLDERS)) {
       titolo: titleCase(title),
       categoria: categoriaSlug,
       // Keep the generated filenames stable: only the manifest order changes.
-      media: media.reverse(),
+      media: CURATED_MEDIA_ORDER.has(ref)
+        ? CURATED_MEDIA_ORDER.get(ref).map((nn) => `real:${categoriaSlug}/${ref}/${nn}`)
+        : media.reverse(),
     });
   }
 }

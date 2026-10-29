@@ -7,6 +7,17 @@ type HistoricProject = { ref: string; media: string[] };
 const manifestPath = resolve(process.cwd(), "../cms/mu-plugins/edilmetal-core/seed/Data/realizzazioni-storiche.json");
 const mediaRoot = resolve(process.cwd(), "../cms/seed/media/realizzazioni");
 
+/** Gallery riordinate a mano: la foto dell'opera finita non era l'ultimo file. */
+const curatedOrder: Record<string, string[]> = {
+  "strutture-acciaio-speedy-block": ["01", "03", "02"],
+  "pensiline-furia": ["01", "02"],
+  "pensiline-italbox-pensilina": ["01", "02"],
+  "coperture-tamponamenti-mercantile": ["02", "03", "05", "04", "01"],
+  "rivestimenti-facciata-meta": ["04", "02", "01", "05", "03"],
+};
+
+const fileNumber = (key: string) => key.slice(key.lastIndexOf("/") + 1);
+
 describe("historic project media", () => {
   it("references existing, uniquely ordered seed assets", () => {
     const projects = JSON.parse(readFileSync(manifestPath, "utf8")) as HistoricProject[];
@@ -24,10 +35,12 @@ describe("historic project media", () => {
     const incorrectlyOrdered = projects
       .filter((project) => project.media.length > 1)
       .filter((project) => {
-        const positions = project.media.map((key) => Number(key.slice(key.lastIndexOf("/") + 1)));
-        return positions.some((position, index) => index > 0 && positions[index - 1] < position);
+        const numbers = project.media.map(fileNumber);
+        const expected = curatedOrder[project.ref] ?? [...numbers].sort().reverse();
+        return numbers.join() !== expected.join();
       })
       .map((project) => project.ref);
     expect(incorrectlyOrdered).toEqual([]);
+    expect(Object.keys(curatedOrder).every((ref) => projects.some((project) => project.ref === ref))).toBe(true);
   });
 });

@@ -99,9 +99,9 @@
     "titolo": "Speedy Block",
     "categoria": "strutture-acciaio",
     "media": [
+      "real:strutture-acciaio/strutture-acciaio-speedy-block/01",
       "real:strutture-acciaio/strutture-acciaio-speedy-block/03",
-      "real:strutture-acciaio/strutture-acciaio-speedy-block/02",
-      "real:strutture-acciaio/strutture-acciaio-speedy-block/01"
+      "real:strutture-acciaio/strutture-acciaio-speedy-block/02"
     ]
   },
   {
@@ -361,8 +361,8 @@
     "titolo": "Furia",
     "categoria": "pensiline",
     "media": [
-      "real:pensiline/pensiline-furia/02",
-      "real:pensiline/pensiline-furia/01"
+      "real:pensiline/pensiline-furia/01",
+      "real:pensiline/pensiline-furia/02"
     ]
   },
   {
@@ -387,8 +387,8 @@
     "titolo": "Italbox Pensilina",
     "categoria": "pensiline",
     "media": [
-      "real:pensiline/pensiline-italbox-pensilina/02",
-      "real:pensiline/pensiline-italbox-pensilina/01"
+      "real:pensiline/pensiline-italbox-pensilina/01",
+      "real:pensiline/pensiline-italbox-pensilina/02"
     ]
   },
   {
@@ -509,10 +509,10 @@
     "titolo": "Mercantile",
     "categoria": "coperture-tamponamenti",
     "media": [
+      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/02",
+      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/03",
       "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/05",
       "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/04",
-      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/03",
-      "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/02",
       "real:coperture-tamponamenti/coperture-tamponamenti-mercantile/01"
     ]
   },
@@ -587,11 +587,11 @@
     "titolo": "Meta",
     "categoria": "rivestimenti-facciata",
     "media": [
-      "real:rivestimenti-facciata/rivestimenti-facciata-meta/05",
       "real:rivestimenti-facciata/rivestimenti-facciata-meta/04",
-      "real:rivestimenti-facciata/rivestimenti-facciata-meta/03",
       "real:rivestimenti-facciata/rivestimenti-facciata-meta/02",
-      "real:rivestimenti-facciata/rivestimenti-facciata-meta/01"
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/01",
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/05",
+      "real:rivestimenti-facciata/rivestimenti-facciata-meta/03"
     ]
   },
   {
